@@ -4,6 +4,11 @@ public class Entity : MonoBehaviour
 {
     protected Animator anim;
     protected Rigidbody2D rb;
+    
+
+    [Header("Movement Details")]
+    [SerializeField] protected float moveSpeed = 5f;
+    protected bool facingRight = true;
 
     protected virtual void Awake()
     {
@@ -25,11 +30,28 @@ public class Entity : MonoBehaviour
         anim.SetFloat("xVelocity", rb.linearVelocity.x);
     }
 
-    protected void HandleFlip()
+     protected void Flip()
     {
-        if (rb.linearVelocity.x > 0)
-            transform.localScale = new Vector3(1, 1, 1);
-        else if (rb.linearVelocity.x < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+        facingRight = !facingRight;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
+
+    protected virtual void HandleFlip()
+    {
+        if (rb.linearVelocity.x > 0 && facingRight == false)
+        {
+            
+            Flip();
+        }
+        else if (rb.linearVelocity.x < 0 && facingRight == true)
+        {
+           
+            Flip();
+        }
+
+        
+    }
+
+
+
 }

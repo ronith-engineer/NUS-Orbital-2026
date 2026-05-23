@@ -3,7 +3,6 @@ using UnityEngine;
 public class Player : Entity
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
 
     [Header("Ground Check")]
@@ -42,5 +41,24 @@ public class Player : Entity
             xInput * moveSpeed,
             rb.linearVelocity.y
         );
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+    }
+
+    protected override void HandleFlip()
+    {
+        if (xInput > 0 && !facingRight)
+        {
+            //Debug.Log("Player flipping RIGHT");
+            Flip();
+        }
+        else if (xInput < 0 && facingRight)
+        {
+            //Debug.Log("Player flipping LEFT");
+            Flip();
+        }
     }
 }
