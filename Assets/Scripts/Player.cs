@@ -3,7 +3,6 @@ using UnityEngine;
 public class Player : Entity
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
 
     [Header("Ground Check")]
@@ -53,12 +52,12 @@ public class Player : Entity
     {
         if (xInput > 0 && !facingRight)
         {
-            Debug.Log("Player flipping RIGHT");
+            //Debug.Log("Player flipping RIGHT");
             Flip();
         }
         else if (xInput < 0 && facingRight)
         {
-            Debug.Log("Player flipping LEFT");
+            //Debug.Log("Player flipping LEFT");
             Flip();
         }
     }
