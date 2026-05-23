@@ -43,4 +43,17 @@ public class Player : Entity
             rb.linearVelocity.y
         );
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+    }
+
+    protected override void HandleFlip()
+    {
+        if (xInput > 0 && !facingRight)
+            Flip();
+        else if (xInput < 0 && facingRight)
+            Flip();
+    }
 }
