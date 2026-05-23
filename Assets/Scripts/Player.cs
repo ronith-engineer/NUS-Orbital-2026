@@ -52,8 +52,14 @@ public class Player : Entity
     protected override void HandleFlip()
     {
         if (xInput > 0 && !facingRight)
+        {
+            Debug.Log("Player flipping RIGHT");
             Flip();
+        }
         else if (xInput < 0 && facingRight)
+        {
+            Debug.Log("Player flipping LEFT");
             Flip();
+        }
     }
 }

@@ -39,16 +39,16 @@ public class Entity : MonoBehaviour
     {
         if (rb.linearVelocity.x > 0 && facingRight == false)
         {
-            Debug.Log("Flipping to right, facingRight was: " + facingRight);
+            
             Flip();
         }
         else if (rb.linearVelocity.x < 0 && facingRight == true)
         {
-            Debug.Log("Flipping to left, facingRight was: " + facingRight);
+           
             Flip();
         }
 
-        Debug.Log(gameObject.name + ": Current velocity: " + rb.linearVelocity.x + ", facingRight: " + facingRight);
+        
     }
 
 
