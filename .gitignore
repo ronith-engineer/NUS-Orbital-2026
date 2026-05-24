@@ -12,3 +12,4 @@
 *.booproj
 .DS_Store
 [Pp]ackages/
+/.vs
