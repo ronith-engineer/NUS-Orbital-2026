@@ -5,57 +5,112 @@ using UnityEngine.UIElements;
 
 public class Enemy : Entity
 {
+    [Header("Patrol Points")]
     [SerializeField] private GameObject patrolPointA;
     [SerializeField] private GameObject patrolPointB;
-    private Transform currentPoint;
+
+    private Transform targetPatrolPoint;
     private bool isWaiting = false;
+
+    [SerializeField] private Transform playerPosition;
+    [SerializeField] private float playerDetectionRangeNotFacing;
+    [SerializeField] private float playerChaseRange;
+    [SerializeField] private float lineOfSightRange;
+    [SerializeField] private bool facingPlayer;
+    private bool isChasing;
+
     protected override void Awake()
     {
         base.Awake();
-        currentPoint = patrolPointA.transform;
+        targetPatrolPoint = patrolPointA.transform;
+        lineOfSightRange = playerChaseRange;
     }
     protected override void Update()
     {
         base.Update();
-        PlayerDetection();
     }
 
 
     protected override void HandleMovement()
     {
-        if (isWaiting) return;
-        if (currentPoint == patrolPointA.transform)
+
+        if (Vector2.Distance(transform.position, playerPosition.position) < lineOfSightRange)
         {
-            rb.linearVelocityX = -moveSpeed;
+            if (playerPosition.position.x > transform.position.x && facingRight)
+            {
+                facingPlayer = true;
+            }
+            else if (playerPosition.position.x < transform.position.x && !facingRight)
+            {
+                facingPlayer = true;
+            }
+            else
+            {
+                facingPlayer = false;
+            }
+
+            if (facingPlayer)
+            {
+                isChasing = true;
+            }
+
+        }
+
+
+        if (isChasing)
+        {
+            if (playerPosition.position.x > transform.position.x)
+            {
+                rb.linearVelocityX = moveSpeed;
+            }
+            else
+            {
+                rb.linearVelocityX = -moveSpeed;
+            }
+
+            if (Vector2.Distance(transform.position, playerPosition.position) > playerChaseRange)
+            {
+                isChasing = false;
+            }
+
         }
         else
         {
-            rb.linearVelocityX = moveSpeed;
-        }
+            if (Vector2.Distance(transform.position, playerPosition.position) < playerDetectionRangeNotFacing)
+            {
+                isChasing = true;
+            }
 
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == patrolPointA.transform)
-        {
-            StartCoroutine(MyCoroutine());
-            currentPoint = patrolPointB.transform;
-        }
-        else if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == patrolPointB.transform)
-        {
-            StartCoroutine(MyCoroutine());
-            currentPoint = patrolPointA.transform;
+            if (isWaiting) return;
+            if (targetPatrolPoint == patrolPointA.transform)
+            {
+                rb.linearVelocityX = -moveSpeed;
+            }
+            else
+            {
+                rb.linearVelocityX = moveSpeed;
+            }
+
+            if (Vector2.Distance(transform.position, targetPatrolPoint.position) < 0.5f && targetPatrolPoint == patrolPointA.transform)
+            {
+                StartCoroutine(EnemyWait());
+                targetPatrolPoint = patrolPointB.transform;
+            }
+            else if (Vector2.Distance(transform.position, targetPatrolPoint.position) < 0.5f && targetPatrolPoint == patrolPointB.transform)
+            {
+                StartCoroutine(EnemyWait());
+                targetPatrolPoint = patrolPointA.transform;
+            }
         }
     }
 
-    private void PlayerDetection()
-    {
-        
-    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(patrolPointA.transform.position, 0.5f);
         Gizmos.DrawWireSphere(patrolPointB.transform.position, 0.5f);
     }
 
-    private IEnumerator MyCoroutine()
+    private IEnumerator EnemyWait()
     {
         //Debug.Log("Coroutine started");
         rb.linearVelocityX = 0;

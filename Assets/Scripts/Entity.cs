@@ -13,7 +13,7 @@ public class Entity : MonoBehaviour
 
     [Header("Movement Details")]
     [SerializeField] protected float moveSpeed = 5f;
-    protected bool facingRight = true;
+    [SerializeField] protected bool facingRight = true;
 
     protected virtual void Awake()
     {
