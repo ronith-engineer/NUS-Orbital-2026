@@ -530,6 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   maxHealth: 10
   moveSpeed: 5
+  facingRight: 1
   jumpForce: 10
   crouchSpeed: 2.5
   bulletPrefab: {fileID: 900385038374467139, guid: 04dc3bdc5471f7e448949b334efc806a, type: 3}
@@ -699,8 +700,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 10
   moveSpeed: 1.52
+  facingRight: 1
   patrolPointA: {fileID: 212772064}
   patrolPointB: {fileID: 403902856}
+  playerPosition: {fileID: 336434446}
+  playerDetectionRangeNotFacing: 2
+  playerChaseRange: 8
+  lineOfSightRange: 0
+  facingPlayer: 0
 --- !u!1 &1804819361
 GameObject:
   m_ObjectHideFlags: 0
