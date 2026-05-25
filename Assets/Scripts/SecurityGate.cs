@@ -3,70 +3,45 @@ using UnityEngine;
 public class SecurityGate : MonoBehaviour
 {
     [Header("Gate Settings")]
-    [SerializeField] private string correctCode = "1234";
+    [SerializeField] private GameObject keypadObject; // drag your Keypad prefab here
 
     private bool playerNearby = false;
     private bool keypadActive = false;
-    private string enteredCode = "";
+    private bool gateOpened = false;
+
+    private void Start()
+    {
+        if (keypadObject != null)
+            keypadObject.SetActive(false); // hidden at start
+    }
 
     private void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E))
+        if (playerNearby && Input.GetKeyDown(KeyCode.E) && !gateOpened)
         {
-            keypadActive = true;
-            enteredCode = "";
-            Debug.Log("Enter code (press Enter to confirm):");
-        }
-
-        if (keypadActive)
-        {
-            // Type numbers
-            foreach (char c in Input.inputString)
-            {
-                if (char.IsDigit(c) && enteredCode.Length < 4)
-                {
-                    enteredCode += c;
-                    Debug.Log("Code so far: " + enteredCode);
-                }
-
-                // Backspace to delete
-                if (c == '\b' && enteredCode.Length > 0)
-                    enteredCode = enteredCode.Substring(0, enteredCode.Length - 1);
-
-                // Enter to submit
-                if (c == '\n' || c == '\r')
-                    TryCode();
-            }
+            keypadActive = !keypadActive;
+            keypadObject.SetActive(keypadActive);
         }
     }
 
-    private void TryCode()
+    // Called by Keypad's onAccessGranted UnityEvent
+    public void OpenGate()
     {
-        if (enteredCode == correctCode)
-        {
-            Debug.Log("Correct! Gate opening!");
-            keypadActive = false;
-            OpenGate();
-        }
-        else
-        {
-            Debug.Log("Wrong code: " + enteredCode + " Try again!");
-            enteredCode = "";
-        }
-    }
+        gateOpened = true;
+        keypadActive = false;
+        if (keypadObject != null)
+            keypadObject.SetActive(false);
 
-   
-    private void OpenGate()
-    {
         transform.position += new Vector3(0, 5, 0);
         Debug.Log("Gate is now open!");
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             playerNearby = true;
-            Debug.Log("Press E to enter code");
+            Debug.Log("Press E to open keypad");
         }
     }
 
@@ -76,6 +51,8 @@ public class SecurityGate : MonoBehaviour
         {
             playerNearby = false;
             keypadActive = false;
+            if (keypadObject != null)
+                keypadObject.SetActive(false);
         }
     }
 }
