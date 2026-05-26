@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.ComponentModel.Design.Serialization;
 
 public class Entity : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class Entity : MonoBehaviour
 
     [Header("Movement Details")]
     [SerializeField] protected float moveSpeed = 5f;
-    [SerializeField] protected bool facingRight = true;
+    protected bool facingRight = true;
+    protected bool canMove = true;
+
+    [SerializeField] protected LayerMask whatIsTarget;
 
     protected virtual void Awake()
     {
@@ -32,7 +36,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void HandleMovement() { }
 
-    protected void HandleAnimations()
+    protected virtual void HandleAnimations()
     {
         anim.SetFloat("xVelocity", rb.linearVelocity.x);
     }
@@ -78,6 +82,7 @@ public class Entity : MonoBehaviour
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
     }
+
 
 }
 
