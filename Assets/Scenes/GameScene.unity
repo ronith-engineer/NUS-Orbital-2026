@@ -176,11 +176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319333, guid: b47bdf1669865c841ace96330ee3d7ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 7.62
       objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319333, guid: b47bdf1669865c841ace96330ee3d7ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.01
       objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319333, guid: b47bdf1669865c841ace96330ee3d7ec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -845,6 +845,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   maxHealth: 10
   moveSpeed: 5
+  whatIsTarget:
+    serializedVersion: 2
+    m_Bits: 0
   jumpForce: 10
   crouchSpeed: 2.5
   bulletPrefab: {fileID: 900385038374467139, guid: 04dc3bdc5471f7e448949b334efc806a, type: 3}
@@ -1139,12 +1142,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 10
   moveSpeed: 1.52
+  whatIsTarget:
+    serializedVersion: 2
+    m_Bits: 0
   patrolPointA: {fileID: 212772064}
   patrolPointB: {fileID: 403902856}
   playerPosition: {fileID: 336434446}
   playerDetectionRangeNotFacing: 2
   lineOfSightRange: 11.41
   facingPlayer: 0
+  attackPoint: {fileID: 0}
+  attackRadius: 0
 --- !u!1 &1804819361
 GameObject:
   m_ObjectHideFlags: 0
