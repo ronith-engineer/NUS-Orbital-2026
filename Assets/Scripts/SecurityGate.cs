@@ -3,37 +3,87 @@ using UnityEngine;
 public class SecurityGate : MonoBehaviour
 {
     [Header("Gate Settings")]
-    [SerializeField] private GameObject keypadObject; // drag your Keypad prefab here
+    [SerializeField] private GameObject keypadObject;
+    [SerializeField] private GameObject overlayObject;
+    [SerializeField] private Vector3 smallScale = new Vector3(0.3f, 0.3f, 0.3f);
+    [SerializeField] private Vector3 bigScale = new Vector3(2f, 2f, 2f);
+    [SerializeField] private Vector3 bigPosition = new Vector3(0, 0, 0);
+    [SerializeField] private float zoomSpeed = 5f;
 
     private bool playerNearby = false;
     private bool keypadActive = false;
     private bool gateOpened = false;
+    private bool isAnimating = false;
+    private Vector3 smallPosition;
 
     private void Start()
     {
         if (keypadObject != null)
-            keypadObject.SetActive(false); // hidden at start
+        {
+            smallPosition = keypadObject.transform.position;
+            keypadObject.SetActive(true);
+            keypadObject.transform.localScale = smallScale;
+        }
+        if (overlayObject != null)
+            overlayObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E) && !gateOpened)
+        if (playerNearby && Input.GetKeyDown(KeyCode.E) && !gateOpened && !isAnimating)
         {
-            keypadActive = !keypadActive;
-            keypadObject.SetActive(keypadActive);
+            if (!keypadActive)
+                OpenKeypad();
+            else
+                CloseKeypad();
         }
     }
 
-    // Called by Keypad's onAccessGranted UnityEvent
+    private void OpenKeypad()
+    {
+        keypadActive = true;
+        if (overlayObject != null) overlayObject.SetActive(true);
+        StopAllCoroutines();
+        StartCoroutine(ScaleKeypad(bigScale, bigPosition));
+    }
+
+    private void CloseKeypad()
+    {
+        keypadActive = false;
+        if (overlayObject != null) overlayObject.SetActive(false);
+        StopAllCoroutines();
+        StartCoroutine(ScaleKeypad(smallScale, smallPosition));
+    }
+
     public void OpenGate()
     {
         gateOpened = true;
-        keypadActive = false;
-        if (keypadObject != null)
-            keypadObject.SetActive(false);
-
+        StopAllCoroutines();
+        if (overlayObject != null) overlayObject.SetActive(false);
+        if (keypadObject != null) keypadObject.SetActive(false);
         transform.position += new Vector3(0, 5, 0);
-        Debug.Log("Gate is now open!");
+        Debug.Log("Gate opened!");
+    }
+    private System.Collections.IEnumerator ScaleKeypad(Vector3 targetScale, Vector3 targetPosition)
+    {
+        isAnimating = true;
+        Vector3 startScale = keypadObject.transform.localScale;
+        Vector3 startPosition = keypadObject.transform.position;
+        float elapsed = 0f;
+        float duration = 0.3f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            keypadObject.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            keypadObject.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            yield return null;
+        }
+
+        keypadObject.transform.localScale = targetScale;
+        keypadObject.transform.position = targetPosition;
+        isAnimating = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +91,7 @@ public class SecurityGate : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerNearby = true;
-            Debug.Log("Press E to open keypad");
+            Debug.Log("Press E to use keypad");
         }
     }
 
@@ -50,9 +100,7 @@ public class SecurityGate : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerNearby = false;
-            keypadActive = false;
-            if (keypadObject != null)
-                keypadObject.SetActive(false);
+            if (keypadActive) CloseKeypad();
         }
     }
 }
