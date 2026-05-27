@@ -5,56 +5,48 @@ using UnityEngine.UIElements;
 
 public class Enemy : Entity
 {
-    [Header("Patrol Points")]
+    [Header("Patrolling Details")]
     [SerializeField] private GameObject patrolPointA;
     [SerializeField] private GameObject patrolPointB;
-
     private Transform targetPatrolPoint;
     private bool isWaiting = false;
 
     [SerializeField] private Transform playerPosition;
     [SerializeField] private float playerDetectionRangeNotFacing;
     [SerializeField] private float lineOfSightRange;
-    [SerializeField] private bool facingPlayer;
-
-    [Header("Attack")]
-    [SerializeField] private Transform attackPoint;
-    [SerializeField] private float attackRadius;
+    private bool facingPlayer;
 
     private bool isChasing;
     private bool wasChasingLastFrame;
+    private bool playerDetectedForAttack;
+    [SerializeField] private float moveAwayDistance = 1f;
 
+    protected override void Update()
+    {
+        base.Update();
+    }
     protected override void Awake()
     {
         base.Awake();
         targetPatrolPoint = patrolPointA.transform;
     }
-    protected override void Update()
-    {
-        if (canMove) HandleMovement();
-        HandleAnimations();
-        HandleFlip();
-        HandleAttack();
-    }
 
-    private void HandleAttack()
+    protected override void HandleCollision()
     {
-        if (Vector2.Distance(transform.position, playerPosition.position) < 1.5f)
-        {
-            canMove = false;
-            anim.SetBool("attack", true);
-        }
-        else
-        {
-            canMove = true;
-            anim.SetBool("attack", false);
-        }
+        playerDetectedForAttack = Physics2D.OverlapCircle(attackPoint.position, attackRadius, whatIsTarget);
     }
     
+    private void HandleAttackAnimation()
+    {
+        anim.SetBool("attack", playerDetectedForAttack); 
+    }
 
     protected override void HandleMovement()
     {
-
+        if (Vector2.Distance(transform.position, playerPosition.position) < moveAwayDistance)
+        {
+            transform.position += moveAwayDistance * Vector3.right; 
+        }
         CheckIsChasing(); // Check if the enemy should be chasing the player or patrolling
         if (isChasing)
         {
@@ -175,14 +167,7 @@ public class Enemy : Entity
 
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(patrolPointA.transform.position, 0.5f);
-        Gizmos.DrawWireSphere(patrolPointB.transform.position, 0.5f);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, lineOfSightRange);
-    }
+
 
     private IEnumerator EnemyWait()
     {
@@ -198,18 +183,19 @@ public class Enemy : Entity
     protected override void HandleAnimations()
     {
         base.HandleAnimations();
+        HandleAttackAnimation();
         anim.SetBool("isChasing", isChasing);
+
     }
 
-    public void DamageTargets()
+
+    protected override void OnDrawGizmos()
     {
-        Collider2D[] targetColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsTarget);
-        foreach (Collider2D target in targetColliders)
-        {
-            Entity entityTarget = target.GetComponent<Entity>();
-            entityTarget.TakeDamage();
-
-        }
+        base.OnDrawGizmos();
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(patrolPointA.transform.position, 0.5f);
+        Gizmos.DrawWireSphere(patrolPointB.transform.position, 0.5f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, lineOfSightRange);
     }
-
 }
