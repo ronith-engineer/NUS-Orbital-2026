@@ -97,4 +97,9 @@ public class Player : Entity
         newBullet.GetComponent<Bullet>()
                  .SetDirection(facingDirection);
     }
+
+    protected override void HandleAnimations()
+    {
+        anim.SetFloat("xInput", xInput);
+    }
 }

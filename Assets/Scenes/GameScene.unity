@@ -643,8 +643,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 262870337}
-  - component: {fileID: 262870339}
   - component: {fileID: 262870338}
+  - component: {fileID: 262870339}
+  - component: {fileID: 262870340}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -748,6 +749,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &262870340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262870336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0cdb8b2f9f15d54baf310e46a982faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationEvents
 --- !u!1 &336434441
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,8 +814,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0019001737, y: -0.0038006464}
-  m_Size: {x: 0.25295988, y: 0.817572}
+  m_Offset: {x: -0.0136779845, y: -0.008885088}
+  m_Size: {x: 0.20443055, y: 0.80740273}
   m_Direction: 0
 --- !u!50 &336434443
 Rigidbody2D:
@@ -817,9 +830,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.5
   m_AngularDamping: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 4.99
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -844,10 +857,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   maxHealth: 10
-  moveSpeed: 5
+  currentHealth: 0
+  moveSpeed: 8
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 0
+  attackPoint: {fileID: 0}
+  attackRadius: 0
+  knockbackForce: 4.01
+  knockbackDuration: 0.12
+  knockbackFromRight: 0
   jumpForce: 10
   crouchSpeed: 2.5
   bulletPrefab: {fileID: 900385038374467139, guid: 04dc3bdc5471f7e448949b334efc806a, type: 3}
@@ -920,7 +939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &753187054
 SpriteRenderer:
   serializedVersion: 2
@@ -1062,6 +1081,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1804819362}
+  - {fileID: 2081594420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1581694318
@@ -1141,18 +1161,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 10
+  currentHealth: 0
   moveSpeed: 1.52
   whatIsTarget:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+  attackPoint: {fileID: 2081594420}
+  attackRadius: 0.4
+  knockbackForce: 5
+  knockbackDuration: 0.5
+  knockbackFromRight: 0
   patrolPointA: {fileID: 212772064}
   patrolPointB: {fileID: 403902856}
   playerPosition: {fileID: 336434446}
   playerDetectionRangeNotFacing: 2
   lineOfSightRange: 11.41
-  facingPlayer: 0
-  attackPoint: {fileID: 0}
-  attackRadius: 0
+  moveAwayDistance: 0.4
 --- !u!1 &1804819361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1188,7 @@ GameObject:
   - component: {fileID: 1804819362}
   - component: {fileID: 1804819364}
   - component: {fileID: 1804819363}
+  - component: {fileID: 1804819365}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -1267,6 +1292,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1804819365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804819361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0cdb8b2f9f15d54baf310e46a982faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationEvents
 --- !u!1 &2004253793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1395,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2081594419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2081594420}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2081594420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081594419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.65, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1581694317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
