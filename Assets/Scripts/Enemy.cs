@@ -182,7 +182,7 @@ public class Enemy : Entity
 
     protected override void HandleAnimations()
     {
-        base.HandleAnimations();
+        anim.SetFloat("xVelocity",rb.linearVelocityX);
         HandleAttackAnimation();
         anim.SetBool("isChasing", isChasing);
 
