@@ -10,28 +10,28 @@ public class InventorySlot : MonoBehaviour
 
     private ItemData currentItem;
 
-    // Returns true if slot has no item
+    
     public bool IsEmpty() => currentItem == null;
 
-    // Called when item picked up — fills the slot
+    
     public void SetItem(ItemData item)
     {
         currentItem = item;
         itemIcon.sprite = item.icon;
-        itemIcon.color = Color.white; // makes icon visible
+        itemIcon.color = Color.white;
         countText.text = "1";
     }
 
-    // Called when item used/dropped — empties the slot
+   
     public void ClearSlot()
     {
         currentItem = null;
         itemIcon.sprite = null;
-        itemIcon.color = new Color(1, 1, 1, 0); // makes icon invisible
+        itemIcon.color = new Color(1, 1, 1, 0); 
         countText.text = "";
     }
 
-    // Called when player clicks the slot
+    
     public void OnSlotClicked()
     {
         if (currentItem != null)
