@@ -86,6 +86,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void HandleFlip()
     {
+        if (knockbackTimer > 0) return;
         if (rb.linearVelocity.x > 0 && facingRight == false)
         {
             
@@ -99,10 +100,12 @@ public class Entity : MonoBehaviour
 
         
     }
-    public virtual void TakeDamage()
+    public virtual void TakeDamage(bool attackerFacingRight)
     {
 
         currentHealth--;
+        // Determine knockback direction based on attacker position
+        knockbackFromRight = !attackerFacingRight;
         knockbackTimer = knockbackDuration;
         Debug.Log(gameObject.name + " took damage! HP: " + currentHealth);
         StartCoroutine(DamageFlash());
@@ -130,9 +133,7 @@ public class Entity : MonoBehaviour
         foreach (Collider2D target in targetColliders)
         {
             Entity entityTarget = target.GetComponent<Entity>();
-            entityTarget.knockbackFromRight = !facingRight;
-
-            entityTarget.TakeDamage();
+            entityTarget.TakeDamage(facingRight);
 
         }
     }
