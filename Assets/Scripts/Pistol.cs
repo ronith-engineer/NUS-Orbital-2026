@@ -36,7 +36,7 @@ public class Pistol : MonoBehaviour
             Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage();
+                enemy.TakeDamage(player.facingRight);
             }
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);

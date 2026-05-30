@@ -869,11 +869,12 @@ MonoBehaviour:
   attackRadius: 0
   knockbackForce: 4.01
   knockbackDuration: 0.12
-  knockbackFromRight: 0
   jumpForce: 10
   crouchSpeed: 2.5
+  holdingWeapon: 1
   bulletPrefab: {fileID: 900385038374467139, guid: 04dc3bdc5471f7e448949b334efc806a, type: 3}
   firePoint: {fileID: 77658518}
+  playerAimWeapon: {fileID: 0}
   groundCheckDistance: 1.49
   whatIsGround:
     serializedVersion: 2
@@ -908,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce525b55a361ddf4293bf05be4ba4943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAimWeapon
+  aimDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &336434448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,7 +996,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529383293}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1031,9 +1033,9 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1129166803
+  m_SortingLayer: 2
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -1045,8 +1047,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.07051849
-        value: 0.5913048
+        time: 0.16816711
+        value: 0.51218414
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1203,7 +1205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &796605845
 Transform:
   m_ObjectHideFlags: 0
@@ -1330,7 +1332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1581694317
 Transform:
   m_ObjectHideFlags: 0
@@ -1400,7 +1402,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.01
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1433,9 +1435,8 @@ MonoBehaviour:
     m_Bits: 256
   attackPoint: {fileID: 2081594420}
   attackRadius: 0.4
-  knockbackForce: 5
-  knockbackDuration: 0.5
-  knockbackFromRight: 0
+  knockbackForce: 4.01
+  knockbackDuration: 0.12
   patrolPointA: {fileID: 212772064}
   patrolPointB: {fileID: 403902856}
   playerPosition: {fileID: 336434446}
