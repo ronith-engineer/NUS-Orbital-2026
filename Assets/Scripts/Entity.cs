@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
 
     [Header("Movement Details")]
     [SerializeField] protected float moveSpeed = 5f;
-    protected bool facingRight = true;
+    public bool facingRight = true;
     protected bool canMove = true;
     protected bool canJump = true;
 
@@ -28,7 +28,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float knockbackForce = 5f;
     [SerializeField] protected float knockbackDuration = 0.5f;
     protected float knockbackTimer;
-    [SerializeField] protected bool knockbackFromRight;
+    protected bool knockbackFromRight;
 
     protected virtual void Awake()
     {
@@ -78,10 +78,10 @@ public class Entity : MonoBehaviour
         
     }
 
-     protected void Flip()
+     public void Flip()
     {
         facingRight = !facingRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        transform.Rotate(0,180,0);
     }
 
     protected virtual void HandleFlip()
@@ -101,7 +101,8 @@ public class Entity : MonoBehaviour
     }
     public virtual void TakeDamage()
     {
-        currentHealth--; 
+
+        currentHealth--;
         knockbackTimer = knockbackDuration;
         Debug.Log(gameObject.name + " took damage! HP: " + currentHealth);
         StartCoroutine(DamageFlash());

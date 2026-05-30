@@ -5,10 +5,12 @@ public class Player : Entity
     [Header("Movement")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float crouchSpeed = 2.5f;
+    [SerializeField] private bool holdingWeapon;
 
     [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private PlayerAimWeapon playerAimWeapon;
 
     [Header("Ground Check")]
     [SerializeField] private float groundCheckDistance = 1.4f;
@@ -19,6 +21,12 @@ public class Player : Entity
     private bool isCrouching;
     private int facingDirection = 1;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        playerAimWeapon = GetComponent<PlayerAimWeapon>();
+    }
+
     protected override void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal");
@@ -28,9 +36,6 @@ public class Player : Entity
             rb.linearVelocity = new Vector2(
                 rb.linearVelocity.x, jumpForce
             );
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            Shoot();
 
         base.Update();
     }
@@ -69,33 +74,39 @@ public class Player : Entity
 
     protected override void HandleFlip()
     {
-        if (xInput > 0 && !facingRight)
+
+        if (holdingWeapon)
         {
-            //Debug.Log("Player flipping RIGHT");
-            Flip();
+            if (playerAimWeapon.aimDirection.x < 0 && facingRight)
+            {
+                Flip();
+            }
+            else if (playerAimWeapon.aimDirection.x > 0 && !facingRight)
+            {
+                Flip();
+            }
         }
-        else if (xInput < 0 && facingRight)
+
+        else
         {
-            //Debug.Log("Player flipping LEFT");
-            Flip();
+            if (xInput > 0 && !facingRight)
+            {
+                //Debug.Log("Player flipping RIGHT");
+                Flip();
+            }
+            else if (xInput < 0 && facingRight)
+            {
+                //Debug.Log("Player flipping LEFT");
+                Flip();
+            }
         }
+        
     }
 
     private void HandleCrouch()
     {
         isCrouching = Input.GetKey(KeyCode.S)
                    || Input.GetKey(KeyCode.DownArrow);
-    }
-
-    private void Shoot()
-    {
-        GameObject newBullet = Instantiate(
-            bulletPrefab,
-            firePoint.position,
-            Quaternion.identity
-        );
-        newBullet.GetComponent<Bullet>()
-                 .SetDirection(facingDirection);
     }
 
     protected override void HandleAnimations()
