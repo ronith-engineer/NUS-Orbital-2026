@@ -97,11 +97,13 @@ public class InventoryManager : MonoBehaviour
         {
             case ItemData.ItemType.Gun:
                 pistolObject.SetActive(true);
+                knifeObject.SetActive(false);
                 equippedItem = item;
                 Debug.Log("Gun equipped!");
                 break;
             case ItemData.ItemType.Knife:
                 knifeObject.SetActive(true);
+                pistolObject.SetActive(false);
                 equippedItem = item;
                 Debug.Log("Knife equipped!");
                 break;
