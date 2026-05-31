@@ -10,8 +10,8 @@ public class Entity : MonoBehaviour
     protected SpriteRenderer sr;
 
     [Header("Health")]
-    [SerializeField] private int maxHealth = 10;
-    [SerializeField] private int currentHealth;
+    [SerializeField] protected int maxHealth = 10;
+    [SerializeField] protected int currentHealth;
 
     [Header("Movement Details")]
     [SerializeField] protected float moveSpeed = 5f;

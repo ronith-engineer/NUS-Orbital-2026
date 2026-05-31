@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Entity
 {
+    [Header("Health")]
+    [SerializeField] private Slider healthSlider;
+
     [Header("Movement")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float crouchSpeed = 2.5f;
@@ -16,6 +20,8 @@ public class Player : Entity
     [SerializeField] private float groundCheckDistance = 1.4f;
     [SerializeField] private LayerMask whatIsGround;
 
+
+
     private float xInput;
     private bool isGrounded;
     private bool isCrouching;
@@ -25,6 +31,8 @@ public class Player : Entity
     {
         base.Awake();
         playerAimWeapon = GetComponent<PlayerAimWeapon>();
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = currentHealth;
     }
 
     protected override void Update()
@@ -112,5 +120,11 @@ public class Player : Entity
     protected override void HandleAnimations()
     {
         anim.SetFloat("xInput", xInput);
+    }
+
+    public override void TakeDamage(bool attackerFacingRight)
+    {
+        base.TakeDamage(attackerFacingRight);
+        healthSlider.value = currentHealth;
     }
 }
