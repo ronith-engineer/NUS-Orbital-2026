@@ -13,7 +13,7 @@ public class Pistol : MonoBehaviour
 
     void Awake()
     {
-        player = GetComponent<Player>();
+        player = GetComponentInParent<Player>();
     }
     void Update()
     {
