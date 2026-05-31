@@ -11,8 +11,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private InventorySlot[] slots;
 
     [Header("Player References")]
-    [SerializeField] private GameObject aimObject;
-    [SerializeField] private GameObject lineObject;
+    [SerializeField] private GameObject pistolObject;
+    [SerializeField] private GameObject knifeObject;
     [SerializeField] private Transform playerTransform;
 
     [Header("Drop Prefabs")]
@@ -96,12 +96,12 @@ public class InventoryManager : MonoBehaviour
         switch (item.itemType)
         {
             case ItemData.ItemType.Gun:
-                aimObject.SetActive(true);
-                lineObject.SetActive(true);
+                pistolObject.SetActive(true);
                 equippedItem = item;
                 Debug.Log("Gun equipped!");
                 break;
             case ItemData.ItemType.Knife:
+                knifeObject.SetActive(true);
                 equippedItem = item;
                 Debug.Log("Knife equipped!");
                 break;
@@ -118,8 +118,8 @@ public class InventoryManager : MonoBehaviour
     {
         if (item.itemType == ItemData.ItemType.Gun)
         {
-            aimObject.SetActive(false);
-            lineObject.SetActive(false);
+            pistolObject.SetActive(false);
+            knifeObject.SetActive(false);
         }
 
         GameObject prefabToSpawn = null;
