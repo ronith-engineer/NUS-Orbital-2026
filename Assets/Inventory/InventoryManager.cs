@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+
 
 public class InventoryManager : MonoBehaviour
 {
@@ -26,9 +28,24 @@ public class InventoryManager : MonoBehaviour
     public void ToggleInventory()
     {
         isOpen = !isOpen;
-        inventoryPanel.SetActive(isOpen);
+        if (isOpen)
+        {
+            inventoryPanel.SetActive(true);
+            inventoryPanel.transform.localScale = Vector3.zero;
+            StartCoroutine(ScaleInventory(Vector3.one));
+        }
+        else
+        {
+            StartCoroutine(ScaleInventory(Vector3.zero));
+            StartCoroutine(HideAfterScale());
+        }
     }
 
+    private IEnumerator HideAfterScale()
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        inventoryPanel.SetActive(false);
+    }
     public bool AddItem(ItemData item)
     {
         foreach (InventorySlot slot in slots)
@@ -41,6 +58,21 @@ public class InventoryManager : MonoBehaviour
         }
         Debug.Log("Inventory full!");
         return false;
+    }
+    private IEnumerator ScaleInventory(Vector3 targetScale)
+    {
+        float duration = 0.2f;
+        float elapsed = 0f;
+        Vector3 startScale = inventoryPanel.transform.localScale;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+            inventoryPanel.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+        inventoryPanel.transform.localScale = targetScale;
     }
 
     public void RemoveItem(InventorySlot slot)
