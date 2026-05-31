@@ -100,7 +100,7 @@ public class SecurityGate : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerNearby = false;
-            if (keypadActive) CloseKeypad();
+            
         }
     }
 }

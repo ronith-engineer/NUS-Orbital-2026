@@ -49,7 +49,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnEquipClicked()
     {
         if (currentItem != null)
-            InventoryManager.Instance.EquipItem(currentItem);
+            InventoryManager.Instance.EquipItem(currentItem,this);
     }
 
     public void OnDropClicked()

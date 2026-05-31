@@ -100,13 +100,15 @@ public class Entity : MonoBehaviour
 
         
     }
-   
-    public void Heal(int amount)
+
+    public void Heal()
     {
-        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        Debug.Log(gameObject.name + " healed! HP: " + currentHealth);
+        if (currentHealth <= 5)
+            currentHealth += 5;
+        else
+            currentHealth = maxHealth;
     }
-    
+
     public virtual void TakeDamage(bool attackerFacingRight)
     {
 
