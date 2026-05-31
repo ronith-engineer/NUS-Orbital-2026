@@ -53,11 +53,11 @@ public class Entity : MonoBehaviour
             EnableMovementAndJump(false);
             if (knockbackFromRight)
             {
-                rb.linearVelocity = new Vector2(-knockbackForce, knockbackForce);
+                rb.linearVelocity = new Vector2(-knockbackForce, 0);
             }
             else
             {
-                rb.linearVelocity = new Vector2(knockbackForce, knockbackForce);
+                rb.linearVelocity = new Vector2(knockbackForce, 0);
             }
             knockbackTimer -= Time.deltaTime;
 
