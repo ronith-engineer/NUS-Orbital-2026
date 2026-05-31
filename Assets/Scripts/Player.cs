@@ -44,7 +44,7 @@ public class Player : Entity
             rb.linearVelocity = new Vector2(
                 rb.linearVelocity.x, jumpForce
             );
-
+        healthSlider.value = currentHealth;
         base.Update();
     }
 
@@ -125,6 +125,6 @@ public class Player : Entity
     public override void TakeDamage(bool attackerFacingRight)
     {
         base.TakeDamage(attackerFacingRight);
-        healthSlider.value = currentHealth;
+        
     }
 }
