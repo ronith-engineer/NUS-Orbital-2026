@@ -91,7 +91,7 @@ public class InventoryManager : MonoBehaviour
         slot.ClearSlot();
     }
 
-    public void EquipItem(ItemData item)
+    public void EquipItem(ItemData item, InventorySlot slot)
     {
         switch (item.itemType)
         {
@@ -108,7 +108,8 @@ public class InventoryManager : MonoBehaviour
             case ItemData.ItemType.Medkit:
                 Player player = FindAnyObjectByType<Player>();
                 if (player != null)
-                    player.Heal(item.healAmount);
+                    player.Heal(); 
+                slot.ClearSlot(); 
                 Debug.Log("Medkit used!");
                 break;
         }
@@ -117,10 +118,10 @@ public class InventoryManager : MonoBehaviour
     public void DropItem(ItemData item, InventorySlot slot)
     {
         if (item.itemType == ItemData.ItemType.Gun)
-        {
             pistolObject.SetActive(false);
+
+        if (item.itemType == ItemData.ItemType.Knife)
             knifeObject.SetActive(false);
-        }
 
         GameObject prefabToSpawn = null;
         switch (item.itemType)
@@ -148,7 +149,7 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(ItemData item, InventorySlot slot)
     {
-        EquipItem(item);
+        EquipItem(item,slot);
     }
 
     public ItemData GetEquippedItem() => equippedItem;
