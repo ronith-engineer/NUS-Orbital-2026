@@ -62,7 +62,7 @@ As long time fans of 3D survival games, we often found that our own hardware was
 - Health bar display on the Heads Up Display showing current player health
 
 ### Demo Video
-<video src="readme-assets/Final Demo Video.mp4" width="100%" controls></video>
+
 
 ---
 
