@@ -67,34 +67,16 @@ As long time fans of 3D survival games, we often found that our own hardware was
 
 ---
 
-## Milestone 2 — Prototype (Core Features)
-
-### Goals
-1) Ammo scarcity with scavengeable ammo packs for pistol and shotgun
-2) Shotgun as a second ranged weapon
-3) Grenades and Molotov cocktails as throwable weapons
-4) Noise alert radius that pulses outward visibly when the player runs or fires, alerting nearby infected
-5) Crouch mechanic for reducing noise
-6) Shadow-based stealth for sighted enemies, with Blind infected relying purely on sound and ignoring shadows entirely
-7) Basic crafting system allowing players to craft Molotov cocktails and medkits from raw materials
-8) Keycard requirement alongside passcodes for multi-layer security gates
-9) Weapon upgrade workstations where players can permanently modify their weapons using rare scavenged materials
-10) 30 minute countdown on HUD with self-destruct sequence triggering on expiry
-11) Fist escalation milestone at 25 minutes where all unlocked doors lock down
-12) Staircase traversal across 2 playable floors, each with a distinct layout
-13) Improved pixel art for player character and background animations
-14) System testing across all implemented features with known bugs documented
-15) Update README and documentation to reflect Milestone 2 progress with an updated demo video
-
----
-
 ## Software Engineering Practices
 
 ### 1. Git Issue Tracking & Branch Strategy
 We created a GitHub Issue for every feature or bug before writing any code. Each issue was given a descriptive label (enhancement or bug) and assigned to Milestone 1. A dedicated branch was then created for each issue, with branches and pull requests named following a consistent convention for easy tracking.
 
-![Issues](./docs/issues.png)
-![Pull Requests](./docs/prs.png)
+#### Git Issues
+![Issues](./readme-assets/Git%20issues%20image.png) 
+
+#### Github PRs
+![Pull Requests](./readme-assets/Github%20pull%20requests%20page.png)
 
 ### 2. Safe Rebasing Workflow
 
@@ -131,6 +113,27 @@ To address this, we set up the **UnityYAMLMerge (Smart Merge)** tool in our term
 ### Obscure Unity Inspector Bugs
 Debugging in Unity is harder than in pure code projects because bugs can originate from Inspector settings rather than logic errors. One example: the player's health slider was drifting left and right during movement. After spending significant time searching through the movement and UI code, we discovered the cause was entirely in the Inspector — Unity's A and D keys can inadvertently interact with UI Sliders. The fix was simply to disable the **Interactable** option on the health slider GameObject, something that would never have been caught by reading the code alone.
 
+---
+
+## Next up : Milestone 2! 
+
+### Goals
+1) Ammo scarcity with scavengeable ammo packs for pistol and shotgun
+2) Shotgun as a second ranged weapon
+3) Grenades and Molotov cocktails as throwable weapons
+4) Noise alert radius that pulses outward visibly when the player runs or fires, alerting nearby infected
+5) Crouch mechanic for reducing noise
+6) Shadow-based stealth for sighted enemies, with Blind infected relying purely on sound and ignoring shadows entirely
+7) Basic crafting system allowing players to craft Molotov cocktails and medkits from raw materials
+8) Keycard requirement alongside passcodes for multi-layer security gates
+9) Weapon upgrade workstations where players can permanently modify their weapons using rare scavenged materials
+10) 30 minute countdown on HUD with self-destruct sequence triggering on expiry
+11) Fist escalation milestone at 25 minutes where all unlocked doors lock down
+12) Staircase traversal across 2 playable floors, each with a distinct layout
+13) Improved pixel art for player character and background animations
+14) System testing across all implemented features with known bugs documented
+15) Update README and documentation to reflect Milestone 2 progress with an updated demo video
+    
 ---
 
 | Milestone | Key Deliverables | Date |
