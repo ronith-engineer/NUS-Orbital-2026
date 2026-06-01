@@ -63,6 +63,7 @@ As long time fans of 3D survival games, we often found that our own hardware was
 
 ### Demo Video
 
+[![Milestone 1 Demo](https://img.youtube.com/vi/vHirqD36FPY/0.jpg)](https://youtu.be/vHirqD36FPY)
 
 ---
 
