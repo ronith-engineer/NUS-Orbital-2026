@@ -116,6 +116,33 @@ To address this, we set up the **UnityYAMLMerge (Smart Merge)** tool in our term
 Debugging in Unity is harder than in pure code projects because bugs can originate from Inspector settings rather than logic errors. One example: the player's health slider was drifting left and right during movement. After spending significant time searching through the movement and UI code, we discovered the cause was entirely in the Inspector — Unity's A and D keys can inadvertently interact with UI Sliders. The fix was simply to disable the **Interactable** option on the health slider GameObject, something that would never have been caught by reading the code alone.
 
 ---
+```mermaid
+flowchart TD
+    A([Player spawns in admin office]) --> B[Enemy patrolling\nKnife + medkit on left, gun on right of gate]
+    B --> C{Player walks over\nknife or medkit?}
+    C -->|No| B
+    C -->|Yes| D[Item auto picked up into inventory]
+    D --> E{Player opens\ninventory - I key?}
+    E -->|No| J
+    E -->|Yes| F[Hover over slot\nEquip or Drop buttons appear]
+    F -->|Equip| G{Which item?}
+    F -->|Drop| H[Item spawns at player feet]
+    G -->|Knife| I[Knife equipped\nCan attack enemy]
+    G -->|Medkit| K[Medkit used\nHP≤5 add 5 else max health]
+    H --> J
+    I --> J
+    K --> J
+    J{Enemy within 10 units\nin front of player?} -->|No - from behind| L{Contact made?}
+    L -->|No| J
+    L -->|Yes| M
+    J -->|Yes| M[Enemy chases player\nSpeed increases, deals damage on contact]
+    M --> N[Player reaches security gate\nPress E - keypad zooms in game pauses]
+    N --> O{Correct passcode\nentered?}
+    O -->|No| N
+    O -->|Yes| P[Gate opens\nPlayer proceeds]
+    P --> Q[Walk over gun - auto pickup\nEquip from inventory to shoot]
+    Q --> R([Level complete])
+```
 
 ## Next up : Milestone 2! 
 
