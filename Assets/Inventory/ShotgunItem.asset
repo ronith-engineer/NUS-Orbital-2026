@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c61967a7c539dc847963c4cf9c4de0c4, type: 3}
-  m_Name: MedkitItem
+  m_Name: ShotgunItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Medkit
-  icon: {fileID: -8386115682156863979, guid: ec465dd350c72a74c92a5d1e0bf1f099, type: 3}
-  itemType: 3
+  itemName: Shotgun
+  icon: {fileID: -5508731068583250912, guid: 7fdc0d3cc337d114aba8539121e79a45, type: 3}
+  itemType: 2
   healAmount: 0

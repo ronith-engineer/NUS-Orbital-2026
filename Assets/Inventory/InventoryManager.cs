@@ -13,11 +13,13 @@ public class InventoryManager : MonoBehaviour
     [Header("Player References")]
     [SerializeField] private GameObject pistolObject;
     [SerializeField] private GameObject knifeObject;
+    [SerializeField] private GameObject shotgunObject;
     [SerializeField] private Transform playerTransform;
 
     [Header("Drop Prefabs")]
     [SerializeField] private GameObject gunPrefab;
     [SerializeField] private GameObject knifePrefab;
+    [SerializeField] private GameObject shotgunPrefab;
     [SerializeField] private GameObject medkitPrefab;
 
     private bool isOpen = false;
@@ -98,14 +100,23 @@ public class InventoryManager : MonoBehaviour
             case ItemData.ItemType.Gun:
                 pistolObject.SetActive(true);
                 knifeObject.SetActive(false);
+                shotgunObject.SetActive(false);
                 equippedItem = item;
                 Debug.Log("Gun equipped!");
                 break;
             case ItemData.ItemType.Knife:
                 knifeObject.SetActive(true);
                 pistolObject.SetActive(false);
+                shotgunObject.SetActive(false);
                 equippedItem = item;
                 Debug.Log("Knife equipped!");
+                break;
+            case ItemData.ItemType.Shotgun:
+                shotgunObject.SetActive(true);
+                pistolObject.SetActive(false);
+                knifeObject.SetActive(false);
+                equippedItem = item;
+                Debug.Log("Shotgun equipped!");
                 break;
             case ItemData.ItemType.Medkit:
                 Player player = FindAnyObjectByType<Player>();
@@ -124,6 +135,8 @@ public class InventoryManager : MonoBehaviour
 
         if (item.itemType == ItemData.ItemType.Knife)
             knifeObject.SetActive(false);
+        if (item.itemType == ItemData.ItemType.Shotgun)
+            shotgunObject.SetActive(false);
 
         GameObject prefabToSpawn = null;
         switch (item.itemType)
@@ -133,6 +146,9 @@ public class InventoryManager : MonoBehaviour
                 break;
             case ItemData.ItemType.Knife:
                 prefabToSpawn = knifePrefab;
+                break;
+            case ItemData.ItemType.Shotgun:
+                prefabToSpawn = shotgunPrefab;
                 break;
             case ItemData.ItemType.Medkit:
                 prefabToSpawn = medkitPrefab;

@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] protected int maxHealth = 10;
-    [SerializeField] protected int currentHealth;
+    [SerializeField] protected float currentHealth;
 
     [Header("Movement Details")]
     [SerializeField] protected float moveSpeed = 5f;
@@ -23,6 +23,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected LayerMask whatIsTarget;
     [SerializeField] protected Transform attackPoint;
     [SerializeField] protected float attackRadius;
+    private int attackDamage = 1;
 
     [Header("Knockback Details")]
     [SerializeField] protected float knockbackForce = 5f;
@@ -109,10 +110,10 @@ public class Entity : MonoBehaviour
             currentHealth = maxHealth;
     }
 
-    public virtual void TakeDamage(bool attackerFacingRight)
+    public virtual void TakeDamage(bool attackerFacingRight, float attackDamage)
     {
 
-        currentHealth--;
+        currentHealth -= attackDamage;
         // Determine knockback direction based on attacker position
         knockbackFromRight = !attackerFacingRight;
         knockbackTimer = knockbackDuration;
@@ -142,7 +143,7 @@ public class Entity : MonoBehaviour
         foreach (Collider2D target in targetColliders)
         {
             Entity entityTarget = target.GetComponent<Entity>();
-            entityTarget.TakeDamage(facingRight);
+            entityTarget.TakeDamage(facingRight, attackDamage);
 
         }
     }

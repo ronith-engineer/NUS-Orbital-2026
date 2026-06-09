@@ -122,9 +122,4 @@ public class Player : Entity
         anim.SetFloat("xInput", xInput);
     }
 
-    public override void TakeDamage(bool attackerFacingRight)
-    {
-        base.TakeDamage(attackerFacingRight);
-        
-    }
 }

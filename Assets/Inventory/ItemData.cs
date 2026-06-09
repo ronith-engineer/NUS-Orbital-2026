@@ -15,6 +15,7 @@ public class ItemData : ScriptableObject
     {
         Gun,
         Knife,
+        Shotgun,
         Medkit
     }
 }
