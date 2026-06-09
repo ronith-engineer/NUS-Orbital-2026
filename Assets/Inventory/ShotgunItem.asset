@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ShotgunItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Shotgun
-  icon: {fileID: -3882421745933238481, guid: 3b146f6ca7fac6349abda9e52a8d91ed, type: 3}
+  icon: {fileID: -5508731068583250912, guid: 7fdc0d3cc337d114aba8539121e79a45, type: 3}
   itemType: 2
   healAmount: 0
