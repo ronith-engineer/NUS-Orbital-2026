@@ -10,6 +10,8 @@ public class Shotgun : MonoBehaviour
     private Coroutine shootCoroutine;
     public int currentAmmo = 4;
     private Animator anim;
+    private float attackDamage = 6f;
+    private float maxShootingDistance = 18f;
 
 
     void Awake()
@@ -38,7 +40,11 @@ public class Shotgun : MonoBehaviour
             Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(player.facingRight);
+                float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
+                if (distance <= maxShootingDistance)
+                {
+                    enemy.TakeDamage(player.facingRight, attackDamage * (1 - distance / maxShootingDistance));
+                }
             }
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);

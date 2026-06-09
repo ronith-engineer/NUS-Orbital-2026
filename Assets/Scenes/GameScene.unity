@@ -8694,8 +8694,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponUI
   pistolUI: {fileID: 138172269}
   knifeUI: {fileID: 1412387526}
+  shotgunUI: {fileID: 1831797079}
   pistol: {fileID: 1982036628}
   knife: {fileID: 488625091}
+  shotgun: {fileID: 509201917}
 --- !u!1 &1831797079
 GameObject:
   m_ObjectHideFlags: 0
@@ -8714,7 +8716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1831797080
 RectTransform:
   m_ObjectHideFlags: 0

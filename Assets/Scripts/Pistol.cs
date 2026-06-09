@@ -10,7 +10,7 @@ public class Pistol : MonoBehaviour
     private Player player;
     private Coroutine shootCoroutine;
     public int currentAmmo = 6;
-
+    private int attackDamage = 2;
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class Pistol : MonoBehaviour
             Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(player.facingRight);
+                enemy.TakeDamage(player.facingRight, attackDamage);
             }
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
