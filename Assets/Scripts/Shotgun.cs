@@ -1,20 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class Pistol : MonoBehaviour
+public class Shotgun : MonoBehaviour
 {
 
     [SerializeField] private Transform firePoint;
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private GameObject muzzleFlash;
     private Player player;
     private Coroutine shootCoroutine;
-    public int currentAmmo = 6;
+    public int currentAmmo = 4;
+    private Animator anim;
 
 
     void Awake()
     {
         player = GetComponentInParent<Player>();
+        anim = GetComponentInChildren<Animator>();
     }
     void Update()
     {
@@ -44,20 +45,18 @@ public class Pistol : MonoBehaviour
         }
         else
         {
-            
+
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100f);
         }
-
+        anim.SetTrigger("shoot");
         lineRenderer.enabled = true;
-
-        muzzleFlash.SetActive(true);
 
         yield return new WaitForSeconds(0.02f);
         //wait for a short time and then disable the line renderer
-        
+
         lineRenderer.enabled = false;
-        muzzleFlash.SetActive(false);
+
 
     }
 }
