@@ -371,7 +371,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2303921292967740188, guid: b47bdf1669865c841ace96330ee3d7ec, type: 3}
-      propertyPath: m_ActiveFontFeatures.Array.data[0]
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 2303921294396319332, guid: b47bdf1669865c841ace96330ee3d7ec, type: 3}
@@ -2637,8 +2637,8 @@ MonoBehaviour:
   attackPoint: {fileID: 1671158141}
   attackRadius: 0.4
   receivedKnockbackForce: 0
-  knockbackForce: 6
   knockbackDuration: 0.14
+  knockbackForce: 6
   healthSlider: {fileID: 1957774076}
   jumpForce: 10
   crouchSpeed: 2.5
@@ -3959,82 +3959,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593460015}
   m_CullTransparentMesh: 1
---- !u!1 &651978921
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 651978922}
-  - component: {fileID: 651978924}
-  - component: {fileID: 651978923}
-  m_Layer: 0
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &651978922
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651978921}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1199727987}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &651978923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651978921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &651978924
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651978921}
-  m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &601417457
+=======
+--- !u!1 &651978921
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4042,28 +3971,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 601417458}
   - component: {fileID: 601417460}
   - component: {fileID: 601417459}
   m_Layer: 5
   m_Name: Bullet1 (2)
+=======
+  - component: {fileID: 651978922}
+  - component: {fileID: 651978924}
+  - component: {fileID: 651978923}
+  m_Layer: 0
+  m_Name: Background
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &601417458
+=======
+--- !u!224 &651978922
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 601417457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+=======
+  m_GameObject: {fileID: 651978921}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 138172270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4072,27 +4019,50 @@ RectTransform:
   m_SizeDelta: {x: 3.81, y: 12.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &601417459
+=======
+  m_Father: {fileID: 1199727987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.25}
+  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &651978923
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 601417457}
+=======
+  m_GameObject: {fileID: 651978921}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+=======
+  m_Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_Sprite: {fileID: 0}
   m_Type: 0
+=======
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4101,13 +4071,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 --- !u!222 &601417460
+=======
+--- !u!222 &651978924
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 601417457}
+=======
+  m_GameObject: {fileID: 651978921}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_CullTransparentMesh: 1
 --- !u!1 &750199361
 GameObject:
@@ -5909,6 +5887,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b955198686884840aad420c230b9b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavKeypad.KeypadInteraction2D
+<<<<<<< HEAD
+--- !u!1001 &1225238455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4984888731800670083, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: cc2895448b89ee649933b9465c9d4c0d, type: 2}
+    - target: {fileID: 1788641942280940023, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_Name
+      value: ShotgunPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265058485261206206, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265058485261206206, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265058485261206206, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 630291237
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+=======
 --- !u!1 &1199727985
 GameObject:
   m_ObjectHideFlags: 0
@@ -6039,79 +6092,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199727985}
   m_CullTransparentMesh: 1
---- !u!1001 &1225238455
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -4984888731800670083, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: cc2895448b89ee649933b9465c9d4c0d, type: 2}
-    - target: {fileID: 1788641942280940023, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_Name
-      value: ShotgunPickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 3265058485261206206, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3265058485261206206, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3265058485261206206, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 630291237
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 --- !u!1 &1225417118
 GameObject:
   m_ObjectHideFlags: 0
@@ -7493,8 +7474,11 @@ RectTransform:
   m_Children:
   - {fileID: 1957774075}
   - {fileID: 515896982}
-  - {fileID: 1199727987}
+<<<<<<< HEAD
   - {fileID: 1815594998}
+=======
+  - {fileID: 1199727987}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8930,43 +8914,11 @@ MonoBehaviour:
   itemIcon: {fileID: 1929227438}
   countText: {fileID: 1503611052}
   actionButtons: {fileID: 0}
---- !u!1 &1824643706
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1824643707}
-  m_Layer: 0
-  m_Name: Fill Area
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1824643707
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824643706}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 951878527}
-  m_Father: {fileID: 1199727987}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!1 &1815594997
+=======
+--- !u!1 &1824643706
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8974,27 +8926,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 1815594998}
   - component: {fileID: 1815594999}
   m_Layer: 5
   m_Name: WeaponUI
+=======
+  - component: {fileID: 1824643707}
+  m_Layer: 0
+  m_Name: Fill Area
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &1815594998
+=======
+--- !u!224 &1824643707
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1815594997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+=======
+  m_GameObject: {fileID: 1824643706}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+<<<<<<< HEAD
   - {fileID: 138172270}
   - {fileID: 1412387527}
   - {fileID: 1831797080}
@@ -9116,6 +9084,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotgunUI
   shotgun: {fileID: 509201919}
+=======
+  - {fileID: 951878527}
+  m_Father: {fileID: 1199727987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.25}
+  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchoredPosition: {x: -5, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+>>>>>>> enhancement/#39/add-crowch-running-stamina
 --- !u!1 &1844198598
 GameObject:
   m_ObjectHideFlags: 0
