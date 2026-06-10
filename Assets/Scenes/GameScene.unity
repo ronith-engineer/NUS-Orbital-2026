@@ -2636,8 +2636,9 @@ MonoBehaviour:
     m_Bits: 128
   attackPoint: {fileID: 1671158141}
   attackRadius: 0.4
-  knockbackForce: 4.01
+  receivedKnockbackForce: 0
   knockbackDuration: 0.14
+  knockbackForce: 6
   healthSlider: {fileID: 1957774076}
   jumpForce: 10
   crouchSpeed: 2.5
@@ -3288,6 +3289,7 @@ MonoBehaviour:
   firePoint: {fileID: 1411987080}
   lineRenderer: {fileID: 1435896433}
   currentAmmo: 4
+  knockbackForce: 15
 --- !u!1 &515896981
 GameObject:
   m_ObjectHideFlags: 0
@@ -5782,11 +5784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.939
+      value: 21.79
       objectReference: {fileID: 0}
     - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.667
+      value: -1.18
       objectReference: {fileID: 0}
     - target: {fileID: 4405053571918862011, guid: 972790972f4cda4408ecf2bd3ede9920, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7543,8 +7545,9 @@ MonoBehaviour:
     m_Bits: 256
   attackPoint: {fileID: 2081594420}
   attackRadius: 0.4
-  knockbackForce: 6.11
+  receivedKnockbackForce: 0
   knockbackDuration: 0.12
+  knockbackForce: 6
   patrolPointA: {fileID: 212772064}
   patrolPointB: {fileID: 403902856}
   playerPosition: {fileID: 336434446}
@@ -9911,6 +9914,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 529383295}
   muzzleFlash: {fileID: 796605844}
   currentAmmo: 6
+  knockbackForce: 7
 --- !u!1 &2004253793
 GameObject:
   m_ObjectHideFlags: 0

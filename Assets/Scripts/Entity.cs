@@ -26,8 +26,9 @@ public class Entity : MonoBehaviour
     private int attackDamage = 1;
 
     [Header("Knockback Details")]
-    [SerializeField] protected float knockbackForce = 5f;
+    [SerializeField] protected float receivedKnockbackForce;
     [SerializeField] protected float knockbackDuration = 0.5f;
+    [SerializeField] private float knockbackForce = 6f;
     protected float knockbackTimer;
     protected bool knockbackFromRight;
 
@@ -54,11 +55,11 @@ public class Entity : MonoBehaviour
             EnableMovementAndJump(false);
             if (knockbackFromRight)
             {
-                rb.linearVelocity = new Vector2(-knockbackForce, 0);
+                rb.linearVelocity = new Vector2(-receivedKnockbackForce, 0);
             }
             else
             {
-                rb.linearVelocity = new Vector2(knockbackForce, 0);
+                rb.linearVelocity = new Vector2(receivedKnockbackForce, 0);
             }
             knockbackTimer -= Time.deltaTime;
 
@@ -110,12 +111,13 @@ public class Entity : MonoBehaviour
             currentHealth = maxHealth;
     }
 
-    public virtual void TakeDamage(bool attackerFacingRight, float attackDamage)
+    public virtual void TakeDamage(bool attackerFacingRight, float attackDamage, float knockbackForce)
     {
 
         currentHealth -= attackDamage;
         // Determine knockback direction based on attacker position
         knockbackFromRight = !attackerFacingRight;
+        receivedKnockbackForce = knockbackForce;
         knockbackTimer = knockbackDuration;
         Debug.Log(gameObject.name + " took damage! HP: " + currentHealth);
         StartCoroutine(DamageFlash());
@@ -143,7 +145,7 @@ public class Entity : MonoBehaviour
         foreach (Collider2D target in targetColliders)
         {
             Entity entityTarget = target.GetComponent<Entity>();
-            entityTarget.TakeDamage(facingRight, attackDamage);
+            entityTarget.TakeDamage(facingRight, attackDamage, knockbackForce);
 
         }
     }
