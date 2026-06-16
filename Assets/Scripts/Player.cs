@@ -116,7 +116,12 @@ public class Player : Entity
         if (xInput != 0)
             facingDirection = xInput > 0 ? 1 : -1;
 
-        float speed = isRunning ? runSpeed : moveSpeed;
+        float speed;
+
+        if (isRunning && currentStamina > 0)
+            speed = runSpeed;
+        else
+            speed = moveSpeed;
 
         if (isCrouching)
             rb.linearVelocity = new Vector2(xInput * crouchSpeed, rb.linearVelocity.y);

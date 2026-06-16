@@ -2779,7 +2779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   maxHealth: 10
   currentHealth: 0
-  moveSpeed: 8
+  moveSpeed: 5
   facingRight: 1
   whatIsTarget:
     serializedVersion: 2
@@ -2792,7 +2792,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1957774076}
   jumpForce: 10
   crouchSpeed: 2.5
-  runSpeed: 15
+  runSpeed: 9
   holdingWeapon: 0
   staminaSlider: {fileID: 1199727986}
   maxStamina: 100
@@ -3523,7 +3523,6 @@ MonoBehaviour:
   lineRenderer: {fileID: 1435896433}
   currentAmmo: 4
   knockbackForce: 15
-  shootNoise: 70
 --- !u!1 &515896981
 GameObject:
   m_ObjectHideFlags: 0
@@ -8603,8 +8602,6 @@ MonoBehaviour:
   playerPosition: {fileID: 336434446}
   playerDetectionRangeNotFacing: 2
   lineOfSightRange: 11.41
-  noiseDetectionRange: 15
-  noiseThreshold: 30
   moveAwayDistance: 0.4
 --- !u!1 &1601548549
 GameObject:
