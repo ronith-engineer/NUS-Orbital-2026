@@ -16,8 +16,8 @@ public class Entity : MonoBehaviour
     [Header("Movement Details")]
     [SerializeField] protected float moveSpeed = 5f;
     public bool facingRight = true;
-    protected bool canMove = true;
-    protected bool canJump = true;
+    [SerializeField] protected bool canMove = true;
+    [SerializeField] protected bool canJump = true;
 
     [Header("Attack Details")]
     [SerializeField] protected LayerMask whatIsTarget;
