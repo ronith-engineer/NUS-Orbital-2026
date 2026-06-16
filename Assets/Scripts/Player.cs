@@ -20,6 +20,11 @@ public class Player : Entity
     private float currentStamina;
     private bool isRunning;
 
+    [Header("Noise")]
+    [SerializeField] private float runNoise = 25f;
+    [SerializeField] private float walkNoise = 8f;
+    [SerializeField] private float crouchNoise = 2f;
+
     [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
@@ -51,6 +56,7 @@ public class Player : Entity
         CheckGround();
         HandleCrouch();
         HandleStamina();
+        HandleNoise();
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !holdingWeapon)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -58,6 +64,19 @@ public class Player : Entity
         healthSlider.value = currentHealth;
         staminaSlider.value = currentStamina;
         base.Update();
+    }
+
+    private void HandleNoise()
+    {
+        if (NoiseManager.Instance == null) return;
+        if (xInput == 0) return;
+
+        if (isCrouching)
+            NoiseManager.Instance.SetNoise(crouchNoise);
+        else if (isRunning)
+            NoiseManager.Instance.SetNoise(runNoise);
+        else
+            NoiseManager.Instance.SetNoise(walkNoise);
     }
 
     private void HandleStamina()
@@ -135,12 +154,8 @@ public class Player : Entity
         anim.SetBool("isRunning", isRunning);
     }
 
-<<<<<<< HEAD
-}
-=======
-    public override void TakeDamage(bool attackerFacingRight)
+    public override void TakeDamage(bool attackerFacingRight, float attackDamage, float knockbackForce)
     {
-        base.TakeDamage(attackerFacingRight);
+        base.TakeDamage(attackerFacingRight, attackDamage, knockbackForce);
     }
 }
->>>>>>> enhancement/#39/add-crowch-running-stamina

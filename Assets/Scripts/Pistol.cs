@@ -12,6 +12,7 @@ public class Pistol : MonoBehaviour
     public int currentAmmo = 6;
     private int attackDamage = 2;
     [SerializeField] private float knockbackForce = 7f;
+    [SerializeField] private float shootNoise = 50f;
 
     void Awake()
     {
@@ -29,6 +30,8 @@ public class Pistol : MonoBehaviour
     IEnumerator Shoot()
     {
         currentAmmo--;
+        if (NoiseManager.Instance != null)
+            NoiseManager.Instance.SetNoise(shootNoise);
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
         Debug.Log("firePoint.right: " + firePoint.right);
 
