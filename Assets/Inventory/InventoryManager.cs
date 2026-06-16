@@ -131,12 +131,13 @@ public class InventoryManager : MonoBehaviour
     public void DropItem(ItemData item, InventorySlot slot)
     {
         if (item.itemType == ItemData.ItemType.Gun)
-            pistolObject.SetActive(false);
+            Destroy(pistolObject);
 
         if (item.itemType == ItemData.ItemType.Knife)
-            knifeObject.SetActive(false);
+            Destroy(knifeObject);
+
         if (item.itemType == ItemData.ItemType.Shotgun)
-            shotgunObject.SetActive(false);
+            Destroy(shotgunObject);
 
         GameObject prefabToSpawn = null;
         switch (item.itemType)
