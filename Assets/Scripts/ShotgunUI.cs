@@ -42,7 +42,6 @@ public class ShotgunUI : MonoBehaviour
                     else
                     {
                         bullet4.color = new Color32(125, 125, 125, 255);
-                        Debug.Log("bullet4 should be gray");
                     }
 
                 }
