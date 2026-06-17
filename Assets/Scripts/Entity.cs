@@ -135,7 +135,7 @@ public class Entity : MonoBehaviour
     {
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
-        Time.timeScale = 0;
+
     }
 
     public void DamageTargets()
