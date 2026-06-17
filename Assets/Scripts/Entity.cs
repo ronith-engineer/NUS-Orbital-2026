@@ -16,8 +16,8 @@ public class Entity : MonoBehaviour
     [Header("Movement Details")]
     [SerializeField] protected float moveSpeed = 5f;
     public bool facingRight = true;
-    protected bool canMove = true;
-    protected bool canJump = true;
+    [SerializeField] protected bool canMove = true;
+    [SerializeField] protected bool canJump = true;
 
     [Header("Attack Details")]
     [SerializeField] protected LayerMask whatIsTarget;
@@ -42,11 +42,13 @@ public class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (currentHealth <= 0) Die();
         if (canMove) HandleMovement();
         HandleAnimations();
         HandleFlip();
         HandleCollision();
         HandleDamage();
+
     }
     private void HandleDamage()
     {
@@ -111,7 +113,7 @@ public class Entity : MonoBehaviour
             currentHealth = maxHealth;
     }
 
-    public virtual void TakeDamage(bool attackerFacingRight, float attackDamage, float knockbackForce)
+    public virtual void TakeDamageFromEntity(bool attackerFacingRight, float attackDamage, float knockbackForce)
     {
 
         currentHealth -= attackDamage;
@@ -122,9 +124,18 @@ public class Entity : MonoBehaviour
         Debug.Log(gameObject.name + " took damage! HP: " + currentHealth);
         StartCoroutine(DamageFlash());
 
-        if (currentHealth <= 0)
-            Die();
+
     }
+
+    public virtual void TakeDamageFromHazard(float attackDamage)
+    {
+        currentHealth -= attackDamage;
+        Debug.Log(gameObject.name + " took damage from hazard! HP: " + currentHealth);
+        StartCoroutine(DamageFlash());
+
+    }
+
+    
     private IEnumerator DamageFlash()
     {
         sr.color = Color.red;
@@ -145,7 +156,7 @@ public class Entity : MonoBehaviour
         foreach (Collider2D target in targetColliders)
         {
             Entity entityTarget = target.GetComponent<Entity>();
-            entityTarget.TakeDamage(facingRight, attackDamage, knockbackForce);
+            entityTarget.TakeDamageFromEntity(facingRight, attackDamage, knockbackForce);
 
         }
     }

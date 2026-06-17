@@ -45,7 +45,7 @@ public class Shotgun : MonoBehaviour
                 if (distance <= maxShootingDistance)
                 {
                     float attackDamageWithDistance = attackDamage * Mathf.Round(1 - distance / maxShootingDistance);
-                    enemy.TakeDamage(player.facingRight, attackDamageWithDistance, knockbackForce); //damage decreases with distance, at max distance it will be 0, at point blank it will be full damage
+                    enemy.TakeDamageFromEntity(player.facingRight, attackDamageWithDistance, knockbackForce); //damage decreases with distance, at max distance it will be 0, at point blank it will be full damage
                 }
             }
             lineRenderer.SetPosition(0, firePoint.position);

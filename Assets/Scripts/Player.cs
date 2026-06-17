@@ -135,6 +135,7 @@ public class Player : Entity
         anim.SetBool("isRunning", isRunning);
     }
 
+
     protected override void Die()
     {
         base.Die();

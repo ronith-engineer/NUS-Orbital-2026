@@ -14,13 +14,17 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject pistolObject;
     [SerializeField] private GameObject knifeObject;
     [SerializeField] private GameObject shotgunObject;
+    [SerializeField] private GameObject molotovObject;
+    [SerializeField] private GameObject grenadeObject;
     [SerializeField] private Transform playerTransform;
 
     [Header("Drop Prefabs")]
     [SerializeField] private GameObject gunPrefab;
     [SerializeField] private GameObject knifePrefab;
     [SerializeField] private GameObject shotgunPrefab;
-    [SerializeField] private GameObject medkitPrefab;
+    [SerializeField] private GameObject molotovPrefab;
+    [SerializeField] private GameObject grenadePrefab;
+    [SerializeField] private GameObject medkitPrefab;   // names should be made clearer, not just prefab but should be written as drop prefab
 
     private bool isOpen = false;
     private ItemData equippedItem;
@@ -101,6 +105,8 @@ public class InventoryManager : MonoBehaviour
                 pistolObject.SetActive(true);
                 knifeObject.SetActive(false);
                 shotgunObject.SetActive(false);
+                molotovObject.SetActive(false);
+                grenadeObject.SetActive(false);
                 equippedItem = item;
                 Debug.Log("Gun equipped!");
                 break;
@@ -108,6 +114,8 @@ public class InventoryManager : MonoBehaviour
                 knifeObject.SetActive(true);
                 pistolObject.SetActive(false);
                 shotgunObject.SetActive(false);
+                molotovObject.SetActive(false);
+                grenadeObject.SetActive(false);
                 equippedItem = item;
                 Debug.Log("Knife equipped!");
                 break;
@@ -115,8 +123,28 @@ public class InventoryManager : MonoBehaviour
                 shotgunObject.SetActive(true);
                 pistolObject.SetActive(false);
                 knifeObject.SetActive(false);
+                molotovObject.SetActive(false);
+                grenadeObject.SetActive(false);
                 equippedItem = item;
                 Debug.Log("Shotgun equipped!");
+                break;
+            case ItemData.ItemType.Molotov:
+                molotovObject.SetActive(true);
+                pistolObject.SetActive(false);
+                knifeObject.SetActive(false);
+                shotgunObject.SetActive(false);
+                grenadeObject.SetActive(false);
+                equippedItem = item;
+                Debug.Log("Molotov equipped!");
+                break;
+            case ItemData.ItemType.Grenade:
+                grenadeObject.SetActive(true);
+                molotovObject.SetActive(false);
+                pistolObject.SetActive(false);
+                knifeObject.SetActive(false);
+                shotgunObject.SetActive(false);
+                equippedItem = item;
+                Debug.Log("Molotov equipped!");
                 break;
             case ItemData.ItemType.Medkit:
                 Player player = FindAnyObjectByType<Player>();
@@ -133,10 +161,14 @@ public class InventoryManager : MonoBehaviour
         if (item.itemType == ItemData.ItemType.Gun)
             pistolObject.SetActive(false);
 
-        if (item.itemType == ItemData.ItemType.Knife)
+        if (item.itemType == ItemData.ItemType.Knife)                    
             knifeObject.SetActive(false);
         if (item.itemType == ItemData.ItemType.Shotgun)
             shotgunObject.SetActive(false);
+        if (item.itemType == ItemData.ItemType.Molotov)
+            Destroy(molotovObject);
+        if (item.itemType == ItemData.ItemType.Grenade)
+            Destroy(grenadeObject);
 
         GameObject prefabToSpawn = null;
         switch (item.itemType)
@@ -149,6 +181,12 @@ public class InventoryManager : MonoBehaviour
                 break;
             case ItemData.ItemType.Shotgun:
                 prefabToSpawn = shotgunPrefab;
+                break;
+            case ItemData.ItemType.Molotov:
+                prefabToSpawn = molotovPrefab;
+                break;
+            case ItemData.ItemType.Grenade:
+                prefabToSpawn = grenadePrefab;
                 break;
             case ItemData.ItemType.Medkit:
                 prefabToSpawn = medkitPrefab;

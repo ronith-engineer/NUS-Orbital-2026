@@ -85,7 +85,6 @@ public class PistolUI : MonoBehaviour
         bullet4 = GetComponentsInChildren<Image>()[4];
         bullet5 = GetComponentsInChildren<Image>()[5];
         bullet6 = GetComponentsInChildren<Image>()[6];
-        bullet6 = GetComponentsInChildren<Image>()[7];
     }
     private void ResetBulletsToGray()
     {

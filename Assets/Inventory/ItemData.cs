@@ -16,6 +16,8 @@ public class ItemData : ScriptableObject
         Gun,
         Knife,
         Shotgun,
+        Molotov,
+        Grenade,
         Medkit
     }
 }
