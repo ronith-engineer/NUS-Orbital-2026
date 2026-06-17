@@ -135,12 +135,11 @@ public class Player : Entity
         anim.SetBool("isRunning", isRunning);
     }
 
-<<<<<<< HEAD
-}
-=======
-    public override void TakeDamage(bool attackerFacingRight)
+    protected override void Die()
     {
-        base.TakeDamage(attackerFacingRight);
+        base.Die();
+        Time.timeScale = 0f;
     }
+
 }
->>>>>>> enhancement/#39/add-crowch-running-stamina
+
