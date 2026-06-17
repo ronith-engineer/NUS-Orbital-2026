@@ -5,9 +5,6 @@ public class DragAndShoot : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    [SerializeField] private Vector2 minPower;
-    [SerializeField] private Vector2 maxPower;
-
     [SerializeField] private float power;
     private TrajectoryLine trajectoryLine;
 
@@ -63,7 +60,7 @@ public class DragAndShoot : MonoBehaviour
                 currentPoint = correctDragVector + startPoint; 
             }
             trajectoryLine.RenderLine(startPoint, currentPoint);
-            Debug.Log("startpoint: " + startPoint + "currentPoint: " + currentPoint);
+            
         }
 
         if (Input.GetMouseButtonUp(0))

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MolotovProjectile : MonoBehaviour
+public class ProjectileThrowBehaviour : MonoBehaviour
 {
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider;
