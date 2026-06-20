@@ -23,6 +23,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected LayerMask whatIsTarget;
     [SerializeField] protected Transform attackPoint;
     [SerializeField] protected float attackRadius;
+    [SerializeField] protected Vector2 attackBoxSize;
     private int attackDamage = 1;
 
     [Header("Knockback Details")]
@@ -93,12 +94,10 @@ public class Entity : MonoBehaviour
         if (knockbackTimer > 0) return;
         if (rb.linearVelocity.x > 0 && facingRight == false)
         {
-            
             Flip();
         }
         else if (rb.linearVelocity.x < 0 && facingRight == true)
         {
-           
             Flip();
         }
 
@@ -152,7 +151,8 @@ public class Entity : MonoBehaviour
     public void DamageTargets()
     {
         // Set knockback direction based on facing direction
-        Collider2D[] targetColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsTarget);
+        Collider2D[] targetColliders = Physics2D.OverlapBoxAll (attackPoint.position, attackBoxSize, 0f, whatIsTarget);
+
         foreach (Collider2D target in targetColliders)
         {
             Entity entityTarget = target.GetComponent<Entity>();
