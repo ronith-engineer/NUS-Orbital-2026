@@ -7,8 +7,10 @@ public class NoiseManager : MonoBehaviour
 
     [Header("Noise Settings")]
     [SerializeField] private float maxNoise = 100f;
-    [SerializeField] private float noiseDecayRate = 15f;
+    [SerializeField] private float noiseRiseSpeed = 80f;
     private float currentNoise;
+    private float targetNoise;
+    private bool noiseActiveThisFrame;
 
     [Header("UI")]
     [SerializeField] private Image[] noiseBars;
@@ -21,14 +23,33 @@ public class NoiseManager : MonoBehaviour
     private void Start()
     {
         currentNoise = 0f;
+        targetNoise = 0f;
         UpdateBars();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        currentNoise -= noiseDecayRate * Time.deltaTime;
-        currentNoise = Mathf.Max(currentNoise, 0f);
+        if (noiseActiveThisFrame)
+        {
+            if (currentNoise < targetNoise)
+            {
+                currentNoise += noiseRiseSpeed * Time.deltaTime;
+                currentNoise = Mathf.Min(currentNoise, targetNoise);
+            }
+            else
+            {
+                currentNoise = targetNoise;
+            }
+        }
+        else
+        {
+            currentNoise = 0f;
+            targetNoise = 0f;
+        }
+
         UpdateBars();
+        noiseActiveThisFrame = false;
+        targetNoise = 0f;
     }
 
     private void UpdateBars()
@@ -47,8 +68,9 @@ public class NoiseManager : MonoBehaviour
 
     public void SetNoise(float amount)
     {
-        if (amount > currentNoise)
-            currentNoise = amount;
+        noiseActiveThisFrame = true;
+        if (amount > targetNoise)
+            targetNoise = amount;
     }
 
     public float GetCurrentNoise()

@@ -73,12 +73,11 @@ public class Player : Entity
 
         if (isCrouching)
             NoiseManager.Instance.SetNoise(crouchNoise);
-        else if (isRunning)
+        else if (isRunning && currentStamina > 0)
             NoiseManager.Instance.SetNoise(runNoise);
         else
             NoiseManager.Instance.SetNoise(walkNoise);
     }
-
     private void HandleStamina()
     {
         bool wantsToRun = Input.GetKey(KeyCode.LeftControl)
