@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
+    IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     [Header("UI References")]
     [SerializeField] private Image itemIcon;
@@ -11,6 +12,16 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] private GameObject actionButtons;
 
     private ItemData currentItem;
+    private Transform originalParent;
+    private Vector3 originalPosition;
+    private CanvasGroup canvasGroup;
+
+    private void Awake()
+    {
+        canvasGroup = itemIcon.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = itemIcon.gameObject.AddComponent<CanvasGroup>();
+    }
 
     public bool IsEmpty() => currentItem == null;
 
@@ -32,24 +43,76 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             actionButtons.SetActive(false);
     }
 
-    // Mouse hovers over slot — show buttons
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!IsEmpty() && actionButtons != null)
             actionButtons.SetActive(true);
     }
 
-    // Mouse leaves slot — hide buttons
     public void OnPointerExit(PointerEventData eventData)
     {
         if (actionButtons != null)
             actionButtons.SetActive(false);
     }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (IsEmpty()) return;
+
+        originalParent = itemIcon.transform.parent;
+        originalPosition = itemIcon.transform.position;
+
+        itemIcon.transform.SetParent(GetComponentInParent<Canvas>().transform);
+
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.alpha = 0.7f;
+
+        if (actionButtons != null)
+            actionButtons.SetActive(false);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (IsEmpty()) return;
+
+        itemIcon.transform.position = eventData.position;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        itemIcon.transform.SetParent(originalParent);
+        itemIcon.transform.position = originalPosition;
+
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.alpha = 1f;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        InventorySlot fromSlot = eventData.pointerDrag.GetComponent<InventorySlot>();
+
+        if (fromSlot == null || fromSlot == this) return;
+        if (fromSlot.IsEmpty()) return;
+
+        ItemData fromItem = fromSlot.GetItem();
+        ItemData toItem = this.currentItem;
+
+        if (toItem != null)
+        {
+            fromSlot.SetItem(toItem);
+            this.SetItem(fromItem);
+        }
+        else
+        {
+            this.SetItem(fromItem);
+            fromSlot.ClearSlot();
+        }
+    }
+
     public void OnEquipClicked()
     {
         if (currentItem != null)
-            InventoryManager.Instance.EquipItem(currentItem,this);
+            InventoryManager.Instance.EquipItem(currentItem, this);
     }
 
     public void OnDropClicked()
