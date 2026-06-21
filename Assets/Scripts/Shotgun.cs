@@ -49,7 +49,7 @@ public class Shotgun : MonoBehaviour
                 {
                     float attackDamageWithDistance = attackDamage * Mathf.Round(1 - distance / maxShootingDistance);
 
-                    enemy.TakeDamage(player.facingRight, attackDamageWithDistance, knockbackForce);
+                    enemy.TakeDamageFromEntity(player.facingRight, attackDamageWithDistance, knockbackForce);
 
                 }
             }

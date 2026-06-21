@@ -158,7 +158,7 @@ public class Player : Entity
         anim.SetBool("isRunning", isRunning);
     }
 
-<<<<<<< HEAD
+
 
     protected override void Die()
     {
@@ -168,10 +168,3 @@ public class Player : Entity
 
 }
 
-=======
-    public override void TakeDamage(bool attackerFacingRight, float attackDamage, float knockbackForce)
-    {
-        base.TakeDamage(attackerFacingRight, attackDamage, knockbackForce);
-    }
-}
->>>>>>> enhancement/#40/40-add-stealth-noise-system-sound-bar-shadows

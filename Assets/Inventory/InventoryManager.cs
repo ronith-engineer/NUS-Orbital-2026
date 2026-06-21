@@ -161,22 +161,16 @@ public class InventoryManager : MonoBehaviour
         if (item.itemType == ItemData.ItemType.Gun)
             Destroy(pistolObject);
 
-<<<<<<< HEAD
-        if (item.itemType == ItemData.ItemType.Knife)                    
-            knifeObject.SetActive(false);
+
+        if (item.itemType == ItemData.ItemType.Knife)
+            Destroy(knifeObject);
         if (item.itemType == ItemData.ItemType.Shotgun)
-            shotgunObject.SetActive(false);
+            Destroy(shotgunObject);
         if (item.itemType == ItemData.ItemType.Molotov)
             Destroy(molotovObject);
         if (item.itemType == ItemData.ItemType.Grenade)
             Destroy(grenadeObject);
-=======
-        if (item.itemType == ItemData.ItemType.Knife)
-            Destroy(knifeObject);
 
-        if (item.itemType == ItemData.ItemType.Shotgun)
-            Destroy(shotgunObject);
->>>>>>> enhancement/#40/40-add-stealth-noise-system-sound-bar-shadows
 
         GameObject prefabToSpawn = null;
         switch (item.itemType)
