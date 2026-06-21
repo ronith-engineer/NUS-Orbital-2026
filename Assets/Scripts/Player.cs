@@ -20,6 +20,11 @@ public class Player : Entity
     private float currentStamina;
     private bool isRunning;
 
+    [Header("Noise")]
+    [SerializeField] private float runNoise = 25f;
+    [SerializeField] private float walkNoise = 8f;
+    [SerializeField] private float crouchNoise = 2f;
+
     [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
@@ -51,6 +56,7 @@ public class Player : Entity
         CheckGround();
         HandleCrouch();
         HandleStamina();
+        HandleNoise();
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !holdingWeapon)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -60,6 +66,18 @@ public class Player : Entity
         base.Update();
     }
 
+    private void HandleNoise()
+    {
+        if (NoiseManager.Instance == null) return;
+        if (xInput == 0) return;
+
+        if (isCrouching)
+            NoiseManager.Instance.SetNoise(crouchNoise);
+        else if (isRunning && currentStamina > 0)
+            NoiseManager.Instance.SetNoise(runNoise);
+        else
+            NoiseManager.Instance.SetNoise(walkNoise);
+    }
     private void HandleStamina()
     {
         bool wantsToRun = Input.GetKey(KeyCode.LeftControl)
@@ -97,7 +115,12 @@ public class Player : Entity
         if (xInput != 0)
             facingDirection = xInput > 0 ? 1 : -1;
 
-        float speed = isRunning ? runSpeed : moveSpeed;
+        float speed;
+
+        if (isRunning && currentStamina > 0)
+            speed = runSpeed;
+        else
+            speed = moveSpeed;
 
         if (isCrouching)
             rb.linearVelocity = new Vector2(xInput * crouchSpeed, rb.linearVelocity.y);
@@ -135,6 +158,7 @@ public class Player : Entity
         anim.SetBool("isRunning", isRunning);
     }
 
+<<<<<<< HEAD
 
     protected override void Die()
     {
@@ -144,3 +168,10 @@ public class Player : Entity
 
 }
 
+=======
+    public override void TakeDamage(bool attackerFacingRight, float attackDamage, float knockbackForce)
+    {
+        base.TakeDamage(attackerFacingRight, attackDamage, knockbackForce);
+    }
+}
+>>>>>>> enhancement/#40/40-add-stealth-noise-system-sound-bar-shadows

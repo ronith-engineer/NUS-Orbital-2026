@@ -14,6 +14,7 @@ public class Shotgun : MonoBehaviour
     private float attackDamage = 6f;
     private float maxShootingDistance = 18f;
     [SerializeField] private float knockbackForce = 10f;
+    [SerializeField] private float shootNoise = 100f;
 
     void Awake()
     {
@@ -32,6 +33,8 @@ public class Shotgun : MonoBehaviour
     IEnumerator Shoot()
     {
         currentAmmo--;
+        if (NoiseManager.Instance != null)
+            NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
         Debug.Log("firePoint.right: " + firePoint.right);
 
@@ -45,7 +48,9 @@ public class Shotgun : MonoBehaviour
                 if (distance <= maxShootingDistance)
                 {
                     float attackDamageWithDistance = attackDamage * Mathf.Round(1 - distance / maxShootingDistance);
-                    enemy.TakeDamageFromEntity(player.facingRight, attackDamageWithDistance, knockbackForce); //damage decreases with distance, at max distance it will be 0, at point blank it will be full damage
+
+                    enemy.TakeDamage(player.facingRight, attackDamageWithDistance, knockbackForce);
+
                 }
             }
             lineRenderer.SetPosition(0, firePoint.position);
@@ -61,7 +66,6 @@ public class Shotgun : MonoBehaviour
         lineRenderer.enabled = true;
 
         yield return new WaitForSeconds(0.02f);
-        //wait for a short time and then disable the line renderer
 
         lineRenderer.enabled = false;
 

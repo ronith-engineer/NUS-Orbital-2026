@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Pistol : MonoBehaviour
 {
-
     [SerializeField] private Transform firePoint;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject muzzleFlash;
@@ -12,23 +11,26 @@ public class Pistol : MonoBehaviour
     public int currentAmmo = 6;
     private int attackDamage = 2;
     [SerializeField] private float knockbackForce = 7f;
+    [SerializeField] private float shootNoise = 90f;
 
     void Awake()
     {
         player = GetComponentInParent<Player>();
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && currentAmmo > 0)
         {
             shootCoroutine = StartCoroutine(Shoot());
         }
-
     }
 
     IEnumerator Shoot()
     {
         currentAmmo--;
+        if (NoiseManager.Instance != null)
+            NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
         Debug.Log("firePoint.right: " + firePoint.right);
 
@@ -45,20 +47,16 @@ public class Pistol : MonoBehaviour
         }
         else
         {
-            
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100f);
         }
 
         lineRenderer.enabled = true;
-
         muzzleFlash.SetActive(true);
 
         yield return new WaitForSeconds(0.02f);
-        //wait for a short time and then disable the line renderer
-        
+
         lineRenderer.enabled = false;
         muzzleFlash.SetActive(false);
-
     }
 }
