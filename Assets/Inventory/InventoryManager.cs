@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject shotgunPrefab;
     [SerializeField] private GameObject molotovPrefab;
     [SerializeField] private GameObject grenadePrefab;
-    [SerializeField] private GameObject medkitPrefab;   // names should be made clearer, not just prefab but should be written as drop prefab
+    [SerializeField] private GameObject medkitPrefab;
 
     private bool isOpen = false;
     private ItemData equippedItem;
@@ -55,6 +55,16 @@ public class InventoryManager : MonoBehaviour
             StartCoroutine(ScaleInventory(Vector3.zero));
             StartCoroutine(HideAfterScale());
         }
+    }
+
+    public void HideInventory()
+    {
+        inventoryPanel.SetActive(false);
+    }
+
+    public void ShowInventory()
+    {
+        inventoryPanel.SetActive(true);
     }
 
     private IEnumerator HideAfterScale()
@@ -144,13 +154,15 @@ public class InventoryManager : MonoBehaviour
                 knifeObject.SetActive(false);
                 shotgunObject.SetActive(false);
                 equippedItem = item;
-                Debug.Log("Molotov equipped!");
+                Debug.Log("Grenade equipped!");
                 break;
             case ItemData.ItemType.Medkit:
                 Player player = FindAnyObjectByType<Player>();
                 if (player != null)
-                    player.Heal(); 
-                slot.ClearSlot(); 
+                    player.Heal();
+
+                slot.ClearSlot();
+
                 Debug.Log("Medkit used!");
                 break;
         }
@@ -161,7 +173,7 @@ public class InventoryManager : MonoBehaviour
         if (item.itemType == ItemData.ItemType.Gun)
             pistolObject.SetActive(false);
 
-        if (item.itemType == ItemData.ItemType.Knife)                    
+        if (item.itemType == ItemData.ItemType.Knife)
             knifeObject.SetActive(false);
         if (item.itemType == ItemData.ItemType.Shotgun)
             shotgunObject.SetActive(false);
@@ -205,7 +217,7 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(ItemData item, InventorySlot slot)
     {
-        EquipItem(item,slot);
+        EquipItem(item, slot);
     }
 
     public ItemData GetEquippedItem() => equippedItem;

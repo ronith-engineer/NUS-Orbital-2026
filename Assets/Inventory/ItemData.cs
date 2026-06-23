@@ -18,6 +18,11 @@ public class ItemData : ScriptableObject
         Shotgun,
         Molotov,
         Grenade,
-        Medkit
+        Medkit,
+        Alcohol,
+        Rags,
+        MetalScrap,
+        Bandage,
+        MakeshiftKnife
     }
 }
