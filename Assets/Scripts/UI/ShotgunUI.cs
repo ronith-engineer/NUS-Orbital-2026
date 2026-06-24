@@ -7,7 +7,7 @@ public class ShotgunUI : MonoBehaviour
     private Image bullet3;
     private Image bullet4;
 
-    private int currentAmmo;
+    private float currentAmmo;
 
     [SerializeField] private Shotgun shotgun;
 
