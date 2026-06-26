@@ -37,6 +37,8 @@ namespace NavKeypad
         [SerializeField] private Renderer panelMesh;
         [SerializeField] private TMP_Text keypadDisplayText;
         [SerializeField] private AudioSource audioSource;
+        [Header("Keycard")]
+        [SerializeField] private bool requiresKeycard = false;
 
 
         private string currentInput;
@@ -75,7 +77,13 @@ namespace NavKeypad
         {
             if (int.TryParse(currentInput, out var currentKombo))
             {
-                bool granted = currentKombo == keypadCombo;
+                bool codeCorrect = currentKombo == keypadCombo;
+
+                // If keycard required, player must have it too
+                bool granted = codeCorrect;
+                if (requiresKeycard && !KeycardManager.Instance.HasKeycard())
+                    granted = false;
+
                 if (!displayingResult)
                 {
                     StartCoroutine(DisplayResultRoutine(granted));
@@ -85,7 +93,6 @@ namespace NavKeypad
             {
                 Debug.LogWarning("Couldn't process input for some reason..");
             }
-
         }
 
         //mainly for animations 
