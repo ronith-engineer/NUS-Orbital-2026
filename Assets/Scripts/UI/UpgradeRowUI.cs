@@ -10,7 +10,7 @@ public class UpgradeRowUI : MonoBehaviour
 
     private Weapon weaponRef;
     private WeaponUpgrade weaponUpgrade;
-    private float targetHoldDuration = 3f;
+    private float targetHoldDuration = 2f;
     private float holdTimer;
     private bool isFocused;
     private bool isApplying;

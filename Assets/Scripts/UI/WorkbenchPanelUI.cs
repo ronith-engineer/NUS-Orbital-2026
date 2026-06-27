@@ -69,6 +69,7 @@ public class WorkbenchPanelUI : MonoBehaviour
     private void OnEnable()
     {
         weaponManager.OnSelectedWeaponChanged += Open;
+        Debug.Log("Open called");
         EventSystem.current.sendNavigationEvents = false;
 
     }
