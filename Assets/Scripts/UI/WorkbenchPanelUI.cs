@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -20,14 +21,16 @@ public class WorkbenchPanelUI : MonoBehaviour
     [SerializeField] private WeaponUpgrade weaponUpgrade1;
     [SerializeField] private WeaponUpgrade weaponUpgrade2;
 
-    private int rowSelectPointer;
+    public int rowSelectPointer;
     private int countUpgradeRows;
+
 
     private List<UpgradeRowUI> upgradeRows => new List<UpgradeRowUI>() { upgradeRow1, upgradeRow2};
 
     private void Start()
     {
         countUpgradeRows = upgradeRows.Count;
+        Open();
     }
 
     private void Update()
@@ -37,14 +40,14 @@ public class WorkbenchPanelUI : MonoBehaviour
             rowSelectPointer += 1;
             rowSelectPointer = Mathf.Clamp(rowSelectPointer, 0, countUpgradeRows - 1);
             Debug.Log(rowSelectPointer);
-            SelectUpgradeRow(upgradeRows[rowSelectPointer]);
+            SelectUpgradeRow(rowSelectPointer);
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             rowSelectPointer -= 1;
             rowSelectPointer = Mathf.Clamp(rowSelectPointer, 0, countUpgradeRows - 1);
             Debug.Log(rowSelectPointer);
-            SelectUpgradeRow(upgradeRows[rowSelectPointer]);
+            SelectUpgradeRow(rowSelectPointer);
         }
     }
 
@@ -59,13 +62,12 @@ public class WorkbenchPanelUI : MonoBehaviour
         SetWeaponImage(currentSelectedWeapon);
         upgradeRow1.Setup(currentSelectedWeapon, weaponUpgrade1);
         upgradeRow2.Setup(currentSelectedWeapon, weaponUpgrade2);
-        SelectUpgradeRow(upgradeRow1);
+        SelectUpgradeRow(0);
 
     }
 
     private void OnEnable()
     {
-
         weaponManager.OnSelectedWeaponChanged += Open;
         EventSystem.current.sendNavigationEvents = false;
 
@@ -78,8 +80,10 @@ public class WorkbenchPanelUI : MonoBehaviour
     }
 
 
-    private void SelectUpgradeRow(UpgradeRowUI selectedUpgradeRow)
+    private void SelectUpgradeRow(int selectPointer)
     {
+        rowSelectPointer = selectPointer;
+        UpgradeRowUI selectedUpgradeRow = upgradeRows[rowSelectPointer];
         selectedUpgradeRow.SetFocused(true);
         foreach (UpgradeRowUI upgradeRow in upgradeRows )
         {
@@ -88,6 +92,7 @@ public class WorkbenchPanelUI : MonoBehaviour
                 upgradeRow.SetFocused(false);
             }
         }
+
     }
 
     private void SetWeaponImage(Weapon weaponRef)

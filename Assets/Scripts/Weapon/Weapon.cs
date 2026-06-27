@@ -105,35 +105,17 @@ public class Weapon : MonoBehaviour
     {
         if (upgrade.statType == WeaponUpgrade.UpgradeStatType.Damage)
         {
-            countDamageUpgrades = 0;
-            foreach (WeaponUpgrade currentUpgrade in appliedUpgrades)
-            {
-                if (currentUpgrade.statType == WeaponUpgrade.UpgradeStatType.Damage)
-                {
-                    countDamageUpgrades++;
-                }
-            }
-            if (countDamageUpgrades == 3) return;
-
+            if (countDamageUpgrades >= 3) return;
             appliedUpgrades.Add(upgrade);
+            countDamageUpgrades++;
         }
-
         else if (upgrade.statType == WeaponUpgrade.UpgradeStatType.ClipCapacity)
         {
-            countClipCapacityUpgrades = 0;
-            foreach (WeaponUpgrade currentUpgrade in appliedUpgrades)
-            {
-                if (currentUpgrade.statType == WeaponUpgrade.UpgradeStatType.ClipCapacity)
-                {
-                    countClipCapacityUpgrades++;
-                }
-            }
-            if (countClipCapacityUpgrades == 3) return;
-
+            if (countClipCapacityUpgrades >= 3) return;
             appliedUpgrades.Add(upgrade);
+            countClipCapacityUpgrades++;
         }
 
         GetCurrentStats();
-
     }
 }

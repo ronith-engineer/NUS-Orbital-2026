@@ -17,6 +17,11 @@ public class WeaponTabsSpawner : MonoBehaviour
     {
         weaponManager.OnWeaponsChanged += SpawnWeaponTabs;
         weaponManager.OnSelectedWeaponChanged += RefreshHighlights;
+
+        if (weaponManager.GetOwnedWeapons() != null && weaponManager.GetOwnedWeapons().Count > 0)
+        {
+            SpawnWeaponTabs();
+        }
     }
 
     private void OnDisable()
