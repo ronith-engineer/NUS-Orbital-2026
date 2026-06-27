@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61967a7c539dc847963c4cf9c4de0c4, type: 3}
   m_Name: MetalScrapItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: metalscrap
+  icon: {fileID: -6807013845068219220, guid: 43fa2d7a7329e684bab70c96e0cb36c7, type: 3}
+  itemType: 8
   healAmount: 0

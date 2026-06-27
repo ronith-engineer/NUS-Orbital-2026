@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61967a7c539dc847963c4cf9c4de0c4, type: 3}
   m_Name: BandageItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
-  itemType: 0
-  healAmount: 0
+  itemName: bandage
+  icon: {fileID: 4480434827562053419, guid: b6ec9578cfed72147b30cc03cf34aad2, type: 3}
+  itemType: 9
+  healAmount: 5

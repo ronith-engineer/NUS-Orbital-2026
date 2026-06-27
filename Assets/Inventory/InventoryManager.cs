@@ -65,6 +65,7 @@ public class InventoryManager : MonoBehaviour
     public void ShowInventory()
     {
         inventoryPanel.SetActive(true);
+        inventoryPanel.transform.localScale = Vector3.one;
     }
 
     private IEnumerator HideAfterScale()
@@ -160,10 +161,24 @@ public class InventoryManager : MonoBehaviour
                 Player player = FindAnyObjectByType<Player>();
                 if (player != null)
                     player.Heal();
-
                 slot.ClearSlot();
-
                 Debug.Log("Medkit used!");
+                break;
+            case ItemData.ItemType.Bandage:
+                Player bandagePlayer = FindAnyObjectByType<Player>();
+                if (bandagePlayer != null)
+                    bandagePlayer.Heal();
+                slot.ClearSlot();
+                Debug.Log("Bandage used!");
+                break;
+            case ItemData.ItemType.MakeshiftKnife:
+                knifeObject.SetActive(true);
+                pistolObject.SetActive(false);
+                shotgunObject.SetActive(false);
+                molotovObject.SetActive(false);
+                grenadeObject.SetActive(false);
+                equippedItem = item;
+                Debug.Log("Makeshift Knife equipped!");
                 break;
         }
     }
@@ -172,7 +187,6 @@ public class InventoryManager : MonoBehaviour
     {
         if (item.itemType == ItemData.ItemType.Gun)
             pistolObject.SetActive(false);
-
         if (item.itemType == ItemData.ItemType.Knife)
             knifeObject.SetActive(false);
         if (item.itemType == ItemData.ItemType.Shotgun)
@@ -181,6 +195,8 @@ public class InventoryManager : MonoBehaviour
             Destroy(molotovObject);
         if (item.itemType == ItemData.ItemType.Grenade)
             Destroy(grenadeObject);
+        if (item.itemType == ItemData.ItemType.MakeshiftKnife)
+            knifeObject.SetActive(false);
 
         GameObject prefabToSpawn = null;
         switch (item.itemType)
@@ -202,6 +218,12 @@ public class InventoryManager : MonoBehaviour
                 break;
             case ItemData.ItemType.Medkit:
                 prefabToSpawn = medkitPrefab;
+                break;
+            case ItemData.ItemType.Bandage:
+                prefabToSpawn = medkitPrefab;
+                break;
+            case ItemData.ItemType.MakeshiftKnife:
+                prefabToSpawn = knifePrefab;
                 break;
         }
 

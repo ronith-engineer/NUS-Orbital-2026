@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61967a7c539dc847963c4cf9c4de0c4, type: 3}
   m_Name: AlcoholItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: Alcohol
+  icon: {fileID: -8623554539279329139, guid: fcfa467a23d136342b18ad16c98ccbdc, type: 3}
+  itemType: 6
   healAmount: 0

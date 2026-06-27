@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61967a7c539dc847963c4cf9c4de0c4, type: 3}
   m_Name: RagsItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: Rags
+  icon: {fileID: 2122865176320729500, guid: 0e2d187861ac6794d96204bab681bcf3, type: 3}
+  itemType: 7
   healAmount: 0

@@ -43,18 +43,25 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             actionButtons.SetActive(false);
     }
 
-
-
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!IsEmpty() && actionButtons != null)
-            actionButtons.SetActive(true);
+        if (IsEmpty()) return;
+        if (actionButtons == null) return;
+
+        if (currentItem.itemType == ItemData.ItemType.Alcohol ||
+            currentItem.itemType == ItemData.ItemType.Rags ||
+            currentItem.itemType == ItemData.ItemType.MetalScrap)
+            return;
+
+        actionButtons.SetActive(true);
     }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         if (actionButtons != null)
             actionButtons.SetActive(false);
     }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (IsEmpty()) return;
@@ -86,6 +93,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
     }
+
     public void ResetIcon()
     {
         itemIcon.transform.SetParent(transform);
@@ -93,6 +101,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
     }
+
     public void OnDrop(PointerEventData eventData)
     {
         InventorySlot fromSlot = eventData.pointerDrag.GetComponent<InventorySlot>();
@@ -105,8 +114,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (CraftingManager.Instance.TryCraft(fromSlot, this))
                 return;
         }
-
-        
     }
 
     public void OnEquipClicked()
