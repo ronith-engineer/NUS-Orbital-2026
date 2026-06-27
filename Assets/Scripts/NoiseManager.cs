@@ -9,6 +9,8 @@ public class NoiseManager : MonoBehaviour
     [SerializeField] private float maxNoise = 100f;
     [SerializeField] private float noiseRiseSpeed = 150f;
 
+
+
     [Header("UI")]
     [SerializeField] private Image[] noiseBars;
 

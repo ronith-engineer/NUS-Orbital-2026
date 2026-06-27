@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject shotgunPrefab;
     [SerializeField] private GameObject molotovPrefab;
     [SerializeField] private GameObject grenadePrefab;
-    [SerializeField] private GameObject medkitPrefab;   // names should be made clearer, not just prefab but should be written as drop prefab
+    [SerializeField] private GameObject medkitPrefab;
 
     private bool isOpen = false;
     private ItemData equippedItem;
@@ -55,6 +55,17 @@ public class InventoryManager : MonoBehaviour
             StartCoroutine(ScaleInventory(Vector3.zero));
             StartCoroutine(HideAfterScale());
         }
+    }
+
+    public void HideInventory()
+    {
+        inventoryPanel.SetActive(false);
+    }
+
+    public void ShowInventory()
+    {
+        inventoryPanel.SetActive(true);
+        inventoryPanel.transform.localScale = Vector3.one;
     }
 
     private IEnumerator HideAfterScale()
@@ -144,14 +155,30 @@ public class InventoryManager : MonoBehaviour
                 knifeObject.SetActive(false);
                 shotgunObject.SetActive(false);
                 equippedItem = item;
-                Debug.Log("Molotov equipped!");
+                Debug.Log("Grenade equipped!");
                 break;
             case ItemData.ItemType.Medkit:
                 Player player = FindAnyObjectByType<Player>();
                 if (player != null)
-                    player.Heal(); 
-                slot.ClearSlot(); 
+                    player.Heal();
+                slot.ClearSlot();
                 Debug.Log("Medkit used!");
+                break;
+            case ItemData.ItemType.Bandage:
+                Player bandagePlayer = FindAnyObjectByType<Player>();
+                if (bandagePlayer != null)
+                    bandagePlayer.Heal();
+                slot.ClearSlot();
+                Debug.Log("Bandage used!");
+                break;
+            case ItemData.ItemType.MakeshiftKnife:
+                knifeObject.SetActive(true);
+                pistolObject.SetActive(false);
+                shotgunObject.SetActive(false);
+                molotovObject.SetActive(false);
+                grenadeObject.SetActive(false);
+                equippedItem = item;
+                Debug.Log("Makeshift Knife equipped!");
                 break;
         }
     }
@@ -160,8 +187,6 @@ public class InventoryManager : MonoBehaviour
     {
         if (item.itemType == ItemData.ItemType.Gun)
             Destroy(pistolObject);
-
-
         if (item.itemType == ItemData.ItemType.Knife)
             Destroy(knifeObject);
         if (item.itemType == ItemData.ItemType.Shotgun)
@@ -170,6 +195,8 @@ public class InventoryManager : MonoBehaviour
             Destroy(molotovObject);
         if (item.itemType == ItemData.ItemType.Grenade)
             Destroy(grenadeObject);
+        if (item.itemType == ItemData.ItemType.MakeshiftKnife)
+            knifeObject.SetActive(false);
 
 
         GameObject prefabToSpawn = null;
@@ -193,6 +220,12 @@ public class InventoryManager : MonoBehaviour
             case ItemData.ItemType.Medkit:
                 prefabToSpawn = medkitPrefab;
                 break;
+            case ItemData.ItemType.Bandage:
+                prefabToSpawn = medkitPrefab;
+                break;
+            case ItemData.ItemType.MakeshiftKnife:
+                prefabToSpawn = knifePrefab;
+                break;
         }
 
         if (prefabToSpawn != null)
@@ -207,7 +240,7 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(ItemData item, InventorySlot slot)
     {
-        EquipItem(item,slot);
+        EquipItem(item, slot);
     }
 
     public ItemData GetEquippedItem() => equippedItem;
