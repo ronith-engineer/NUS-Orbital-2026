@@ -2,35 +2,27 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Shotgun : MonoBehaviour
+public class Shotgun : Weapon
 {
 
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private LineRenderer lineRenderer;
-    private Player player;
-    private Coroutine shootCoroutine;
-    public int currentAmmo = 4;
     private Animator anim;
-    private float attackDamage = 6f;
+
     private float maxShootingDistance = 18f;
-    [SerializeField] private float knockbackForce = 10f;
+
     [SerializeField] private float shootNoise = 100f;
 
-    void Awake()
+
+
+    protected override void Awake()
     {
-        player = GetComponentInParent<Player>();
+        baseClipCapacity = 4f;
+        baseAttackDamage = 6f;
+        base.Awake();
         anim = GetComponentInChildren<Animator>();
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentAmmo > 0)
-        {
-            shootCoroutine = StartCoroutine(Shoot());
-        }
 
-    }
 
-    IEnumerator Shoot()
+    protected override IEnumerator Shoot()
     {
         currentAmmo--;
         if (NoiseManager.Instance != null)
@@ -47,10 +39,9 @@ public class Shotgun : MonoBehaviour
                 float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
                 if (distance <= maxShootingDistance)
                 {
-                    float attackDamageWithDistance = attackDamage * Mathf.Round(1 - distance / maxShootingDistance);
-
-                    enemy.TakeDamageFromEntity(player.facingRight, attackDamageWithDistance, knockbackForce);
-
+                
+                    float attackDamageWithDistance = currentAttackDamage * (1 - distance / maxShootingDistance);
+                    enemy.TakeDamageFromEntity(player.facingRight, attackDamageWithDistance, knockbackForce); //damage decreases with distance, at max distance it will be 0, at point blank it will be full damage
                 }
             }
             lineRenderer.SetPosition(0, firePoint.position);

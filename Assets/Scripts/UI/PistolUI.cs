@@ -8,7 +8,7 @@ public class PistolUI : MonoBehaviour
     private Image bullet4;
     private Image bullet5;
     private Image bullet6;
-    private int currentAmmo;
+    private float currentAmmo;
 
     [SerializeField] private Pistol pistol;
 

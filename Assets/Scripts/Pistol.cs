@@ -1,32 +1,27 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : MonoBehaviour
+public class Pistol : Weapon
 {
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private GameObject muzzleFlash;
-    private Player player;
-    private Coroutine shootCoroutine;
-    public int currentAmmo = 6;
-    private int attackDamage = 2;
-    [SerializeField] private float knockbackForce = 7f;
+
     [SerializeField] private float shootNoise = 90f;
+    [SerializeField] private GameObject muzzleFlash;
 
-    void Awake()
+
+    protected override void Awake()
     {
-        player = GetComponentInParent<Player>();
+        baseClipCapacity = 4;
+        baseAttackDamage = 2;
+
+        base.Awake();
+
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentAmmo > 0)
-        {
-            shootCoroutine = StartCoroutine(Shoot());
-        }
-    }
 
-    IEnumerator Shoot()
+
+    protected override IEnumerator Shoot()
     {
         currentAmmo--;
         if (NoiseManager.Instance != null)
@@ -40,7 +35,7 @@ public class Pistol : MonoBehaviour
             Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamageFromEntity(player.facingRight, attackDamage, knockbackForce);
+                enemy.TakeDamageFromEntity(player.facingRight, currentAttackDamage, knockbackForce);
             }
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
@@ -59,4 +54,5 @@ public class Pistol : MonoBehaviour
         lineRenderer.enabled = false;
         muzzleFlash.SetActive(false);
     }
+
 }
