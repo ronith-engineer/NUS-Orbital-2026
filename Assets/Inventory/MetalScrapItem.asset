@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MetalScrapItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: metalscrap
-  icon: {fileID: -6807013845068219220, guid: 43fa2d7a7329e684bab70c96e0cb36c7, type: 3}
+  icon: {fileID: 6689946350199266671, guid: 94aa6f83481f03a4391234c0656defff, type: 3}
   itemType: 8
   healAmount: 0

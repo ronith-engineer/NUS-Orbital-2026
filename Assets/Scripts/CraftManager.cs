@@ -69,7 +69,18 @@ public class CraftingManager : MonoBehaviour
         return (a.itemType == type1 && b.itemType == type2)
             || (a.itemType == type2 && b.itemType == type1);
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (craftWindow1.activeSelf || craftWindow2.activeSelf)
+            {
+                craftWindow1.SetActive(false);
+                craftWindow2.SetActive(false);
+                InventoryManager.Instance.ShowInventory();
+            }
+        }
+    }
     public void CraftMolotov()
     {
         CompleteCraft(molotovItem);
