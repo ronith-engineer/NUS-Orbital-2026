@@ -18,6 +18,7 @@ public class UpgradeRowUI : MonoBehaviour
 
     private void Update()
     {
+        if (weaponRef == null || weaponUpgrade == null) return;
         if (!isFocused) return;
 
         maxed = IsMaxed();

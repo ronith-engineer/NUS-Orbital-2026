@@ -30,7 +30,6 @@ public class WorkbenchPanelUI : MonoBehaviour
     private void Start()
     {
         countUpgradeRows = upgradeRows.Count;
-        Open();
     }
 
     private void Update()
@@ -68,10 +67,11 @@ public class WorkbenchPanelUI : MonoBehaviour
 
     private void OnEnable()
     {
+        if (weaponManager == null) return;
         weaponManager.OnSelectedWeaponChanged += Open;
-        Debug.Log("Open called");
         EventSystem.current.sendNavigationEvents = false;
-
+        rowSelectPointer = 0;
+        Open();
     }
 
     private void OnDisable()

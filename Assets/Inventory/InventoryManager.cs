@@ -5,6 +5,9 @@ using System.Collections;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
+    [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private Pistol pistol;
+    [SerializeField] private Shotgun shotgun;
 
     [Header("UI References")]
     [SerializeField] private GameObject inventoryPanel;
@@ -113,7 +116,7 @@ public class InventoryManager : MonoBehaviour
         switch (item.itemType)
         {
             case ItemData.ItemType.Gun:
-                pistolObject.SetActive(true);
+                weaponManager.SelectWeapon(pistol);
                 knifeObject.SetActive(false);
                 shotgunObject.SetActive(false);
                 molotovObject.SetActive(false);
@@ -131,7 +134,7 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("Knife equipped!");
                 break;
             case ItemData.ItemType.Shotgun:
-                shotgunObject.SetActive(true);
+                weaponManager.SelectWeapon(shotgun);
                 pistolObject.SetActive(false);
                 knifeObject.SetActive(false);
                 molotovObject.SetActive(false);

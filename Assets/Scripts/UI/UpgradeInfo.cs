@@ -11,6 +11,7 @@ public class UpgradeInfo : MonoBehaviour
 
     private void Update()
     {
+        if (weaponManager.currentSelectedWeapon == null) return;
         if (workbenchPanelUI.rowSelectPointer == 0)
         {
             upgradeInfo.text = "Damage - " + weaponManager.currentSelectedWeapon.countDamageUpgrades.ToString() + "/3"; 
