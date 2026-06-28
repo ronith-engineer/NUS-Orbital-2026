@@ -1955,6 +1955,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlindInfected
       objectReference: {fileID: 0}
+    - target: {fileID: 190695617829868294, guid: 686685965ebab5b4c88260f21a86c688, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244649843351350575, guid: 686685965ebab5b4c88260f21a86c688, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.191
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244649843351350575, guid: 686685965ebab5b4c88260f21a86c688, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.54
+      objectReference: {fileID: 0}
     - target: {fileID: 5937757974189651590, guid: 686685965ebab5b4c88260f21a86c688, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.41
@@ -3216,7 +3228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 262870336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0cdb8b2f9f15d54baf310e46a982faa, type: 3}
+  m_Script: {fileID: 11500000, guid: 299fc762c64c57744b6d6e02f07f6e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationEvents
 --- !u!1 &269080497
@@ -3814,7 +3826,7 @@ MonoBehaviour:
   jumpForce: 10
   crouchSpeed: 2.5
   runSpeed: 15
-  holdingWeapon: 0
+  holdingWeapon: 1
   staminaSlider: {fileID: 1199727986}
   maxStamina: 100
   staminaDrainRate: 20
@@ -3838,7 +3850,7 @@ Transform:
   m_GameObject: {fileID: 336434441}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.92, y: -2.24, z: 0}
+  m_LocalPosition: {x: -21.04, y: -2.24, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9213,7 +9225,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1105822672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0cdb8b2f9f15d54baf310e46a982faa, type: 3}
+  m_Script: {fileID: 11500000, guid: 299fc762c64c57744b6d6e02f07f6e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityAnimationEvents
 --- !u!1 &1112050744
@@ -12278,6 +12290,10 @@ PrefabInstance:
     - target: {fileID: 1670961490527828880, guid: aa51853d0224f5e469d8cae2e1b09e55, type: 3}
       propertyPath: m_Name
       value: BasicInfected
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670961490527828880, guid: aa51853d0224f5e469d8cae2e1b09e55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4205312356650971566, guid: aa51853d0224f5e469d8cae2e1b09e55, type: 3}
       propertyPath: chaseSpeed
@@ -16188,6 +16204,10 @@ PrefabInstance:
     - target: {fileID: 6660201584462855712, guid: 337a1ceea71b77c49b15e9f4b3b1a687, type: 3}
       propertyPath: m_Name
       value: 'CraftPanel '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660201584462855712, guid: 337a1ceea71b77c49b15e9f4b3b1a687, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7991041423786975002, guid: 337a1ceea71b77c49b15e9f4b3b1a687, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -58,7 +58,7 @@ public class Player : Entity
         HandleStamina();
         HandleNoise();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !holdingWeapon)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
         healthSlider.value = currentHealth;
@@ -83,7 +83,6 @@ public class Player : Entity
         bool wantsToRun = Input.GetKey(KeyCode.LeftControl)
                        && xInput != 0
                        && isGrounded
-                       && !holdingWeapon
                        && currentStamina > 0;
 
         if (wantsToRun)
