@@ -2012,6 +2012,10 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6068650937656894845, guid: 686685965ebab5b4c88260f21a86c688, type: 3}
+      propertyPath: attackDamage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068650937656894845, guid: 686685965ebab5b4c88260f21a86c688, type: 3}
       propertyPath: patrolPointA
       value: 
       objectReference: {fileID: 212772064}
@@ -3819,6 +3823,7 @@ MonoBehaviour:
   attackPoint: {fileID: 1671158141}
   attackRadius: 0.4
   attackBoxSize: {x: 0, y: 0}
+  attackDamage: 1
   receivedKnockbackForce: 0
   knockbackDuration: 0.14
   knockbackForce: 6
@@ -12371,8 +12376,8 @@ RectTransform:
   - {fileID: 515896982}
   - {fileID: 1199727987}
   - {fileID: 1815594998}
-  - {fileID: 2015862410}
   - {fileID: 120152409}
+  - {fileID: 2015862410}
   - {fileID: 1080973971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.172}

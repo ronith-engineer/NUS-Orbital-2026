@@ -24,7 +24,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Transform attackPoint;
     [SerializeField] protected float attackRadius;
     [SerializeField] protected Vector2 attackBoxSize;
-    private int attackDamage = 1;
+    [SerializeField] private int attackDamage = 1;
 
     [Header("Knockback Details")]
     [SerializeField] protected float receivedKnockbackForce;
