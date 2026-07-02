@@ -27,8 +27,7 @@ public class Shotgun : Weapon
         currentAmmo--;
         if (NoiseManager.Instance != null)
             NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-        Debug.Log("firePoint.right: " + firePoint.right);
+        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, shootableLayers);
 
         if (hitInfo)
         {

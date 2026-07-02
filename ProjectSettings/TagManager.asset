@@ -19,8 +19,8 @@ TagManager:
   - Player
   - Foreground
   - EnemyDetectionLayer
-  - 
-  - 
+  - CameraBounds
+  - Wall
   - 
   - 
   - 
