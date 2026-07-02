@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected LineRenderer lineRenderer;
+    [SerializeField] protected LayerMask excludeLayers;
+    protected int shootableLayers;
     
     protected Player player;
     private Coroutine shootCoroutine;
@@ -35,6 +37,8 @@ public class Weapon : MonoBehaviour
         currentAttackDamage = baseAttackDamage;
         currentClipCapacity = baseClipCapacity;
         currentAmmo = currentClipCapacity;
+        shootableLayers = ~excludeLayers;
+        
     }
     private void Update()
     {
@@ -51,7 +55,7 @@ public class Weapon : MonoBehaviour
     protected virtual IEnumerator Shoot()
     {
         currentAmmo--;
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
+        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, shootableLayers);
         Debug.Log("firePoint.right: " + firePoint.right);
 
         if (hitInfo)
