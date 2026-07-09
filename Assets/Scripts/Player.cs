@@ -8,7 +8,6 @@ public class Player : Entity
 
     [Header("Movement")]
     [SerializeField] private float jumpForce = 10f;
-    [SerializeField] private float crouchSpeed = 2.5f;
     [SerializeField] private float runSpeed = 8f;
     [SerializeField] private bool holdingWeapon;
 
@@ -23,7 +22,6 @@ public class Player : Entity
     [Header("Noise")]
     [SerializeField] private float runNoise = 25f;
     [SerializeField] private float walkNoise = 8f;
-    [SerializeField] private float crouchNoise = 2f;
 
     [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
@@ -34,9 +32,13 @@ public class Player : Entity
     [SerializeField] private float groundCheckDistance = 1.4f;
     [SerializeField] private LayerMask whatIsGround;
 
+    [Header("Crouch")]
+    [SerializeField] private float crouchSpeed = 1.5f;
+    [SerializeField] private float crouchNoise = 2f;
+    private bool isCrouching = false;
+
     private float xInput;
     private bool isGrounded;
-    private bool isCrouching;
     private int facingDirection = 1;
 
     protected override void Awake()
@@ -50,6 +52,20 @@ public class Player : Entity
         staminaSlider.value = currentStamina;
     }
 
+    private void HandleCrouch()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            isCrouching = true;
+            anim.SetBool("isCrouching", true);
+        }
+        else
+        {
+            isCrouching = false;
+            anim.SetBool("isCrouching", false);
+        }
+    }
+
     protected override void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal");
@@ -58,7 +74,7 @@ public class Player : Entity
         HandleStamina();
         HandleNoise();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isCrouching)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
         healthSlider.value = currentHealth;
@@ -78,9 +94,11 @@ public class Player : Entity
         else
             NoiseManager.Instance.SetNoise(walkNoise);
     }
+
     private void HandleStamina()
     {
         bool wantsToRun = Input.GetKey(KeyCode.LeftControl)
+                       && !isCrouching
                        && xInput != 0
                        && isGrounded
                        && currentStamina > 0;
@@ -116,15 +134,14 @@ public class Player : Entity
 
         float speed;
 
-        if (isRunning && currentStamina > 0)
+        if (isCrouching)
+            speed = crouchSpeed;
+        else if (isRunning && currentStamina > 0)
             speed = runSpeed;
         else
             speed = moveSpeed;
 
-        if (isCrouching)
-            rb.linearVelocity = new Vector2(xInput * crouchSpeed, rb.linearVelocity.y);
-        else
-            rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
     }
 
     private void OnDrawGizmos()
@@ -146,24 +163,15 @@ public class Player : Entity
         }
     }
 
-    private void HandleCrouch()
-    {
-        isCrouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
-    }
-
     protected override void HandleAnimations()
     {
         anim.SetFloat("xInput", xInput);
         anim.SetBool("isRunning", isRunning);
     }
 
-
-
     protected override void Die()
     {
         base.Die();
         Time.timeScale = 0f;
     }
-
 }
-
