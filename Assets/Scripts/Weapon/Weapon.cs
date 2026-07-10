@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     protected Player player;
     private Coroutine shootCoroutine;
     public float currentAmmo;
+    public float reserveAmmo;
     protected float baseClipCapacity;
     private float currentClipCapacity;
     protected float baseAttackDamage;
@@ -29,6 +30,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] public Sprite icon;
     [SerializeField] public Sprite weaponImage;
 
+    protected Animator anim;
+
+    [SerializeField] protected bool canReload = true;
+    [SerializeField] protected bool canShoot = true;
+
+    [SerializeField] protected float shootNoise = 90f;
+
 
 
     protected virtual void Awake()
@@ -38,14 +46,22 @@ public class Weapon : MonoBehaviour
         currentClipCapacity = baseClipCapacity;
         currentAmmo = currentClipCapacity;
         shootableLayers = ~excludeLayers;
-        
+        anim = GetComponentInChildren<Animator>();
+
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentAmmo > 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && currentAmmo > 0 && canShoot)
         {
+            anim.SetTrigger("shoot");
             shootCoroutine = StartCoroutine(Shoot());
             Debug.Log("Current Damage Output " + currentAttackDamage + " Current Clip Capacity: " + currentClipCapacity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && reserveAmmo > 0 && canReload )
+        {
+            anim.SetTrigger("reload");
+            ReloadWeapon(); 
         }
     }
 
@@ -54,7 +70,10 @@ public class Weapon : MonoBehaviour
 
     protected virtual IEnumerator Shoot()
     {
+
         currentAmmo--;
+        if (NoiseManager.Instance != null)
+            NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, shootableLayers);
         Debug.Log("firePoint.right: " + firePoint.right);
 
@@ -78,11 +97,11 @@ public class Weapon : MonoBehaviour
 
         lineRenderer.enabled = true;
 
-
         yield return new WaitForSeconds(0.02f);
         //wait for a short time and then disable the line renderer
 
         lineRenderer.enabled = false;
+
 
     }
 
@@ -122,4 +141,33 @@ public class Weapon : MonoBehaviour
 
         GetCurrentStats();
     }
+
+    public void AddToReserveAmmo(float ammoIncrease)
+    {
+        reserveAmmo += ammoIncrease;
+    }
+
+    private void ReloadWeapon()
+    {
+        float ammoNeeded = currentClipCapacity - currentAmmo;
+        if (reserveAmmo > ammoNeeded)
+        {
+            currentAmmo += ammoNeeded;
+            reserveAmmo -= ammoNeeded;
+        }
+        else
+        {
+            currentAmmo += reserveAmmo;
+            reserveAmmo -= reserveAmmo;
+        }
+
+    }
+
+    public void EnableReloadAndShoot(bool canReloadAndShoot)
+    {
+        canReload = canReloadAndShoot;
+        canShoot = canReloadAndShoot;
+    }
+
+
 }

@@ -102,7 +102,7 @@ public class WorkbenchPanelUI : MonoBehaviour
         if (weaponRef.name == "Pistol")
         {
             weaponImage.rectTransform.sizeDelta = new Vector2(14f, 17f);
-            weaponImage.rectTransform.anchoredPosition = new Vector2(6f, 18f);
+            weaponImage.rectTransform.anchoredPosition = new Vector2(8f, 12.4f);
         }
         else if (weaponRef.name == "Shotgun")
         {

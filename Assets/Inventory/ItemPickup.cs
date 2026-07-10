@@ -12,6 +12,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Collision Detected");
             if (InventoryManager.Instance.AddItem(itemData))
             {
                 if (itemData.itemType == ItemData.ItemType.Gun)

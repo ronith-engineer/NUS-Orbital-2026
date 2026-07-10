@@ -1,24 +1,20 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;  
-public class PistolUI : MonoBehaviour
+using UnityEngine.UI;
+public class WeaponHUD : MonoBehaviour
 {
-
     private float currentAmmo;
     private float reserveAmmo;
 
-    [SerializeField] private Pistol pistol;
+    [SerializeField] private Weapon weapon;
     [SerializeField] private TextMeshProUGUI ammoCounter;
 
 
     void Update()
     {
-        currentAmmo = pistol.currentAmmo;
-        reserveAmmo = pistol.reserveAmmo;
+        currentAmmo = weapon.currentAmmo;
+        reserveAmmo = weapon.reserveAmmo;
         ammoCounter.text = $"{currentAmmo} | {reserveAmmo}";
-       
+
     }
-
-   
-
 }

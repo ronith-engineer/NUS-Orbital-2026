@@ -5,11 +5,10 @@ using UnityEngine;
 public class Shotgun : Weapon
 {
 
-    private Animator anim;
 
     private float maxShootingDistance = 18f;
 
-    [SerializeField] private float shootNoise = 100f;
+
 
 
 
@@ -18,12 +17,13 @@ public class Shotgun : Weapon
         baseClipCapacity = 4f;
         baseAttackDamage = 6f;
         base.Awake();
-        anim = GetComponentInChildren<Animator>();
+
     }
 
 
     protected override IEnumerator Shoot()
     {
+
         currentAmmo--;
         if (NoiseManager.Instance != null)
             NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
@@ -52,9 +52,8 @@ public class Shotgun : Weapon
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100f);
         }
-        anim.SetTrigger("shoot");
-        lineRenderer.enabled = true;
 
+        lineRenderer.enabled = true;
         yield return new WaitForSeconds(0.02f);
 
         lineRenderer.enabled = false;
