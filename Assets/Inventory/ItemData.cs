@@ -23,6 +23,8 @@ public class ItemData : ScriptableObject
         Rags,
         MetalScrap,
         Bandage,
-        MakeshiftKnife
+        MakeshiftKnife,
+        PistolAmmo,
+        ShotgunAmmo
     }
 }

@@ -1,0 +1,1293 @@
+fileFormatVersion: 2
+guid: 48b46548be7c44c40a5a83f0e82bc19e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6045742149457673822
+    second: ezgif.com-gif-to-sprite-converter_0
+  - first:
+      213: 3316791326196697466
+    second: ezgif.com-gif-to-sprite-converter_1
+  - first:
+      213: -4456160533565936516
+    second: ezgif.com-gif-to-sprite-converter_2
+  - first:
+      213: 6860036948971152612
+    second: ezgif.com-gif-to-sprite-converter_3
+  - first:
+      213: -2364014918583149002
+    second: ezgif.com-gif-to-sprite-converter_4
+  - first:
+      213: -8112516079427954145
+    second: ezgif.com-gif-to-sprite-converter_5
+  - first:
+      213: -3751099189807636935
+    second: ezgif.com-gif-to-sprite-converter_6
+  - first:
+      213: 9042976435626571608
+    second: ezgif.com-gif-to-sprite-converter_7
+  - first:
+      213: -7502256435367276791
+    second: ezgif.com-gif-to-sprite-converter_8
+  - first:
+      213: 6073690901197389330
+    second: ezgif.com-gif-to-sprite-converter_9
+  - first:
+      213: 3558007454322918520
+    second: ezgif.com-gif-to-sprite-converter_10
+  - first:
+      213: -510865534608633284
+    second: ezgif.com-gif-to-sprite-converter_11
+  - first:
+      213: 6538907657764924750
+    second: ezgif.com-gif-to-sprite-converter_12
+  - first:
+      213: -7105620504955195543
+    second: ezgif.com-gif-to-sprite-converter_13
+  - first:
+      213: -7934022777115195070
+    second: ezgif.com-gif-to-sprite-converter_14
+  - first:
+      213: 8620048159453660937
+    second: ezgif.com-gif-to-sprite-converter_15
+  - first:
+      213: 3061427685023620293
+    second: ezgif.com-gif-to-sprite-converter_16
+  - first:
+      213: 7869551533238089699
+    second: ezgif.com-gif-to-sprite-converter_17
+  - first:
+      213: 8825770896501207774
+    second: ezgif.com-gif-to-sprite-converter_18
+  - first:
+      213: -8029641021015339028
+    second: ezgif.com-gif-to-sprite-converter_19
+  - first:
+      213: -4186005891012910150
+    second: ezgif.com-gif-to-sprite-converter_20
+  - first:
+      213: -6207585905425417030
+    second: ezgif.com-gif-to-sprite-converter_21
+  - first:
+      213: -2992817134994903541
+    second: ezgif.com-gif-to-sprite-converter_22
+  - first:
+      213: 4436232117128420728
+    second: ezgif.com-gif-to-sprite-converter_23
+  - first:
+      213: 3003839337151754332
+    second: ezgif.com-gif-to-sprite-converter_24
+  - first:
+      213: 6449270191700581780
+    second: ezgif.com-gif-to-sprite-converter_25
+  - first:
+      213: -8083361602283467424
+    second: ezgif.com-gif-to-sprite-converter_26
+  - first:
+      213: -2753680208992447973
+    second: ezgif.com-gif-to-sprite-converter_27
+  - first:
+      213: -3230391642505572360
+    second: ezgif.com-gif-to-sprite-converter_28
+  - first:
+      213: -6930716598488319048
+    second: ezgif.com-gif-to-sprite-converter_29
+  - first:
+      213: -3501027943425817788
+    second: ezgif.com-gif-to-sprite-converter_30
+  - first:
+      213: -4110365659891685638
+    second: ezgif.com-gif-to-sprite-converter_31
+  - first:
+      213: 6337932515568640650
+    second: ezgif.com-gif-to-sprite-converter_32
+  - first:
+      213: -3217029950243711321
+    second: ezgif.com-gif-to-sprite-converter_33
+  - first:
+      213: 8862446746375046068
+    second: ezgif.com-gif-to-sprite-converter_34
+  - first:
+      213: -2129187436239372035
+    second: ezgif.com-gif-to-sprite-converter_35
+  - first:
+      213: 1440144054910408076
+    second: ezgif.com-gif-to-sprite-converter_36
+  - first:
+      213: -4829975232071295949
+    second: ezgif.com-gif-to-sprite-converter_37
+  - first:
+      213: -5838235500405787726
+    second: ezgif.com-gif-to-sprite-converter_38
+  - first:
+      213: 2873054425764820339
+    second: ezgif.com-gif-to-sprite-converter_39
+  - first:
+      213: -5867226660003335314
+    second: ezgif.com-gif-to-sprite-converter_40
+  - first:
+      213: 1334811880608179849
+    second: ezgif.com-gif-to-sprite-converter_41
+  - first:
+      213: -8855431327829886598
+    second: ezgif.com-gif-to-sprite-converter_42
+  - first:
+      213: -6119250765271664003
+    second: ezgif.com-gif-to-sprite-converter_43
+  - first:
+      213: 7250265500670267997
+    second: ezgif.com-gif-to-sprite-converter_44
+  - first:
+      213: 192929378074610792
+    second: ezgif.com-gif-to-sprite-converter_45
+  - first:
+      213: -8525215846442862572
+    second: ezgif.com-gif-to-sprite-converter_46
+  - first:
+      213: 171650346011502557
+    second: ezgif.com-gif-to-sprite-converter_47
+  - first:
+      213: -4319689160181297856
+    second: ezgif.com-gif-to-sprite-converter_48
+  - first:
+      213: -3534354721507270521
+    second: ezgif.com-gif-to-sprite-converter_49
+  - first:
+      213: 2675069393148581896
+    second: ezgif.com-gif-to-sprite-converter_50
+  - first:
+      213: -6544852827107071196
+    second: ezgif.com-gif-to-sprite-converter_51
+  - first:
+      213: -3656025199478179538
+    second: ezgif.com-gif-to-sprite-converter_52
+  - first:
+      213: 6978968764240095571
+    second: ezgif.com-gif-to-sprite-converter_53
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NewPistol_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15c3c44cdd246cc40b49a8c22772a3f4
+      internalID: -638794430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d451bec741e384687df5ea5cf2ca3d
+      internalID: 709644778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55cbc1a539e0d2b4f94a04ea3f06260e
+      internalID: 75005042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4bc2cfac3874144f83e354aeeddf07d
+      internalID: 1914080808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 561a78b02d26b3d4d90b41d4743bab4a
+      internalID: 1251271941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53583bda05fd2644f9841ea018c1fcd8
+      internalID: -58427957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 336
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe7405dca66b6f44ab5611364565f78
+      internalID: 1798682583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 336
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5fbe7cfb36e1742a16b54f8a1b8b72
+      internalID: 173566377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 336
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b185c58eac85f4aba3ad5ce008e3fe
+      internalID: -1533872341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 336
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35a6428ff20ec8642b2966f42433e3c0
+      internalID: 228460992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caec00f529696da4ca42b7c4b218e240
+      internalID: -666119783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1937bfe6630a79f4bae19606e8f3cf0b
+      internalID: -1073046662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7a5e278fb03d840a243f7a373dab46
+      internalID: -555486759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_13
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e2ed6102a100d747ad28b3846addad2
+      internalID: -1165851216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 288
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a70a3dbe01e05340868ae7c26fa4854
+      internalID: -1460694177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ef99bfe5c67f3a4e97a5ba859054d02
+      internalID: -1215885144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d6c6171d6a8ab4d87a3ec18a457df9
+      internalID: -118082066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31c3f09cdc89fdf4da9b3a989c27e4b3
+      internalID: 794058522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f7a4c4768f98946bd459f238180fa5
+      internalID: -1059880223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66d5c233b7436d744b7307bd9e2acbd4
+      internalID: 1849890632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8716470565c73040acb58076bf0bfed
+      internalID: 329155433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff594bcde481bed41b4d129aa9039edf
+      internalID: -870220654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3a59d89b48f534eae33cf5bcef892e
+      internalID: 248318073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_23
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bee7ff33075d2e42bda51d690ff9b48
+      internalID: -2077866395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_24
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a7d1aacb7126440b2e77b3143be867
+      internalID: -1866144121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f711846baaeeb34ebb041949e62da69
+      internalID: -572037419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bc6627002706c14d9a5f08d3af31217
+      internalID: -279482633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_27
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 144
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b70192347e09b4b8b9aab61229d5f2
+      internalID: -1129809299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_28
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffb276cc4528a040b78c44cf8be90e2
+      internalID: 728511337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dff64d874f40774faa08a92658ed3c2
+      internalID: -1919493186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c49f23dd166d4e4ba3020b23aa77a6e
+      internalID: 881747896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_31
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b17678885646f494b9a204e06f8ed7f7
+      internalID: 231900067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c04ae07ab22180e4c942531f3df3b8af
+      internalID: 2119047736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4301dfdb899c7ea49b035fbe9c711618
+      internalID: -336812680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_34
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abb4699099a94ca49b34898c3770c9cf
+      internalID: 54777517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcecd2085ed814a46a423035c9312e9f
+      internalID: 995280372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc9d885e5acd0184d90cb9f3d6850345
+      internalID: -1586088006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2c60eca46934b459ba9573d5010734
+      internalID: -934905461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_38
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d8d0a1b1ba5b84589229f68ea6cbdf
+      internalID: 1125827934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_39
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c29f5fd8c53d6a4c8f5da3f4615ddf1
+      internalID: 63184071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1222e09e67cdd9843b39ae1a628f1dfd
+      internalID: 1242642330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_41
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f4ea22e1d819e549b6171db10807d3d
+      internalID: -1024040764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_42
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 252b9c0f5cc1d6c4b985bee8a1329e75
+      internalID: -799549758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPistol_43
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5162728, y: 0.7205868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 048642ec8aa3b7742afb2e8c5ad704e5
+      internalID: -604528953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 47c439133b8908d489b0cc38af9aa355
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":9.0},"gridSpriteSize":{"x":64.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.516272783279419,"y":0.7205867767333984},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      NewPistol_0: -638794430
+      NewPistol_1: 709644778
+      NewPistol_10: -666119783
+      NewPistol_11: -1073046662
+      NewPistol_12: -555486759
+      NewPistol_13: -1165851216
+      NewPistol_14: -1460694177
+      NewPistol_15: -1215885144
+      NewPistol_16: -118082066
+      NewPistol_17: 794058522
+      NewPistol_18: -1059880223
+      NewPistol_19: 1849890632
+      NewPistol_2: 75005042
+      NewPistol_20: 329155433
+      NewPistol_21: -870220654
+      NewPistol_22: 248318073
+      NewPistol_23: -2077866395
+      NewPistol_24: -1866144121
+      NewPistol_25: -572037419
+      NewPistol_26: -279482633
+      NewPistol_27: -1129809299
+      NewPistol_28: 728511337
+      NewPistol_29: -1919493186
+      NewPistol_3: 1914080808
+      NewPistol_30: 881747896
+      NewPistol_31: 231900067
+      NewPistol_32: 2119047736
+      NewPistol_33: -336812680
+      NewPistol_34: 54777517
+      NewPistol_35: 995280372
+      NewPistol_36: -1586088006
+      NewPistol_37: -934905461
+      NewPistol_38: 1125827934
+      NewPistol_39: 63184071
+      NewPistol_4: 1251271941
+      NewPistol_40: 1242642330
+      NewPistol_41: -1024040764
+      NewPistol_42: -799549758
+      NewPistol_43: -604528953
+      NewPistol_5: -58427957
+      NewPistol_6: 1798682583
+      NewPistol_7: 173566377
+      NewPistol_8: -1533872341
+      NewPistol_9: 228460992
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

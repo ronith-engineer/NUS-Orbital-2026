@@ -174,6 +174,29 @@ public class InventoryManager : MonoBehaviour
                 slot.ClearSlot();
                 Debug.Log("Bandage used!");
                 break;
+            case ItemData.ItemType.PistolAmmo:
+                foreach (Weapon weapon in weaponManager.ownedWeapons)
+                {
+                    if (weapon is Pistol)
+                    {
+                        weapon.AddToReserveAmmo(4);
+                        slot.ClearSlot();
+                        break;
+                    }
+                }
+                break;
+            case ItemData.ItemType.ShotgunAmmo:
+                foreach (Weapon weapon in weaponManager.ownedWeapons)
+                {
+                    if (weapon is Shotgun)
+                    {
+                        weapon.AddToReserveAmmo(3);
+                        slot.ClearSlot();
+                        break;
+                    }
+                }
+                break;
+
             case ItemData.ItemType.MakeshiftKnife:
                 knifeObject.SetActive(true);
                 pistolObject.SetActive(false);
@@ -200,8 +223,6 @@ public class InventoryManager : MonoBehaviour
             Destroy(grenadeObject);
         if (item.itemType == ItemData.ItemType.MakeshiftKnife)
             knifeObject.SetActive(false);
-
-
         GameObject prefabToSpawn = null;
         switch (item.itemType)
         {

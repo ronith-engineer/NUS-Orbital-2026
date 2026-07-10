@@ -5,8 +5,8 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     //for now manually we are putting owned weapons, later on need to be added on pickup.
-    [SerializeField] private List<Weapon> ownedWeapons = new List<Weapon>();
-
+    [SerializeField] public List<Weapon> ownedWeapons = new List<Weapon>();
+   
     public Weapon currentSelectedWeapon;
     public event Action OnWeaponsChanged;
     public event Action OnSelectedWeaponChanged;
