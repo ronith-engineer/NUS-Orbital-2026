@@ -37,6 +37,7 @@ public class Player : Entity
     private float xInput;
     private bool isGrounded;
     private bool isCrouching;
+    private bool isInShadow = false;
     private int facingDirection = 1;
 
     protected override void Awake()
@@ -58,12 +59,26 @@ public class Player : Entity
         HandleStamina();
         HandleNoise();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isCrouching)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
         healthSlider.value = currentHealth;
         staminaSlider.value = currentStamina;
         base.Update();
+    }
+
+    private void HandleCrouch()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            isCrouching = true;
+            anim.SetBool("isCrouching", true);
+        }
+        else
+        {
+            isCrouching = false;
+            anim.SetBool("isCrouching", false);
+        }
     }
 
     private void HandleNoise()
@@ -78,9 +93,11 @@ public class Player : Entity
         else
             NoiseManager.Instance.SetNoise(walkNoise);
     }
+
     private void HandleStamina()
     {
         bool wantsToRun = Input.GetKey(KeyCode.LeftControl)
+                       && !isCrouching
                        && xInput != 0
                        && isGrounded
                        && currentStamina > 0;
@@ -116,15 +133,14 @@ public class Player : Entity
 
         float speed;
 
-        if (isRunning && currentStamina > 0)
+        if (isCrouching)
+            speed = crouchSpeed;
+        else if (isRunning && currentStamina > 0)
             speed = runSpeed;
         else
             speed = moveSpeed;
 
-        if (isCrouching)
-            rb.linearVelocity = new Vector2(xInput * crouchSpeed, rb.linearVelocity.y);
-        else
-            rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
     }
 
     private void OnDrawGizmos()
@@ -146,24 +162,25 @@ public class Player : Entity
         }
     }
 
-    private void HandleCrouch()
-    {
-        isCrouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
-    }
-
     protected override void HandleAnimations()
     {
         anim.SetFloat("xInput", xInput);
         anim.SetBool("isRunning", isRunning);
     }
 
+    public void SetInShadow(bool value)
+    {
+        isInShadow = value;
+    }
 
+    public bool IsInShadow()
+    {
+        return isInShadow;
+    }
 
     protected override void Die()
     {
         base.Die();
         Time.timeScale = 0f;
     }
-
 }
-

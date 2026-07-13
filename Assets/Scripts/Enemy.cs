@@ -29,14 +29,13 @@ public class Enemy : Entity
     {
         base.Update();
     }
+
     protected override void Awake()
     {
         base.Awake();
         targetPatrolPoint = patrolPointA.transform;
         lineOfSightCollider = GetComponentInChildren<CircleCollider2D>();
         eyeLevel = transform.Find("eyeLevelPosition");
-
-
     }
 
     protected override void HandleCollision()
@@ -44,27 +43,17 @@ public class Enemy : Entity
         playerDetectedForAttack = Physics2D.OverlapBox(attackPoint.position, attackBoxSize, 0f, whatIsTarget);
     }
 
-    private void HandleAttackAnimation() 
+    private void HandleAttackAnimation()
     {
         anim.SetBool("attack", playerDetectedForAttack);
         if (playerDetectedForAttack)
         {
             rb.linearVelocityX = 0f;
         }
-
     }
-    
-
 
     protected override void HandleMovement()
     {
-
-
-        //if (Vector2.Distance(transform.position, playerPosition.position) < moveAwayDistance)
-        //{
-        //    transform.position += moveAwayDistance * Vector3.right; 
-        //}
-
         if (isChasing)
         {
             if (playerPosition.position.x > transform.position.x)
@@ -79,7 +68,7 @@ public class Enemy : Entity
             if (wasChasingLastFrame)
             {
                 if (isWaiting) return;
-                StartCoroutine(EnemyWait()); // pause before resuming patrol
+                StartCoroutine(EnemyWait());
             }
             else
             {
@@ -95,27 +84,18 @@ public class Enemy : Entity
     private void ReturnToPatrolPoint()
     {
         if (targetPatrolPoint.position.x > transform.position.x)
-        {
             rb.linearVelocityX = moveSpeed;
-        }
         else if (targetPatrolPoint.position.x < transform.position.x)
-        {
             rb.linearVelocityX = -moveSpeed;
-        }
     }
 
     private void HandlePatrolling()
     {
-
         if (isWaiting) return;
         if (targetPatrolPoint == patrolPointA.transform)
-        {
             rb.linearVelocityX = -moveSpeed;
-        }
         else
-        {
             rb.linearVelocityX = moveSpeed;
-        }
 
         if (Mathf.Abs(transform.position.x - targetPatrolPoint.position.x) < 0.5f && targetPatrolPoint == patrolPointA.transform)
         {
@@ -129,26 +109,15 @@ public class Enemy : Entity
         }
     }
 
-   
-
     private void checkFacingPlayer()
     {
         if (playerPosition.position.x > transform.position.x && facingRight)
-        {
             facingPlayer = true;
-        }
         else if (playerPosition.position.x < transform.position.x && !facingRight)
-        {
             facingPlayer = true;
-        }
         else
-        {
             facingPlayer = false;
-        }
-
     }
-
-
 
     private IEnumerator EnemyWait()
     {
@@ -158,17 +127,14 @@ public class Enemy : Entity
         yield return new WaitForSeconds(3f);
         isWaiting = false;
         wasChasingLastFrame = false;
-        //Debug.Log("Coroutine ended");   
     }
 
     protected override void HandleAnimations()
     {
-        anim.SetFloat("xVelocity",rb.linearVelocityX);
+        anim.SetFloat("xVelocity", rb.linearVelocityX);
         HandleAttackAnimation();
         anim.SetBool("isChasing", isChasing);
-
     }
-
 
     protected override void OnDrawGizmos()
     {
@@ -181,30 +147,25 @@ public class Enemy : Entity
         Gizmos.matrix = Matrix4x4.TRS(attackPoint.position, attackPoint.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, attackBoxSize);
         Gizmos.matrix = Matrix4x4.identity;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player in range");
-            Debug.Log("whatIsTarget value: " + whatIsTarget.value);
-            Debug.Log("Enemy gameObject layer: " + gameObject.layer);
+            Player player = collision.GetComponent<Player>();
+            if (player != null && player.IsInShadow())
+                return;
+
             RaycastHit2D colliderInSight = Physics2D.Raycast(eyeLevel.position, eyeLevel.transform.right, lineOfSightRange, whatIsTarget);
             Debug.DrawRay(eyeLevel.position, eyeLevel.transform.right * lineOfSightRange, Color.red, 1f);
-            
-        if (colliderInSight)
-            {
-                Debug.Log(colliderInSight.collider.name);
-                Debug.Log("Player collider retrieved");
-                Player player = colliderInSight.transform.GetComponent<Player>();
-                Debug.Log("Player" + player.name);
-                if (player != null)
-                {
-                    Debug.Log("Player detected");
-                    isChasing = true;
 
+            if (colliderInSight)
+            {
+                Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
+                if (detectedPlayer != null)
+                {
+                    isChasing = true;
                 }
             }
         }
@@ -216,18 +177,21 @@ public class Enemy : Entity
         {
             isChasing = false;
         }
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isChasing)
         {
+            Player player = collision.GetComponent<Player>();
+            if (player != null && player.IsInShadow())
+                return;
+
             RaycastHit2D colliderInSight = Physics2D.Raycast(eyeLevel.position, eyeLevel.transform.right, lineOfSightRange, whatIsTarget);
             if (colliderInSight)
             {
-                Player player = colliderInSight.transform.GetComponent<Player>();
-                if (player != null)
+                Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
+                if (detectedPlayer != null)
                 {
                     isChasing = true;
                 }
@@ -235,4 +199,3 @@ public class Enemy : Entity
         }
     }
 }
-
