@@ -44,6 +44,7 @@ namespace NavKeypad
         private string currentInput;
         private bool displayingResult = false;
         private bool accessWasGranted = false;
+        private bool playerNearby = false;
 
         private void Awake()
         {
@@ -134,5 +135,22 @@ namespace NavKeypad
             audioSource.PlayOneShot(accessGrantedSfx);
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                playerNearby = true;
+                Debug.Log("Press E to use keypad");
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                playerNearby = false;
+
+            }
+        }
     }
 }
