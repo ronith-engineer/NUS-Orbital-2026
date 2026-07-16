@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Weapon : MonoBehaviour
 {
-
     public string weaponName;
 
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected LineRenderer lineRenderer;
     [SerializeField] protected LayerMask excludeLayers;
     protected int shootableLayers;
-    
+
     protected Player player;
     private Coroutine shootCoroutine;
     public float currentAmmo;
@@ -37,8 +35,6 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] protected float shootNoise = 90f;
 
-
-
     protected virtual void Awake()
     {
         player = GetComponentInParent<Player>();
@@ -47,8 +43,8 @@ public class Weapon : MonoBehaviour
         currentAmmo = currentClipCapacity;
         shootableLayers = ~excludeLayers;
         anim = GetComponentInChildren<Animator>();
-
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && currentAmmo > 0 && canShoot)
@@ -58,22 +54,19 @@ public class Weapon : MonoBehaviour
             Debug.Log("Current Damage Output " + currentAttackDamage + " Current Clip Capacity: " + currentClipCapacity);
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && reserveAmmo > 0 && canReload )
+        if (Input.GetKeyDown(KeyCode.R) && reserveAmmo > 0 && canReload)
         {
             anim.SetTrigger("reload");
-            ReloadWeapon(); 
+            ReloadWeapon();
         }
     }
 
-
-    
-
     protected virtual IEnumerator Shoot()
     {
-
         currentAmmo--;
         if (NoiseManager.Instance != null)
             NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
+
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, shootableLayers);
         Debug.Log("firePoint.right: " + firePoint.right);
 
@@ -85,24 +78,25 @@ public class Weapon : MonoBehaviour
             {
                 enemy.TakeDamageFromEntity(player.facingRight, currentAttackDamage, knockbackForce);
             }
+
+            CeilingTurret turret = hitInfo.transform.GetComponent<CeilingTurret>();
+            if (turret != null)
+            {
+                turret.TakeDamage(currentAttackDamage);
+            }
+
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
         }
         else
         {
-
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100f);
         }
 
         lineRenderer.enabled = true;
-
         yield return new WaitForSeconds(0.02f);
-        //wait for a short time and then disable the line renderer
-
         lineRenderer.enabled = false;
-
-
     }
 
     private void GetCurrentStats()
@@ -119,10 +113,8 @@ public class Weapon : MonoBehaviour
             {
                 currentClipCapacity += upgrade.statIncrease;
             }
-
         }
     }
-
 
     public void ApplyUpgrade(WeaponUpgrade upgrade)
     {
@@ -160,7 +152,6 @@ public class Weapon : MonoBehaviour
             currentAmmo += reserveAmmo;
             reserveAmmo -= reserveAmmo;
         }
-
     }
 
     public void EnableReloadAndShoot(bool canReloadAndShoot)
@@ -168,6 +159,4 @@ public class Weapon : MonoBehaviour
         canReload = canReloadAndShoot;
         canShoot = canReloadAndShoot;
     }
-
-
 }
