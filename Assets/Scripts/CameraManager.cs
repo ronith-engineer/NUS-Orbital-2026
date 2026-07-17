@@ -7,6 +7,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] private CinemachineCamera mainVCam;
     public CinemachineCamera MainVCam => mainVCam;
+    private CinemachineConfiner2D confiner;
 
     private void Awake()
     {
@@ -17,6 +18,14 @@ public class CameraManager : MonoBehaviour
             return;
         }
         Instance = this;
+        confiner = mainVCam.GetComponent<CinemachineConfiner2D>();
+    }
+
+    public void SwitchConfiner(Collider2D newBounds)
+    {
+        if (confiner == null) return;
+        confiner.BoundingShape2D = newBounds;
+        confiner.InvalidateBoundingShapeCache();
     }
 }
 

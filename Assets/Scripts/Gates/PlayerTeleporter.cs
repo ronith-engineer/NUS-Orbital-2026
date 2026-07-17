@@ -9,7 +9,7 @@ public class PlayerTeleporter : MonoBehaviour
 
         Vector3 delta = destination.position - player.position;
         player.position = destination.position;
-        player.rotation = destination.rotation;
+        
        
         if (cam != null )
         {

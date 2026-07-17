@@ -85,6 +85,17 @@ public class Weapon : MonoBehaviour
             {
                 enemy.TakeDamageFromEntity(player.facingRight, currentAttackDamage, knockbackForce);
             }
+
+            //if (hitinfo.transform.CompareTag("Enemy"))
+            //{
+            //  Enemy enemy = hitInfo.transform.GetComponent<Enemy>();    
+            //  enemy.TakeDamageFromEntity(player.facingRight, currentAttackDamage, knockbackForce);
+            //}
+            //else if (hitInfo.transform.CompareTag("Turret"))
+            //{
+            //  Turret turret = hitInfo.transform.GetComponent<Turret>();
+            //  turret.TakeDamage(currentAttackDamage);
+            //}
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
         }
