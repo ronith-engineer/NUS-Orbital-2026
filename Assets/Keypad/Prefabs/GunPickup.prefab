@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 11400000, guid: 05e0746fc02b93f4995a4c1f6295d026, type: 2}
+  weaponManager: {fileID: 0}
+  pistol: {fileID: 0}
+  shotgun: {fileID: 0}
 --- !u!58 &4485556679269078681
 CircleCollider2D:
   m_ObjectHideFlags: 0
