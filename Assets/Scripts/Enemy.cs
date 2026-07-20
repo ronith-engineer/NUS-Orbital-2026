@@ -41,7 +41,7 @@ public class Enemy : Entity
 
     protected override void HandleCollision()
     {
-        playerDetectedForAttack = Physics2D.OverlapBox(attackPoint.position, attackBoxSize, 0f, whatIsTarget);
+        playerDetectedForAttack = isChasing && Physics2D.OverlapBox(attackPoint.position, attackBoxSize, 0f, whatIsTarget);
     }
 
     private void HandleAttackAnimation() 
@@ -188,23 +188,19 @@ public class Enemy : Entity
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player in range");
-            Debug.Log("whatIsTarget value: " + whatIsTarget.value);
-            Debug.Log("Enemy gameObject layer: " + gameObject.layer);
+            Player player = collision.GetComponent<Player>();
+            if (player != null && player.IsInShadow())
+                return;
+
             RaycastHit2D colliderInSight = Physics2D.Raycast(eyeLevel.position, eyeLevel.transform.right, lineOfSightRange, whatIsTarget);
             Debug.DrawRay(eyeLevel.position, eyeLevel.transform.right * lineOfSightRange, Color.red, 1f);
-            
-        if (colliderInSight)
-            {
-                Debug.Log(colliderInSight.collider.name);
-                Debug.Log("Player collider retrieved");
-                Player player = colliderInSight.transform.GetComponent<Player>();
-                Debug.Log("Player" + player.name);
-                if (player != null)
-                {
-                    Debug.Log("Player detected");
-                    isChasing = true;
 
+            if (colliderInSight)
+            {
+                Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
+                if (detectedPlayer != null)
+                {
+                    isChasing = true;
                 }
             }
         }
@@ -223,11 +219,15 @@ public class Enemy : Entity
     {
         if (collision.CompareTag("Player") && !isChasing)
         {
+            Player player = collision.GetComponent<Player>();
+            if (player != null && player.IsInShadow())
+                return;
+
             RaycastHit2D colliderInSight = Physics2D.Raycast(eyeLevel.position, eyeLevel.transform.right, lineOfSightRange, whatIsTarget);
             if (colliderInSight)
             {
-                Player player = colliderInSight.transform.GetComponent<Player>();
-                if (player != null)
+                Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
+                if (detectedPlayer != null)
                 {
                     isChasing = true;
                 }

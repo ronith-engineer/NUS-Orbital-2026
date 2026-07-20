@@ -37,6 +37,7 @@ public class Player : Entity
     private float xInput;
     private bool isGrounded;
     private bool isCrouching;
+    private bool isInShadow = false;
     private int facingDirection = 1;
 
     protected override void Awake()
@@ -164,6 +165,17 @@ public class Player : Entity
         base.Die();
         Time.timeScale = 0f;
     }
+
+    public void SetInShadow(bool value)
+    {
+        isInShadow = value;
+    }
+
+    public bool IsInShadow()
+    {
+        return isInShadow;
+    }
+
 
 }
 
