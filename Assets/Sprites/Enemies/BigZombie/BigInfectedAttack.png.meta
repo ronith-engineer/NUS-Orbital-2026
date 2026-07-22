@@ -1,0 +1,399 @@
+fileFormatVersion: 2
+guid: 926b1ae58e2142342861c63ef7c0402d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3734277659740962184
+    second: BigZombieAttack 1_0
+  - first:
+      213: -1044173877369878682
+    second: BigZombieAttack 1_1
+  - first:
+      213: 4405102266250667854
+    second: BigZombieAttack 1_2
+  - first:
+      213: 1890009357441260097
+    second: BigZombieAttack 1_3
+  - first:
+      213: 5654308870735176348
+    second: BigZombieAttack 1_4
+  - first:
+      213: 4487175403027544891
+    second: BigZombieAttack 1_5
+  - first:
+      213: 7972777366456611256
+    second: BigZombieAttack 1_6
+  - first:
+      213: -6089537873532001087
+    second: BigZombieAttack 1_7
+  - first:
+      213: -5851293543380401767
+    second: BigZombieAttack 1_8
+  - first:
+      213: 7705489934718814565
+    second: BigZombieAttack 1_9
+  - first:
+      213: 1938131551205068102
+    second: BigZombieAttack 1_10
+  - first:
+      213: 7411686446844895403
+    second: BigZombieAttack 1_11
+  - first:
+      213: -1997504326516588980
+    second: BigZombieAttack 1_12
+  - first:
+      213: 5022341409875447843
+    second: BigZombieAttack 1_13
+  - first:
+      213: 2022889764396503794
+    second: BigZombieAttack 1_14
+  - first:
+      213: 1389262961114090074
+    second: BigZombieAttack 1_15
+  - first:
+      213: 3620591969914330499
+    second: BigZombieAttack 1_16
+  - first:
+      213: 5314754628019264499
+    second: BigZombieAttack 1_17
+  - first:
+      213: 6533319394827590788
+    second: BigZombieAttack 1_18
+  - first:
+      213: 3959119214327352168
+    second: BigZombieAttack 1_19
+  - first:
+      213: 7332950418107337499
+    second: BigZombieAttack 1_20
+  - first:
+      213: 451380650377602744
+    second: BigZombieAttack 1_21
+  - first:
+      213: 252049110187257586
+    second: BigZombieAttack 1_22
+  - first:
+      213: 5357737892965106744
+    second: BigZombieAttack 1_23
+  - first:
+      213: 8349935027317167793
+    second: BigZombieAttack 1_24
+  - first:
+      213: 8575500267363275441
+    second: BigZombieAttack 1_25
+  - first:
+      213: -4142449764307082143
+    second: BigZombieAttack 1_26
+  - first:
+      213: -2835427331854787572
+    second: BigZombieAttack 1_27
+  - first:
+      213: 9141370727109310101
+    second: BigZombieAttack 1_28
+  - first:
+      213: 5954970403457368879
+    second: BigZombieAttack 1_29
+  - first:
+      213: -3899105030191777495
+    second: BigZombieAttack 1_30
+  - first:
+      213: 6577747966220311777
+    second: BigZombieAttack 1_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BigZombieAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ecc06d2791614458f2bdc52acb5b7d
+      internalID: -1005935355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigZombieAttack_1
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 400
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0956149ba3b4edd4b95edb17728e2e8f
+      internalID: 25610242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigZombieAttack_2
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 400
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a4132e5ea34a840b71beebc35b29df
+      internalID: 986219364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigZombieAttack_3
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 400
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56a7ae2c898e30843acbd028be34e2b5
+      internalID: -595024155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigZombieAttack_4
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 400
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30446d4659d3cca44af3bb2687f54e0f
+      internalID: 882432814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigZombieAttack_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b193ae368154c44994be61d9dc3f7b4
+      internalID: 1844672542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigZombieAttack_6
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d9e4f5a6ca8cd440bddef857887e9a5
+      internalID: -2142385812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BigZombieAttack_7
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 800
+        height: 400
+      alignment: 9
+      pivot: {x: 0.7060708, y: 0.4125837}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb033280d44ac83459d89e4171364a68
+      internalID: -1407979793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 55e8e438d61322c499f2d002ddc59b27
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":2.0},"gridSpriteSize":{"x":800.0,"y":400.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.7060707807540894,"y":0.41258370876312258},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      BigZombieAttack_0: -1005935355
+      BigZombieAttack_1: 25610242
+      BigZombieAttack_2: 986219364
+      BigZombieAttack_3: -595024155
+      BigZombieAttack_4: 882432814
+      BigZombieAttack_5: 1844672542
+      BigZombieAttack_6: -2142385812
+      BigZombieAttack_7: -1407979793
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
