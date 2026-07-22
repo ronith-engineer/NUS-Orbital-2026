@@ -37,14 +37,16 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] protected float shootNoise = 90f;
 
-
+    public virtual void Initialize()
+    {
+        currentAttackDamage = baseAttackDamage;
+        currentClipCapacity = baseClipCapacity;
+        currentAmmo = currentClipCapacity;
+    }
 
     protected virtual void Awake()
     {
         player = GetComponentInParent<Player>();
-        currentAttackDamage = baseAttackDamage;
-        currentClipCapacity = baseClipCapacity;
-        currentAmmo = currentClipCapacity;
         shootableLayers = ~excludeLayers;
         anim = GetComponentInChildren<Animator>();
 
@@ -120,6 +122,8 @@ public class Weapon : MonoBehaviour
     {
         currentAttackDamage = baseAttackDamage;
         currentClipCapacity = baseClipCapacity;
+        Debug.Log(gameObject.name + " GetCurrentStats: appliedUpgrades.Count = " + appliedUpgrades.Count + ", baseAttackDamage = " + baseAttackDamage);
+
         foreach (WeaponUpgrade upgrade in appliedUpgrades)
         {
             if (upgrade.statType == WeaponUpgrade.UpgradeStatType.Damage)
@@ -180,5 +184,21 @@ public class Weapon : MonoBehaviour
         canShoot = canReloadAndShoot;
     }
 
+    public float CountUpgrades(WeaponUpgrade weaponUpgrade)
+    {
+        if (weaponUpgrade.statType == WeaponUpgrade.UpgradeStatType.Damage)
+        {
+            return countDamageUpgrades;
+        }
+        else if (weaponUpgrade.statType == WeaponUpgrade.UpgradeStatType.ClipCapacity)
+        {
+            return countClipCapacityUpgrades;
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
 
 }

@@ -6,16 +6,11 @@ using UnityEngine;
 public class Pistol : Weapon
 {
 
-
-
-
-    protected override void Awake()
+    public override void Initialize()
     {
         baseClipCapacity = 4;
         baseAttackDamage = 2;
-
-        base.Awake();
-
+        base.Initialize();
     }
 
 

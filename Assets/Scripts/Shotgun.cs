@@ -9,16 +9,14 @@ public class Shotgun : Weapon
     private float maxShootingDistance = 18f;
 
 
-
-
-
-    protected override void Awake()
+    public override void Initialize()
     {
         baseClipCapacity = 4f;
-        baseAttackDamage = 6f;
-        base.Awake();
-
+        baseAttackDamage = 8f;
+        base.Initialize();
     }
+
+
 
 
     protected override IEnumerator Shoot()

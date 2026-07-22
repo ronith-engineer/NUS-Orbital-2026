@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class WeaponTabUI : MonoBehaviour
     public Weapon weaponRef;
     private WeaponManager weaponManager;
     [SerializeField] private GameObject selectedHighlight;
+
+    public event Action<Weapon> OnTabSelected;
 
 
     public void Setup(Weapon weapon, WeaponManager manager)
@@ -24,7 +27,7 @@ public class WeaponTabUI : MonoBehaviour
 
         Debug.Log($"[WeaponTabUI] Listener count after add: {button.onClick.GetPersistentEventCount()}");
 
-        SetSelected(weaponManager.currentSelectedWeapon == weaponRef);
+        //SetSelected(weaponManager.currentSelectedWeapon == weaponRef);
 
 
     }
@@ -33,7 +36,8 @@ public class WeaponTabUI : MonoBehaviour
     {
         Debug.Log("Tab clicked: " + weaponRef.weaponName);
 
-        weaponManager.SelectWeapon(weaponRef);
+        //weaponManager.SelectWeapon(weaponRef);
+        OnTabSelected?.Invoke(weaponRef);
     }
 
     public void SetSelected(bool isSelected)

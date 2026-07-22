@@ -8,22 +8,35 @@ using UnityEngine.UI;
 
 public class WorkbenchPanelUI : MonoBehaviour
 {
-
+    public static WorkbenchPanelUI Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI weaponNameText;
     [SerializeField] private Image weaponImage;
     [SerializeField] private WeaponManager weaponManager;
 
     [Header("Upgrade Rows")]
-    [SerializeField] private UpgradeRowUI upgradeRow1;
-    [SerializeField] private UpgradeRowUI upgradeRow2;
+    [SerializeField] public UpgradeRowUI upgradeRow1;
+    [SerializeField] public UpgradeRowUI upgradeRow2;
 
     [Header("Weapon Upgrades")]
     [SerializeField] private WeaponUpgrade weaponUpgrade1;
     [SerializeField] private WeaponUpgrade weaponUpgrade2;
 
+    public Weapon CurrentWeapon { get; private set; }
+
+    [SerializeField] private WeaponTabsSpawner weaponTabsSpawner;
     public int rowSelectPointer;
     private int countUpgradeRows;
 
+    private void Awake()
+    {
+        //using singleton pattern to avoid any possible duplication of the workbench panel ui in the scene
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private List<UpgradeRowUI> upgradeRows => new List<UpgradeRowUI>() { upgradeRow1, upgradeRow2};
 
@@ -54,13 +67,13 @@ public class WorkbenchPanelUI : MonoBehaviour
 
    
 
-    public void Open()
+    public void Open(Weapon weapon)
     {
-        Weapon currentSelectedWeapon = weaponManager.currentSelectedWeapon;
-        weaponNameText.text = currentSelectedWeapon.weaponName;
-        SetWeaponImage(currentSelectedWeapon);
-        upgradeRow1.Setup(currentSelectedWeapon, weaponUpgrade1);
-        upgradeRow2.Setup(currentSelectedWeapon, weaponUpgrade2);
+        CurrentWeapon = weapon;
+        weaponNameText.text = weapon.weaponName;
+        SetWeaponImage(weapon);
+        upgradeRow1.Setup(weapon, weaponUpgrade1);
+        upgradeRow2.Setup(weapon, weaponUpgrade2);
         SelectUpgradeRow(0);
 
     }
@@ -68,15 +81,16 @@ public class WorkbenchPanelUI : MonoBehaviour
     private void OnEnable()
     {
         if (weaponManager == null) return;
-        weaponManager.OnSelectedWeaponChanged += Open;
+        weaponTabsSpawner.OnTabSelected += Open;
         EventSystem.current.sendNavigationEvents = false;
         rowSelectPointer = 0;
-        Open();
+
+        weaponTabsSpawner.RespawnAndReselect();
     }
 
     private void OnDisable()
     {
-        weaponManager.OnSelectedWeaponChanged -= Open;
+        weaponTabsSpawner.OnTabSelected -= Open;
         EventSystem.current.sendNavigationEvents = true;
     }
 
@@ -101,13 +115,13 @@ public class WorkbenchPanelUI : MonoBehaviour
         weaponImage.sprite = weaponRef.weaponImage;
         if (weaponRef.name == "Pistol")
         {
-            weaponImage.rectTransform.sizeDelta = new Vector2(14f, 17f);
-            weaponImage.rectTransform.anchoredPosition = new Vector2(8f, 12.4f);
+            weaponImage.rectTransform.sizeDelta = new Vector2(30.1f,36.5f);
+            weaponImage.rectTransform.anchoredPosition = new Vector2(7f, 12.04f);
         }
         else if (weaponRef.name == "Shotgun")
         {
-            weaponImage.rectTransform.sizeDelta = new Vector2(34f, 21f);
-            weaponImage.rectTransform.anchoredPosition = new Vector2(6f, 20f);
+            weaponImage.rectTransform.sizeDelta = new Vector2(27.4f, 17f);
+            weaponImage.rectTransform.anchoredPosition = new Vector2(5.53f, 17.1f);
                 
         }
         
