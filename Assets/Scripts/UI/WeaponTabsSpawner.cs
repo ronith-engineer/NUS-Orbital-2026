@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WeaponTabsSpawner : MonoBehaviour
 
@@ -10,6 +11,8 @@ public class WeaponTabsSpawner : MonoBehaviour
     [SerializeField] private GameObject weaponTabPrefab;
     private List<WeaponTabUI> spawnedTabs = new List<WeaponTabUI>();
 
+    public event Action<Weapon> OnTabSelected;
+
 
 
 
@@ -18,10 +21,6 @@ public class WeaponTabsSpawner : MonoBehaviour
         weaponManager.OnWeaponsChanged += SpawnWeaponTabs;
         weaponManager.OnSelectedWeaponChanged += RefreshHighlights;
 
-        if (weaponManager.GetOwnedWeapons() != null && weaponManager.GetOwnedWeapons().Count > 0)
-        {
-            SpawnWeaponTabs();
-        }
     }
 
     private void OnDisable()
@@ -46,15 +45,37 @@ public class WeaponTabsSpawner : MonoBehaviour
             WeaponTabUI tabUI = tabObj.GetComponent<WeaponTabUI>();
             tabUI.Setup(weapon, weaponManager);
             spawnedTabs.Add(tabUI);
+            tabUI.OnTabSelected += OnTabChanged;
+        }
+
+        if (spawnedTabs.Count > 0)
+            OnTabChanged(spawnedTabs[0].weaponRef);
+    }
+    private void RefreshHighlights()
+    {
+        if (WorkbenchPanelUI.Instance == null) return;
+        Weapon focusedWeapon = WorkbenchPanelUI.Instance.CurrentWeapon;
+        foreach (WeaponTabUI tab in spawnedTabs)
+        {
+            tab.SetSelected(tab.weaponRef == focusedWeapon);
         }
     }
 
-    private void RefreshHighlights() //Refreshes tabs which are selected in weapon upgrade UI
+    private void OnTabChanged(Weapon weapon)
     {
-        foreach (WeaponTabUI tab in spawnedTabs)
-        {
-            tab.SetSelected(tab.weaponRef == weaponManager.currentSelectedWeapon);
-        }
+        OnTabSelected?.Invoke(weapon);
+        RefreshHighlights();
+    }
+    public Weapon GetFirstOwnedWeapon()
+    {
+        if (spawnedTabs.Count == 0) return null;
+        return spawnedTabs[0].weaponRef;
+    }
+
+    public void RespawnAndReselect()
+    {
+        SpawnWeaponTabs();
     }
 }
+
 

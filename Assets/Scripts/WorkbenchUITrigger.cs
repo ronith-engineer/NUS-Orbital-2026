@@ -7,6 +7,8 @@ public class WorkbenchUITrigger : MonoBehaviour
     [SerializeField] private Player player;
     private bool playerIsNear;
 
+    [SerializeField] private WeaponManager weaponManager;
+
     private void Start()
     {
         workbenchCollider = GetComponent<BoxCollider2D>();
@@ -16,7 +18,7 @@ public class WorkbenchUITrigger : MonoBehaviour
     {
         if (playerIsNear)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !weaponManager.IsEmpty() )
             {
                 Debug.Log("E pressed");
                 weaponUpgradeUI.SetActive(true);

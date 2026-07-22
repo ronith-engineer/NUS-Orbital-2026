@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponUpgrade : ScriptableObject
 {
     public float statIncrease;
+    public int partsCost;
 
     public UpgradeStatType statType;
     public enum UpgradeStatType

@@ -37,13 +37,25 @@ public class WeaponManager : MonoBehaviour
         return ownedWeapons;
     }
 
-    //future pickup of weapons function to store in list and refresh weapon upgrade UI
+   
     public void AddWeapon(Weapon weapon)
     {
         if (ownedWeapons.Contains(weapon)) return;
-
         ownedWeapons.Add(weapon);
+        weapon.Initialize(); //initialize the weapon when added to the list
         OnWeaponsChanged?.Invoke();
+    } 
+
+    public bool IsEmpty()
+    {
+        foreach (Weapon weapon in ownedWeapons)
+        {
+            if (weapon != null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

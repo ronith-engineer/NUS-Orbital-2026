@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ClipCapacity
   m_EditorClassIdentifier: Assembly-CSharp::WeaponUpgrade
   statIncrease: 1
+  partsCost: 5
   statType: 1

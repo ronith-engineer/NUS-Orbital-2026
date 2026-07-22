@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Silencer
   m_EditorClassIdentifier: Assembly-CSharp::WeaponUpgrade
   statIncrease: 0
+  partsCost: 6
   statType: 2

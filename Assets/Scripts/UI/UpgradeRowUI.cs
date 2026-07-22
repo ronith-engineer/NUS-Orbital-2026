@@ -1,12 +1,18 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeRowUI : MonoBehaviour
 {
-    [SerializeField] private Slider sliderFill;
+    [SerializeField] private List<Image> fillBoxes;
     [SerializeField] private TextMeshProUGUI statLabel;
     [SerializeField] public GameObject selectedHighlight;
+
+    public event Action<WeaponUpgrade> OnUpgradeRowSelected;
+    public event Action<WeaponUpgrade> OnUpgradeApplied;
+    public WeaponUpgrade CurrentUpgrade => weaponUpgrade;
 
     private Weapon weaponRef;
     private WeaponUpgrade weaponUpgrade;
@@ -22,30 +28,28 @@ public class UpgradeRowUI : MonoBehaviour
         if (!isFocused) return;
 
         maxed = IsMaxed();
+        if (maxed) return; 
 
-        if (maxed)
-        {
-            sliderFill.value = 1f; 
-            return;
-        }
+        int currentCount = GetCurrentCount();
 
-        if (Input.GetKey(KeyCode.Space) && !isApplying)
+        if (Input.GetKey(KeyCode.Space) && !isApplying && CanApplyUpgrade())
         {
             holdTimer += Time.deltaTime;
-            sliderFill.value = Mathf.Lerp(0, 1, holdTimer / targetHoldDuration);
+            fillBoxes[currentCount].fillAmount = Mathf.Clamp01(holdTimer / targetHoldDuration);
 
             if (holdTimer >= targetHoldDuration)
             {
                 isApplying = true;
                 ApplyUpgrade();
-                Debug.Log("Damage Upgrades Count: " + weaponRef.countDamageUpgrades + " Clip Capacity upgrades count: " + weaponRef.countClipCapacityUpgrades);
             }
         }
         else if (!Input.GetKey(KeyCode.Space))
         {
             holdTimer = 0;
-            sliderFill.value = 0;
             isApplying = false;
+
+            if (currentCount < fillBoxes.Count)
+                fillBoxes[currentCount].fillAmount = 0;
         }
     }
 
@@ -55,39 +59,54 @@ public class UpgradeRowUI : MonoBehaviour
         weaponRef = weapon;
         weaponUpgrade = upgrade;
         statLabel.text = upgrade.statType.ToString();
-        RefreshSlider();
+        RefreshBoxes();
     }
 
-    private void RefreshSlider()
+    private void RefreshBoxes()
     {
-        int currentCount = 0;
+        int currentCount = GetCurrentCount();
+        for (int i = 0; i < fillBoxes.Count; i++)
+        {
+            fillBoxes[i].fillAmount = i < currentCount ? 1f : 0f;
+        }
+    }
 
+    private int GetCurrentCount()
+    {
         if (weaponUpgrade.statType == WeaponUpgrade.UpgradeStatType.Damage)
-            currentCount = weaponRef.countDamageUpgrades;
+            return weaponRef.countDamageUpgrades;
         else if (weaponUpgrade.statType == WeaponUpgrade.UpgradeStatType.ClipCapacity)
-            currentCount = weaponRef.countClipCapacityUpgrades;
-
-        sliderFill.value = currentCount >= 3 ? 1f : 0f;
+            return weaponRef.countClipCapacityUpgrades;
+        return 0;
     }
 
     private void ApplyUpgrade()
     {
-        weaponRef.ApplyUpgrade(weaponUpgrade);
+        if (PartsManager.Instance.SpendParts(weaponUpgrade.partsCost))
+        {
+            weaponRef.ApplyUpgrade(weaponUpgrade);
+            RefreshBoxes(); // snaps just-completed box to 1, keeps prior boxes at 1
+            OnUpgradeApplied?.Invoke(weaponUpgrade);
+        }
         holdTimer = 0;
-        sliderFill.value = 0; 
     }
 
     public void SetFocused(bool focused)
     {
         isFocused = focused;
         selectedHighlight.SetActive(focused);
-        
-        if (!focused) 
+        if (focused) OnUpgradeRowSelected?.Invoke(weaponUpgrade);
+
+        if (!focused)
         {
             holdTimer = 0;
             isApplying = false;
-            if (!IsMaxed()) sliderFill.value = 0;
-
+            if (!IsMaxed())
+            {
+                int currentCount = GetCurrentCount();
+                if (currentCount < fillBoxes.Count)
+                    fillBoxes[currentCount].fillAmount = 0;
+            }
         }
     }
 
@@ -100,5 +119,8 @@ public class UpgradeRowUI : MonoBehaviour
         return false;
     }
 
-
+    private bool CanApplyUpgrade()
+    {
+        return PartsManager.Instance.CanAffordUpgrade(weaponUpgrade.partsCost);
+    }
 }
