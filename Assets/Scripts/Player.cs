@@ -25,6 +25,13 @@ public class Player : Entity
     [SerializeField] private float walkNoise = 8f;
     [SerializeField] private float crouchNoise = 2f;
 
+    [Header("Noise Radius")]
+    [SerializeField] private float crouchNoiseRadius = 2f;
+    [SerializeField] private float walkNoiseRadius = 3f;
+    [SerializeField] private float runNoiseRadius = 8f;
+    [SerializeField] private float noiseDistance = 2f;
+    [SerializeField] private bool showNoiseRadiusGizmo = true;
+
     [Header("Shooting")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
@@ -40,7 +47,6 @@ public class Player : Entity
     private bool isInShadow = false;
     private int facingDirection = 1;
     private Vector2 lastNoisePosition;
-    private float noiseDistance = 2f;
 
     protected override void Awake()
     {
@@ -96,7 +102,7 @@ public class Player : Entity
             NoiseManager.Instance.SetNoise(crouchNoise);
             if (distanceMoved >= noiseDistance)
             {
-                NoiseManager.Instance.MakeNoise(transform.position, 2f);
+                NoiseManager.Instance.MakeNoise(transform.position, crouchNoiseRadius);
                 lastNoisePosition = transform.position;
             }
         }
@@ -105,7 +111,7 @@ public class Player : Entity
             NoiseManager.Instance.SetNoise(runNoise);
             if (distanceMoved >= noiseDistance)
             {
-                NoiseManager.Instance.MakeNoise(transform.position, 8f);
+                NoiseManager.Instance.MakeNoise(transform.position, runNoiseRadius);
                 lastNoisePosition = transform.position;
             }
         }
@@ -114,7 +120,7 @@ public class Player : Entity
             NoiseManager.Instance.SetNoise(walkNoise);
             if (distanceMoved >= noiseDistance)
             {
-                NoiseManager.Instance.MakeNoise(transform.position, 3f);
+                NoiseManager.Instance.MakeNoise(transform.position, walkNoiseRadius);
                 lastNoisePosition = transform.position;
             }
         }
@@ -171,7 +177,31 @@ public class Player : Entity
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.white;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+
+        if (!showNoiseRadiusGizmo) return;
+        if (!Application.isPlaying) return;
+
+        float radius;
+
+        if (isCrouching)
+        {
+            radius = crouchNoiseRadius;
+            Gizmos.color = Color.green;
+        }
+        else if (isRunning)
+        {
+            radius = runNoiseRadius;
+            Gizmos.color = Color.red;
+        }
+        else
+        {
+            radius = walkNoiseRadius;
+            Gizmos.color = Color.yellow;
+        }
+
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
     protected override void HandleFlip()

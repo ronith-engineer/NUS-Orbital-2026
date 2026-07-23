@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Enemy : Entity
 {
@@ -56,6 +55,7 @@ public class Enemy : Entity
         playerDetectedForAttack = Physics2D.OverlapBox(attackPoint.position, attackBoxSize, 0f, whatIsTarget);
 
     }
+
     private void HandleAttackAnimation()
     {
         anim.SetBool("attack", playerDetectedForAttack);
@@ -196,7 +196,6 @@ public class Enemy : Entity
                 return;
 
             RaycastHit2D colliderInSight = Physics2D.Raycast(eyeLevel.position, eyeLevel.transform.right, lineOfSightRange, whatIsTarget);
-            Debug.DrawRay(eyeLevel.position, eyeLevel.transform.right * lineOfSightRange, Color.red, 1f);
 
             if (colliderInSight)
             {

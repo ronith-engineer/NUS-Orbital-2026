@@ -20,7 +20,7 @@ public class Shotgun : Weapon
         if (NoiseManager.Instance != null)
         {
             NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
-            NoiseManager.Instance.MakeNoise(firePoint.position, 15f);
+            NoiseManager.Instance.MakeNoise(firePoint.position, shootNoiseRadius);
         }
 
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, shootableLayers);

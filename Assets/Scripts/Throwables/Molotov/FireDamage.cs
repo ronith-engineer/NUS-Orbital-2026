@@ -18,10 +18,10 @@ public class FireDamage : MonoBehaviour
     [Header("Noise")]
     [SerializeField] private float fireNoiseRadius = 20f;
     [SerializeField] private float noiseInterval = 1f;
+    [SerializeField] private bool showNoiseGizmo = true;
     private float noiseTimer;
 
     private float fireStartTime;
-    private float damageTimestamp;
     private Dictionary<Collider2D, float> entityDamageTimestamps = new Dictionary<Collider2D, float>();
 
     private void Start()
@@ -73,6 +73,14 @@ public class FireDamage : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (fireCentre == null) return;
+
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(fireCentre.position, new Vector3(fireLength, fireHeight, 0f));
+
+        if (!showNoiseGizmo) return;
+
+        Gizmos.color = new Color(1f, 0.5f, 0f, 0.8f);
+        Gizmos.DrawWireSphere(fireCentre.position, fireNoiseRadius);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,12 +16,25 @@ public class NoiseManager : MonoBehaviour
     [Header("Enemy Detection")]
     [SerializeField] private LayerMask enemyLayerMask;
 
+    [Header("Debug Gizmos")]
+    [SerializeField] private bool showNoiseGizmos = true;
+    [SerializeField] private float gizmoLifetime = 1f;
+
     private float movementNoise;
     private float movementTarget;
     private bool movementActiveThisFrame;
 
     private float shootDisplayNoise;
     private float shootDisplayTimer;
+
+    private class NoiseEvent
+    {
+        public Vector2 position;
+        public float radius;
+        public float timeCreated;
+    }
+
+    private List<NoiseEvent> recentNoises = new List<NoiseEvent>();
 
     private void Awake()
     {
@@ -116,6 +130,16 @@ public class NoiseManager : MonoBehaviour
 
     public void MakeNoise(Vector2 position, float radius)
     {
+        if (showNoiseGizmos)
+        {
+            recentNoises.Add(new NoiseEvent
+            {
+                position = position,
+                radius = radius,
+                timeCreated = Time.time
+            });
+        }
+
         Collider2D[] enemies = Physics2D.OverlapCircleAll(position, radius, enemyLayerMask);
 
         foreach (Collider2D col in enemies)
@@ -125,6 +149,21 @@ public class NoiseManager : MonoBehaviour
             {
                 enemy.OnNoiseHeard(position);
             }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!showNoiseGizmos) return;
+        if (!Application.isPlaying) return;
+
+        recentNoises.RemoveAll(n => Time.time - n.timeCreated > gizmoLifetime);
+
+        foreach (NoiseEvent noise in recentNoises)
+        {
+            float age = (Time.time - noise.timeCreated) / gizmoLifetime;
+            Gizmos.color = new Color(1f, 0.5f, 0f, 1f - age);
+            Gizmos.DrawWireSphere(noise.position, noise.radius);
         }
     }
 }

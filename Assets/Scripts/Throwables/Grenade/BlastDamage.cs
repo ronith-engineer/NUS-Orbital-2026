@@ -17,6 +17,7 @@ public class BlastDamage : MonoBehaviour
 
     [Header("Noise")]
     [SerializeField] private float blastNoiseRadius = 25f;
+    [SerializeField] private bool showNoiseGizmo = true;
     private bool noiseMade = false;
 
     private void Update()
@@ -49,6 +50,14 @@ public class BlastDamage : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (blastCentre == null) return;
+
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(blastCentre.position, blastRadius);
+
+        if (!showNoiseGizmo) return;
+
+        Gizmos.color = new Color(1f, 0.5f, 0f, 0.8f);
+        Gizmos.DrawWireSphere(blastCentre.position, blastNoiseRadius);
     }
 }

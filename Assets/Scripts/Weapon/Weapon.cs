@@ -34,6 +34,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected bool canShoot = true;
 
     [SerializeField] protected float shootNoise = 90f;
+    [SerializeField] protected float shootNoiseRadius = 15f;
 
 
     public virtual void Initialize()
@@ -71,7 +72,7 @@ public class Weapon : MonoBehaviour
         if (NoiseManager.Instance != null)
         {
             NoiseManager.Instance.SetShootNoise(shootNoise, 1f);
-            NoiseManager.Instance.MakeNoise(firePoint.position, 15f);
+            NoiseManager.Instance.MakeNoise(firePoint.position, shootNoiseRadius);
         }
 
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, shootableLayers);
