@@ -39,6 +39,8 @@ public class Player : Entity
     private bool isCrouching;
     private bool isInShadow = false;
     private int facingDirection = 1;
+    private Vector2 lastNoisePosition;
+    private float noiseDistance = 2f;
 
     protected override void Awake()
     {
@@ -49,6 +51,21 @@ public class Player : Entity
         currentStamina = maxStamina;
         staminaSlider.maxValue = maxStamina;
         staminaSlider.value = currentStamina;
+        lastNoisePosition = transform.position;
+    }
+
+    private void HandleCrouch()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            isCrouching = true;
+            anim.SetBool("isCrouching", true);
+        }
+        else
+        {
+            isCrouching = false;
+            anim.SetBool("isCrouching", false);
+        }
     }
 
     protected override void Update()
@@ -59,7 +76,7 @@ public class Player : Entity
         HandleStamina();
         HandleNoise();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isCrouching)
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
         healthSlider.value = currentHealth;
@@ -72,16 +89,41 @@ public class Player : Entity
         if (NoiseManager.Instance == null) return;
         if (xInput == 0) return;
 
+        float distanceMoved = Vector2.Distance(transform.position, lastNoisePosition);
+
         if (isCrouching)
+        {
             NoiseManager.Instance.SetNoise(crouchNoise);
+            if (distanceMoved >= noiseDistance)
+            {
+                NoiseManager.Instance.MakeNoise(transform.position, 2f);
+                lastNoisePosition = transform.position;
+            }
+        }
         else if (isRunning && currentStamina > 0)
+        {
             NoiseManager.Instance.SetNoise(runNoise);
+            if (distanceMoved >= noiseDistance)
+            {
+                NoiseManager.Instance.MakeNoise(transform.position, 8f);
+                lastNoisePosition = transform.position;
+            }
+        }
         else
+        {
             NoiseManager.Instance.SetNoise(walkNoise);
+            if (distanceMoved >= noiseDistance)
+            {
+                NoiseManager.Instance.MakeNoise(transform.position, 3f);
+                lastNoisePosition = transform.position;
+            }
+        }
     }
+
     private void HandleStamina()
     {
         bool wantsToRun = Input.GetKey(KeyCode.LeftControl)
+                       && !isCrouching
                        && xInput != 0
                        && isGrounded
                        && currentStamina > 0;
@@ -117,15 +159,14 @@ public class Player : Entity
 
         float speed;
 
-        if (isRunning && currentStamina > 0)
+        if (isCrouching)
+            speed = crouchSpeed;
+        else if (isRunning && currentStamina > 0)
             speed = runSpeed;
         else
             speed = moveSpeed;
 
-        if (isCrouching)
-            rb.linearVelocity = new Vector2(xInput * crouchSpeed, rb.linearVelocity.y);
-        else
-            rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(xInput * speed, rb.linearVelocity.y);
     }
 
     private void OnDrawGizmos()
@@ -147,23 +188,10 @@ public class Player : Entity
         }
     }
 
-    private void HandleCrouch()
-    {
-        isCrouching = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
-    }
-
     protected override void HandleAnimations()
     {
         anim.SetFloat("xInput", xInput);
         anim.SetBool("isRunning", isRunning);
-    }
-
-
-
-    protected override void Die()
-    {
-        base.Die();
-        Time.timeScale = 0f;
     }
 
     public void SetInShadow(bool value)
@@ -175,6 +203,14 @@ public class Player : Entity
     {
         return isInShadow;
     }
+
+    protected override void Die()
+    {
+        base.Die();
+        Time.timeScale = 0f;
+    }
+
+
 
 
 }

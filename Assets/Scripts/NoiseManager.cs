@@ -12,6 +12,9 @@ public class NoiseManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Image[] noiseBars;
 
+    [Header("Enemy Detection")]
+    [SerializeField] private LayerMask enemyLayerMask;
+
     private float movementNoise;
     private float movementTarget;
     private bool movementActiveThisFrame;
@@ -109,5 +112,19 @@ public class NoiseManager : MonoBehaviour
     public float GetCurrentNoise()
     {
         return Mathf.Max(movementNoise, shootDisplayNoise);
+    }
+
+    public void MakeNoise(Vector2 position, float radius)
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(position, radius, enemyLayerMask);
+
+        foreach (Collider2D col in enemies)
+        {
+            Enemy enemy = col.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.OnNoiseHeard(position);
+            }
+        }
     }
 }
