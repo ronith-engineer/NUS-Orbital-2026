@@ -32,6 +32,9 @@ public class Enemy : Entity
     private bool isInvestigatingNoise = false;
     private Vector2 lastHeardPosition;
 
+    [Header("Chase Details")]
+    [SerializeField] private LayerMask whatIsWall;
+
     protected override void Update()
     {
         base.Update();
@@ -78,6 +81,13 @@ public class Enemy : Entity
     {
         if (isChasing)
         {
+            bool playerIsReachable = CheckPlayerReachability(transform.position, playerPosition.position);
+            if (!playerIsReachable)
+            {
+                isChasing = false;
+                return;
+            }
+
             if (playerPosition.position.x > transform.position.x)
                 rb.linearVelocityX = chaseSpeed;
             else
@@ -184,6 +194,12 @@ public class Enemy : Entity
         Gizmos.matrix = Matrix4x4.identity;
     }
 
+    protected bool CheckPlayerReachability(Vector2 fromPosition, Vector2 targetPosition)
+    {
+        float distanceToTarget = Vector2.Distance(fromPosition, targetPosition);
+        RaycastHit2D hit = Physics2D.Raycast(fromPosition, targetPosition - fromPosition, distanceToTarget, whatIsWall);
+        return hit.collider == null;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -192,6 +208,7 @@ public class Enemy : Entity
             if (isBlind) return;
 
             Player player = collision.GetComponent<Player>();
+            Debug.Log("IsInShadow: " + player.IsInShadow());
             if (player != null && player.IsInShadow())
                 return;
 
@@ -216,11 +233,13 @@ public class Enemy : Entity
         }
     }
 
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !isChasing)
         {
             Player player = collision.GetComponent<Player>();
+            Debug.Log("IsInShadow: " + player.IsInShadow());
             if (player != null && player.IsInShadow())
                 return;
 

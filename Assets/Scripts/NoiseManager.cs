@@ -140,7 +140,7 @@ public class NoiseManager : MonoBehaviour
             });
         }
 
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(position, radius, enemyLayerMask);
+        Collider2D[] enemies = Physics2D.OverlapBoxAll(position, new Vector2(radius,5f),0f, enemyLayerMask);
 
         foreach (Collider2D col in enemies)
         {
@@ -163,7 +163,7 @@ public class NoiseManager : MonoBehaviour
         {
             float age = (Time.time - noise.timeCreated) / gizmoLifetime;
             Gizmos.color = new Color(1f, 0.5f, 0f, 1f - age);
-            Gizmos.DrawWireSphere(noise.position, noise.radius);
+            Gizmos.DrawWireCube(noise.position, new Vector2(noise.radius,5f));
         }
     }
 }

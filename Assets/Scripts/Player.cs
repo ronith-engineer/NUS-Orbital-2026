@@ -201,7 +201,7 @@ public class Player : Entity
             Gizmos.color = Color.yellow;
         }
 
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireCube(transform.position, new Vector2(radius, 5f));
     }
 
     protected override void HandleFlip()
