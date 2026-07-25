@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Enemy : Entity
 {
@@ -16,6 +15,9 @@ public class Enemy : Entity
     [SerializeField] private float lineOfSightRange;
     private bool facingPlayer;
 
+    [Header("Enemy Type")]
+    [SerializeField] private bool isBlind = false;
+
     private bool isChasing;
     private bool wasChasingLastFrame;
     private bool playerDetectedForAttack;
@@ -25,48 +27,68 @@ public class Enemy : Entity
     private CircleCollider2D lineOfSightCollider;
     private Transform eyeLevel;
 
+    [Header("Noise Detection")]
+    [SerializeField] private float investigateSpeed = 3f;
+    private bool isInvestigatingNoise = false;
+    private Vector2 lastHeardPosition;
+
+    [Header("Chase Details")]
+    [SerializeField] private LayerMask whatIsWall;
+
     protected override void Update()
     {
         base.Update();
     }
+
     protected override void Awake()
     {
         base.Awake();
         targetPatrolPoint = patrolPointA.transform;
         lineOfSightCollider = GetComponentInChildren<CircleCollider2D>();
         eyeLevel = transform.Find("eyeLevelPosition");
-
-
     }
 
     protected override void HandleCollision()
     {
-        playerDetectedForAttack = isChasing && Physics2D.OverlapBox(attackPoint.position, attackBoxSize, 0f, whatIsTarget);
+        if (!isChasing)
+        {
+            playerDetectedForAttack = false;
+            return;
+        }
+
+        playerDetectedForAttack = Physics2D.OverlapBox(attackPoint.position, attackBoxSize, 0f, whatIsTarget);
+
     }
 
-    private void HandleAttackAnimation() 
+    private void HandleAttackAnimation()
     {
         anim.SetBool("attack", playerDetectedForAttack);
         if (playerDetectedForAttack)
         {
             rb.linearVelocityX = 0f;
         }
-
     }
-    
 
+    public virtual void OnNoiseHeard(Vector2 noisePosition)
+    {
+        if (isChasing) return;
+        if (isInvestigatingNoise) return;
+
+        lastHeardPosition = noisePosition;
+        isInvestigatingNoise = true;
+    }
 
     protected override void HandleMovement()
     {
-
-
-        //if (Vector2.Distance(transform.position, playerPosition.position) < moveAwayDistance)
-        //{
-        //    transform.position += moveAwayDistance * Vector3.right; 
-        //}
-
         if (isChasing)
         {
+            bool playerIsReachable = CheckPlayerReachability(transform.position, playerPosition.position);
+            if (!playerIsReachable)
+            {
+                isChasing = false;
+                return;
+            }
+
             if (playerPosition.position.x > transform.position.x)
                 rb.linearVelocityX = chaseSpeed;
             else
@@ -74,12 +96,26 @@ public class Enemy : Entity
 
             wasChasingLastFrame = true;
         }
+        else if (isInvestigatingNoise)
+        {
+            float direction = lastHeardPosition.x - transform.position.x;
+
+            if (Mathf.Abs(direction) > 0.5f)
+            {
+                rb.linearVelocityX = direction > 0 ? investigateSpeed : -investigateSpeed;
+            }
+            else
+            {
+                isInvestigatingNoise = false;
+                StartCoroutine(EnemyWait());
+            }
+        }
         else
         {
             if (wasChasingLastFrame)
             {
                 if (isWaiting) return;
-                StartCoroutine(EnemyWait()); // pause before resuming patrol
+                StartCoroutine(EnemyWait());
             }
             else
             {
@@ -95,27 +131,18 @@ public class Enemy : Entity
     private void ReturnToPatrolPoint()
     {
         if (targetPatrolPoint.position.x > transform.position.x)
-        {
             rb.linearVelocityX = moveSpeed;
-        }
         else if (targetPatrolPoint.position.x < transform.position.x)
-        {
             rb.linearVelocityX = -moveSpeed;
-        }
     }
 
     private void HandlePatrolling()
     {
-
         if (isWaiting) return;
         if (targetPatrolPoint == patrolPointA.transform)
-        {
             rb.linearVelocityX = -moveSpeed;
-        }
         else
-        {
             rb.linearVelocityX = moveSpeed;
-        }
 
         if (Mathf.Abs(transform.position.x - targetPatrolPoint.position.x) < 0.5f && targetPatrolPoint == patrolPointA.transform)
         {
@@ -129,46 +156,31 @@ public class Enemy : Entity
         }
     }
 
-   
-
     private void checkFacingPlayer()
     {
         if (playerPosition.position.x > transform.position.x && facingRight)
-        {
             facingPlayer = true;
-        }
         else if (playerPosition.position.x < transform.position.x && !facingRight)
-        {
             facingPlayer = true;
-        }
         else
-        {
             facingPlayer = false;
-        }
-
     }
-
-
 
     private IEnumerator EnemyWait()
     {
-        Debug.Log("Wait Coroutine started");
         rb.linearVelocityX = 0;
         isWaiting = true;
         yield return new WaitForSeconds(3f);
         isWaiting = false;
         wasChasingLastFrame = false;
-        //Debug.Log("Coroutine ended");   
     }
 
     protected override void HandleAnimations()
     {
-        anim.SetFloat("xVelocity",rb.linearVelocityX);
+        anim.SetFloat("xVelocity", rb.linearVelocityX);
         HandleAttackAnimation();
         anim.SetBool("isChasing", isChasing);
-
     }
-
 
     protected override void OnDrawGizmos()
     {
@@ -181,26 +193,38 @@ public class Enemy : Entity
         Gizmos.matrix = Matrix4x4.TRS(attackPoint.position, attackPoint.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, attackBoxSize);
         Gizmos.matrix = Matrix4x4.identity;
+    }
 
+    protected bool CheckPlayerReachability(Vector2 fromPosition, Vector2 targetPosition)
+    {
+        float distanceToTarget = Vector2.Distance(fromPosition, targetPosition);
+        RaycastHit2D hit = Physics2D.Raycast(fromPosition, targetPosition - fromPosition, distanceToTarget, whatIsWall);
+        return hit.collider == null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+
+            if (isBlind) return;
+
             Player player = collision.GetComponent<Player>();
             if (player != null && player.IsInShadow())
                 return;
 
             RaycastHit2D colliderInSight = Physics2D.Raycast(eyeLevel.position, eyeLevel.transform.right, lineOfSightRange, whatIsTarget);
-            Debug.DrawRay(eyeLevel.position, eyeLevel.transform.right * lineOfSightRange, Color.red, 1f);
 
             if (colliderInSight)
             {
                 Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
                 if (detectedPlayer != null)
                 {
-                    isChasing = true;
+                    bool playerIsReachable = CheckPlayerReachability(transform.position, detectedPlayer.transform.position);
+                    if (playerIsReachable)
+                    {
+                        isChasing = true;
+                    }
                 }
             }
         }
@@ -212,8 +236,8 @@ public class Enemy : Entity
         {
             isChasing = false;
         }
-
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -223,16 +247,30 @@ public class Enemy : Entity
             if (player != null && player.IsInShadow())
                 return;
 
+
+            if (isInvestigatingNoise)
+            {
+                isChasing = true;
+                isInvestigatingNoise = false;
+                return;
+            }
+
+            if (isBlind) return;
+
+
             RaycastHit2D colliderInSight = Physics2D.Raycast(eyeLevel.position, eyeLevel.transform.right, lineOfSightRange, whatIsTarget);
             if (colliderInSight)
             {
                 Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
                 if (detectedPlayer != null)
                 {
-                    isChasing = true;
+                    bool playerIsReachable = CheckPlayerReachability(transform.position, detectedPlayer.transform.position);
+                    if (playerIsReachable)
+                    {
+                        isChasing = true;
+                    }
                 }
             }
         }
     }
 }
-

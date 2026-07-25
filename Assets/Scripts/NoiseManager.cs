@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,12 +13,28 @@ public class NoiseManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Image[] noiseBars;
 
+    [Header("Enemy Detection")]
+    [SerializeField] private LayerMask enemyLayerMask;
+
+    [Header("Debug Gizmos")]
+    [SerializeField] private bool showNoiseGizmos = true;
+    [SerializeField] private float gizmoLifetime = 1f;
+
     private float movementNoise;
     private float movementTarget;
     private bool movementActiveThisFrame;
 
     private float shootDisplayNoise;
     private float shootDisplayTimer;
+
+    private class NoiseEvent
+    {
+        public Vector2 position;
+        public float radius;
+        public float timeCreated;
+    }
+
+    private List<NoiseEvent> recentNoises = new List<NoiseEvent>();
 
     private void Awake()
     {
@@ -109,5 +126,44 @@ public class NoiseManager : MonoBehaviour
     public float GetCurrentNoise()
     {
         return Mathf.Max(movementNoise, shootDisplayNoise);
+    }
+
+    public void MakeNoise(Vector2 position, float radius)
+    {
+        if (showNoiseGizmos)
+        {
+            recentNoises.Add(new NoiseEvent
+            {
+                position = position,
+                radius = radius,
+                timeCreated = Time.time
+            });
+        }
+
+        Collider2D[] enemies = Physics2D.OverlapBoxAll(position, new Vector2(radius,5f),0f, enemyLayerMask);
+
+        foreach (Collider2D col in enemies)
+        {
+            Enemy enemy = col.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.OnNoiseHeard(position);
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!showNoiseGizmos) return;
+        if (!Application.isPlaying) return;
+
+        recentNoises.RemoveAll(n => Time.time - n.timeCreated > gizmoLifetime);
+
+        foreach (NoiseEvent noise in recentNoises)
+        {
+            float age = (Time.time - noise.timeCreated) / gizmoLifetime;
+            Gizmos.color = new Color(1f, 0.5f, 0f, 1f - age);
+            Gizmos.DrawWireCube(noise.position, new Vector2(noise.radius,5f));
+        }
     }
 }
