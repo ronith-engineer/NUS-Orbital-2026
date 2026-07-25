@@ -33,7 +33,6 @@ public class WorkbenchUITrigger : MonoBehaviour
         else
         {
             weaponUpgradeUI.SetActive(false);
-            player.EnableMovementAndJump(true);
         }
 
     }

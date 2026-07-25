@@ -174,6 +174,7 @@ public class Entity : MonoBehaviour
     {
         canMove = enable;
         canJump = enable;
+        Debug.Log(gameObject.name + " movement and jump enabled: " + enable);
     }
 
 

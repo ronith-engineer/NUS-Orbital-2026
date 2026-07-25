@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Player : Entity
 {
+    public static Player Instance { get; private set; }
+
     [Header("Health")]
     [SerializeField] private Slider healthSlider;
 
@@ -58,6 +60,11 @@ public class Player : Entity
         staminaSlider.maxValue = maxStamina;
         staminaSlider.value = currentStamina;
         lastNoisePosition = transform.position;
+
+        if (Instance != null && Instance != this)
+            Destroy(gameObject);
+        else
+            Instance = this;
     }
 
     private void HandleCrouch()
