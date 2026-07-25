@@ -8,7 +8,8 @@ public class MenuManager : MonoBehaviour
     [Header("Panels")]
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject instructionsPanel;
-    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameOverLosePanel;
+    [SerializeField] private GameObject gameOverWinPanel;
 
     public bool canPause = true;
 
@@ -94,10 +95,17 @@ public class MenuManager : MonoBehaviour
         instructionsPanel.SetActive(false);
     }
 
-    public void ShowGameOver()
+    public void ShowGameOverLose()
     {
         isGameOver = true;
-        gameOverPanel.SetActive(true);
+        gameOverLosePanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ShowGameOverWin()
+    {
+        isGameOver = true;
+        gameOverWinPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 

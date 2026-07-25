@@ -5,6 +5,7 @@ public class SecurityGate : Pathways
 {
     [SerializeField] public bool gateLocked = false;
     [SerializeField] private bool isFinalGate = false;
+    [SerializeField] private GameObject GameOverScreen;
     private SecurityGate linkedGateScript;
     private GameObject gateLight;
     private SpriteRenderer gateLightSprite;
@@ -23,9 +24,13 @@ public class SecurityGate : Pathways
     }
     protected override void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E))
+        if (!isFinalGate && playerNearby && Input.GetKeyDown(KeyCode.E) && !gateLocked)
         {
             PlayerTeleporter.TeleportPlayer(player, linkedPathway.transform,CameraManager.Instance.MainVCam);
+        }
+        else if (isFinalGate && playerNearby && Input.GetKeyDown(KeyCode.E) && !gateLocked)
+        {
+            MenuManager.Instance.ShowGameOverWin();
         }
     }
     public void OpenGate()
