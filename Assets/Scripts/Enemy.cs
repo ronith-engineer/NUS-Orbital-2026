@@ -50,11 +50,12 @@ public class Enemy : Entity
 
     protected override void HandleCollision()
     {
-        if (isBlind && !isChasing)
+        if (!isChasing)
         {
             playerDetectedForAttack = false;
             return;
         }
+
         playerDetectedForAttack = Physics2D.OverlapBox(attackPoint.position, attackBoxSize, 0f, whatIsTarget);
 
     }
@@ -200,6 +201,7 @@ public class Enemy : Entity
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, targetPosition - fromPosition, distanceToTarget, whatIsWall);
         return hit.collider == null;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -208,7 +210,6 @@ public class Enemy : Entity
             if (isBlind) return;
 
             Player player = collision.GetComponent<Player>();
-            Debug.Log("IsInShadow: " + player.IsInShadow());
             if (player != null && player.IsInShadow())
                 return;
 
@@ -219,7 +220,11 @@ public class Enemy : Entity
                 Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
                 if (detectedPlayer != null)
                 {
-                    isChasing = true;
+                    bool playerIsReachable = CheckPlayerReachability(transform.position, detectedPlayer.transform.position);
+                    if (playerIsReachable)
+                    {
+                        isChasing = true;
+                    }
                 }
             }
         }
@@ -239,7 +244,6 @@ public class Enemy : Entity
         if (collision.CompareTag("Player") && !isChasing)
         {
             Player player = collision.GetComponent<Player>();
-            Debug.Log("IsInShadow: " + player.IsInShadow());
             if (player != null && player.IsInShadow())
                 return;
 
@@ -260,7 +264,11 @@ public class Enemy : Entity
                 Player detectedPlayer = colliderInSight.transform.GetComponent<Player>();
                 if (detectedPlayer != null)
                 {
-                    isChasing = true;
+                    bool playerIsReachable = CheckPlayerReachability(transform.position, detectedPlayer.transform.position);
+                    if (playerIsReachable)
+                    {
+                        isChasing = true;
+                    }
                 }
             }
         }
