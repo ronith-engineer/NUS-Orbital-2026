@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    //for now manually we are putting owned weapons, later on need to be added on pickup.
     [SerializeField] public List<Weapon> ownedWeapons = new List<Weapon>();
-   
+
     public Weapon currentSelectedWeapon;
     public event Action OnWeaponsChanged;
     public event Action OnSelectedWeaponChanged;
@@ -29,7 +28,6 @@ public class WeaponManager : MonoBehaviour
         currentSelectedWeapon = weapon;
         currentSelectedWeapon.gameObject.SetActive(true);
         OnSelectedWeaponChanged?.Invoke();
-
     }
 
     public List<Weapon> GetOwnedWeapons()
@@ -37,14 +35,27 @@ public class WeaponManager : MonoBehaviour
         return ownedWeapons;
     }
 
-   
     public void AddWeapon(Weapon weapon)
     {
         if (ownedWeapons.Contains(weapon)) return;
         ownedWeapons.Add(weapon);
-        weapon.Initialize(); //initialize the weapon when added to the list
+        weapon.Initialize();
         OnWeaponsChanged?.Invoke();
-    } 
+    }
+
+    public void RemoveWeapon(Weapon weapon)
+    {
+        if (!ownedWeapons.Contains(weapon)) return;
+
+        if (currentSelectedWeapon == weapon)
+            currentSelectedWeapon = null;
+
+        ownedWeapons.Remove(weapon);
+        OnWeaponsChanged?.Invoke();
+
+        if (currentSelectedWeapon == null && ownedWeapons.Count > 0)
+            SelectWeapon(ownedWeapons[0]);
+    }
 
     public bool IsEmpty()
     {
@@ -57,5 +68,4 @@ public class WeaponManager : MonoBehaviour
         }
         return true;
     }
-
 }

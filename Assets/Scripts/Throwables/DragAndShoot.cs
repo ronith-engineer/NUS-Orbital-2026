@@ -1,4 +1,3 @@
-using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 
 public class DragAndShoot : MonoBehaviour
@@ -6,6 +5,7 @@ public class DragAndShoot : MonoBehaviour
     private Rigidbody2D rb;
 
     [SerializeField] private float power;
+    [SerializeField] private ItemData.ItemType throwableType;
     private TrajectoryLine trajectoryLine;
 
     Camera cam;
@@ -25,64 +25,65 @@ public class DragAndShoot : MonoBehaviour
         cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         trajectoryLine = GetComponentInChildren<TrajectoryLine>();
-        clickedWithinRadius = false; // Initialize the flag to false at the start
+        clickedWithinRadius = false;
         player = GetComponentInParent<Player>();
     }
-     private void Update()
+
+    private void Update()
     {
         if (clickedWithinRadius)
         {
             startPoint = transform.position;
             HandleDragAndShoot();
         }
-        
     }
-    public void SetClickWithinRadius(bool withinRadius) // Method to set the flag from ClickRadiusRestriction script
+
+    public void SetClickWithinRadius(bool withinRadius)
     {
         clickedWithinRadius = withinRadius;
         startPoint = transform.position;
-        startPoint.z = 15f; //Set z value to 15 for drag UI to be visible
+        startPoint.z = 15f;
     }
 
     private void HandleDragAndShoot()
     {
-        player.EnableMovementAndJump(false); // Disable player movement and jumping while dragging
+        player.EnableMovementAndJump(false);
         if (Input.GetMouseButton(0))
         {
-            // Calculate the current point based on the mouse position, clamping it within the defined min and max power limits
             currentPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-            currentPoint.z = 15f; //Set z value to 15 for drag UI to be visible
+            currentPoint.z = 15f;
             Vector3 rawDragVector = currentPoint - startPoint;
             float magDragVector = rawDragVector.magnitude;
             if (magDragVector > maxDragRadius)
             {
                 Vector3 correctDragVector = (rawDragVector.normalized * maxDragRadius);
-                currentPoint = correctDragVector + startPoint; 
+                currentPoint = correctDragVector + startPoint;
             }
             trajectoryLine.RenderLine(startPoint, currentPoint);
-            
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             isReleased = true;
-            rb.bodyType = RigidbodyType2D.Dynamic; // Set the Rigidbody to Dynamic to allow it to be affected by physics after being thrown
+            rb.bodyType = RigidbodyType2D.Dynamic;
             endPoint = currentPoint;
             force = startPoint - endPoint;
-            rb.AddForce(force * power , ForceMode2D.Impulse);
+            rb.AddForce(force * power, ForceMode2D.Impulse);
             trajectoryLine.Endline();
-            rb.constraints = RigidbodyConstraints2D.None; //Unfreeze all constraints to allow movement after drag
+            rb.constraints = RigidbodyConstraints2D.None;
 
-            clickedWithinRadius = false; // Reset the flag to allow for the next drag and shoot action
-            player.EnableMovementAndJump(true); // Re-enable player movement and jumping after shooting
+            if (InventoryManager.Instance != null)
+                InventoryManager.Instance.NotifyThrowableUsed(throwableType);
+
+            clickedWithinRadius = false;
+            player.EnableMovementAndJump(true);
         }
-        
-        if (Input.GetMouseButtonDown(1)) // Right-click to cancel the drag and shoot action
+
+        if (Input.GetMouseButtonDown(1))
         {
             trajectoryLine.Endline();
-            clickedWithinRadius = false; // Reset the flag to allow for the next drag and shoot action
-            player.EnableMovementAndJump(true); // Re-enable player movement and jumping after canceling
-
+            clickedWithinRadius = false;
+            player.EnableMovementAndJump(true);
         }
     }
 }

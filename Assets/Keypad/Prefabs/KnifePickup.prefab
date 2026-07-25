@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9160075775950909083, guid: d213902e18a43b242a0b0d5a58ad55c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106,9 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 11400000, guid: 550fdf456a9e5564a94df03eee1de06e, type: 2}
-  weaponManager: {fileID: 0}
-  pistol: {fileID: 0}
-  shotgun: {fileID: 0}
 --- !u!58 &5197285091058739902
 CircleCollider2D:
   m_ObjectHideFlags: 0
