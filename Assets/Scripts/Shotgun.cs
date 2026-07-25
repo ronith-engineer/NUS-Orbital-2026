@@ -38,6 +38,17 @@ public class Shotgun : Weapon
                 }
             }
 
+            CeilingTurret turret = hitInfo.transform.GetComponent<CeilingTurret>();
+            if (turret != null)
+            {
+                float distance = Vector2.Distance(player.transform.position, turret.transform.position);
+                if (distance <= maxShootingDistance)
+                {
+                    float attackDamageWithDistance = currentAttackDamage * (1 - distance / maxShootingDistance);
+                    turret.TakeDamage(attackDamageWithDistance);
+                }
+            }
+
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
         }

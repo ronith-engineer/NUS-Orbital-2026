@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrowableImpactSpawner : MonoBehaviour
 {
 
-    [SerializeField] private GameObject objectToSpawn; 
+    [SerializeField] private GameObject objectToSpawn;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

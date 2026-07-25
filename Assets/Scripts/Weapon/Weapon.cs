@@ -85,6 +85,12 @@ public class Weapon : MonoBehaviour
                 enemy.TakeDamageFromEntity(player.facingRight, currentAttackDamage, knockbackForce);
             }
 
+            CeilingTurret turret = hitInfo.transform.GetComponent<CeilingTurret>();
+            if (turret != null)
+            {
+                turret.TakeDamage(currentAttackDamage);
+            }
+
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);
         }
