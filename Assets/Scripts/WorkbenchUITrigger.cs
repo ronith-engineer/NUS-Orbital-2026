@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WorkbenchUITrigger : MonoBehaviour
+public class WorkbenchUITrigger : MonoBehaviour, ICloseableUI
 {
     private BoxCollider2D workbenchCollider;
     [SerializeField] private GameObject weaponUpgradeUI;
@@ -18,21 +18,18 @@ public class WorkbenchUITrigger : MonoBehaviour
     {
         if (playerIsNear)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !weaponManager.IsEmpty() )
+            if (Input.GetKeyDown(KeyCode.E) && !weaponManager.IsEmpty())
             {
                 Debug.Log("E pressed");
                 weaponUpgradeUI.SetActive(true);
+                MenuManager.Instance.RegisterOpenUI(this);
                 player.EnableMovementAndJump(false);
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                weaponUpgradeUI.SetActive(false);
-                player.EnableMovementAndJump(true);
             }
         }
         else
         {
-            weaponUpgradeUI.SetActive(false);
+            if (weaponUpgradeUI.activeSelf)
+                CloseUI();
         }
 
     }
@@ -54,5 +51,12 @@ public class WorkbenchUITrigger : MonoBehaviour
             playerIsNear = false;
 
         }
+    }
+
+    public void CloseUI()
+    {
+        weaponUpgradeUI.SetActive(false);
+        player.EnableMovementAndJump(true);
+        MenuManager.Instance.UnregisterOpenUI(this);
     }
 }

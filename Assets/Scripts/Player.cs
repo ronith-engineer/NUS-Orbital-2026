@@ -244,7 +244,7 @@ public class Player : Entity
     protected override void Die()
     {
         base.Die();
-        Time.timeScale = 0f;
+        MenuManager.Instance.ShowGameOver();
     }
 
 

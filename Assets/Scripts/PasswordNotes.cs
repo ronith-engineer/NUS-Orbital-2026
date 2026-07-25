@@ -1,18 +1,11 @@
+using System;
 using UnityEngine;
 
-public class PasswordNotes : MonoBehaviour
+public class PasswordNotes : MonoBehaviour, ICloseableUI
 {
     [SerializeField] private GameObject noteCanvas;
-
     private bool isPlayerNearby = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (isPlayerNearby)
@@ -20,18 +13,14 @@ public class PasswordNotes : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 noteCanvas.SetActive(true);
+                MenuManager.Instance.RegisterOpenUI(this);
                 Player.Instance.EnableMovementAndJump(false);
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                noteCanvas.SetActive(false);
-                Player.Instance.EnableMovementAndJump(true);
             }
         }
         else
         {
-            noteCanvas.SetActive(false);
-
+            if (noteCanvas.activeSelf)
+                CloseUI();
         }
 
     }
@@ -59,6 +48,13 @@ public class PasswordNotes : MonoBehaviour
         {
             isPlayerNearby = false;
         }
+    }
+
+    public void CloseUI()
+    {
+        noteCanvas.SetActive(false);
+        Player.Instance.EnableMovementAndJump(true);
+        MenuManager.Instance.UnregisterOpenUI(this);
     }
 
 

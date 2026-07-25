@@ -4,9 +4,11 @@ using UnityEngine;
 public class SecurityGate : Pathways
 {
     [SerializeField] public bool gateLocked = false;
+    [SerializeField] private bool isFinalGate = false;
     private SecurityGate linkedGateScript;
     private GameObject gateLight;
     private SpriteRenderer gateLightSprite;
+    
 
     private void Awake()
     {
