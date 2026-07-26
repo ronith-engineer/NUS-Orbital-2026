@@ -15,6 +15,11 @@ public class ItemData : ScriptableObject
     public bool isStackable = false;
     public int maxStack = 5;
 
+
+    [Header("Keycard")]
+    public int gateID = 0;
+
+
     public enum ItemType
     {
         Gun,
@@ -29,6 +34,7 @@ public class ItemData : ScriptableObject
         Bandage,
         MakeshiftKnife,
         PistolAmmo,
-        ShotgunAmmo
+        ShotgunAmmo,
+        KeyCard
     }
 }

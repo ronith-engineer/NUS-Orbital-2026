@@ -221,6 +221,9 @@ public class InventoryManager : MonoBehaviour
 
         switch (key)
         {
+            case ItemData.ItemType.KeyCard:
+                equippedItem = item;
+                break;
             case ItemData.ItemType.Gun:
                 SelectSpawnedWeapon(key);
                 equippedItem = item;
