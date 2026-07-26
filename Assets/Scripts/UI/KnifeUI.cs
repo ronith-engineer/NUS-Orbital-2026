@@ -7,10 +7,17 @@ public class KnifeUI : MonoBehaviour
     private Image durabilityIndicator2;
     private Image durabilityIndicator3;
 
-    [SerializeField] private Knife knife;
+    [SerializeField] private ItemData.ItemType weaponType;
+    private Knife knife;
 
     private Image knifeIndicator; 
     private int knifeCurrentDurability;
+
+    private void OnEnable()
+    {
+        knife = InventoryManager.Instance.GetSpawnedKnife(weaponType);
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +29,7 @@ public class KnifeUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (knife == null) return;
         knifeCurrentDurability = knife.knifeCurrentDurability; // Get the current durability from the Knife script
         UpdateDurabilityDisplay(); // Update the durability indicators based on the current durability
 

@@ -15,6 +15,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private int count = 0;
     private Transform originalParent;
     private Vector3 originalPosition;
+    private int originalSiblingIndex;
     private CanvasGroup canvasGroup;
 
     private void Awake()
@@ -107,6 +108,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         originalParent = itemIcon.transform.parent;
         originalPosition = itemIcon.transform.position;
+        originalSiblingIndex = itemIcon.transform.GetSiblingIndex();
 
         itemIcon.transform.SetParent(GetComponentInParent<Canvas>().transform);
 
@@ -128,7 +130,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         itemIcon.transform.SetParent(transform);
         itemIcon.transform.localPosition = Vector3.zero;
-
+        itemIcon.transform.SetSiblingIndex(originalSiblingIndex);
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
     }
@@ -137,6 +139,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         itemIcon.transform.SetParent(transform);
         itemIcon.transform.localPosition = Vector3.zero;
+        itemIcon.transform.SetSiblingIndex(originalSiblingIndex);
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
     }

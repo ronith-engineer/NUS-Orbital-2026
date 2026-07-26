@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
+    public event Action OnEquippedItemChanged;
     [SerializeField] private WeaponManager weaponManager;
 
     [Header("UI References")]
@@ -222,22 +224,27 @@ public class InventoryManager : MonoBehaviour
             case ItemData.ItemType.Gun:
                 SelectSpawnedWeapon(key);
                 equippedItem = item;
+                OnEquippedItemChanged?.Invoke();
                 break;
             case ItemData.ItemType.Shotgun:
                 SelectSpawnedWeapon(key);
                 equippedItem = item;
+                OnEquippedItemChanged?.Invoke();
                 break;
             case ItemData.ItemType.Knife:
                 ShowOnlyHeld(key);
                 equippedItem = item;
+                OnEquippedItemChanged?.Invoke();
                 break;
             case ItemData.ItemType.Molotov:
                 SpawnThrowable(ItemData.ItemType.Molotov, molotovHeldPrefab);
                 equippedItem = item;
+                OnEquippedItemChanged?.Invoke();
                 break;
             case ItemData.ItemType.Grenade:
                 SpawnThrowable(ItemData.ItemType.Grenade, grenadeHeldPrefab);
                 equippedItem = item;
+                OnEquippedItemChanged?.Invoke();
                 break;
             case ItemData.ItemType.Medkit:
                 HealPlayer();
@@ -355,6 +362,12 @@ public class InventoryManager : MonoBehaviour
                 Destroy(spawnedObjects[key]);
                 spawnedObjects.Remove(key);
             }
+
+            if (equippedItem != null && NormalizeType(equippedItem.itemType) == key)
+            {
+                equippedItem = null;
+                OnEquippedItemChanged?.Invoke();
+            }
         }
 
         GameObject pickupPrefab = GetPickupPrefab(item.itemType);
@@ -407,4 +420,19 @@ public class InventoryManager : MonoBehaviour
     }
 
     public ItemData GetEquippedItem() => equippedItem;
+
+    public Weapon GetSpawnedWeapon(ItemData.ItemType type)
+    {
+        ItemData.ItemType key = NormalizeType(type);
+        spawnedWeapons.TryGetValue(key, out Weapon weapon);
+        return weapon;
+    }
+
+    public Knife GetSpawnedKnife(ItemData.ItemType type)
+    {
+        ItemData.ItemType key = NormalizeType(type);
+        if (spawnedObjects.TryGetValue(key, out GameObject obj) && obj != null)
+            return obj.GetComponent<Knife>();
+        return null;
+    }
 }
