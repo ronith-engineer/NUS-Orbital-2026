@@ -27,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9110062060519564309}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.6, y: -2.1, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.07883192, z: 0.018676097}
+  m_LocalScale: {x: 0.11, y: 0.108393885, z: 0.025679633}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -627879323
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3934455851257828662, guid: 15d801058e475624bab8fd6b84c8050a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106,9 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 11400000, guid: 2fdfd94ab93cd89428567ba628b63c20, type: 2}
-  weaponManager: {fileID: 0}
-  pistol: {fileID: 0}
-  shotgun: {fileID: 0}
 --- !u!58 &4602314701740883887
 CircleCollider2D:
   m_ObjectHideFlags: 0

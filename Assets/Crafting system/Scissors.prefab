@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -4, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.4, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.26666665, z: 0.6666666}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,9 +79,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 630291237
-  m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingLayerID: -627879323
+  m_SortingLayer: 1
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6689946350199266671, guid: 94aa6f83481f03a4391234c0656defff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -142,6 +142,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 11400000, guid: 50dc6f38de3fa694dbf7cb439b87a684, type: 2}
-  weaponManager: {fileID: 0}
-  pistol: {fileID: 0}
-  shotgun: {fileID: 0}
