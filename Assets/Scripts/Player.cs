@@ -73,7 +73,6 @@ public class Player : Entity
     {
         xInput = Input.GetAxisRaw("Horizontal");
         CheckGround();
-        HandleCrouch();
         HandleStamina();
         HandleNoise();
 
