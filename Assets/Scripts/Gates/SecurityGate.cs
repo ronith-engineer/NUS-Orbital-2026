@@ -22,17 +22,24 @@ public class SecurityGate : Pathways
     {
         SetGateColor();
     }
+
     protected override void Update()
     {
         if (!isFinalGate && playerNearby && Input.GetKeyDown(KeyCode.E) && !gateLocked)
         {
-            PlayerTeleporter.TeleportPlayer(player, linkedPathway.transform,CameraManager.Instance.MainVCam);
+            if (gateLocked)
+            {
+                Debug.Log("Gate is locked. Use the keypad.");
+                return;
+            }
+            PlayerTeleporter.TeleportPlayer(player, linkedPathway.transform, CameraManager.Instance.MainVCam);
         }
         else if (isFinalGate && playerNearby && Input.GetKeyDown(KeyCode.E) && !gateLocked)
         {
             MenuManager.Instance.ShowGameOverWin();
         }
     }
+
     public void OpenGate()
     {
         UnlockThisGate();

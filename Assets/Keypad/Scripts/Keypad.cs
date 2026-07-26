@@ -72,6 +72,7 @@ namespace NavKeypad
         {
             if (playerNearby && Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("E pressed near keypad. isOpen: " + isOpen);
                 if (isOpen)
                     CloseKeypad();
                 else
@@ -81,17 +82,29 @@ namespace NavKeypad
 
         private void TryOpenKeypad()
         {
+            Debug.Log("TryOpenKeypad called. requiresKeycard: " + requiresKeycard);
+
             if (requiresKeycard && !HasMatchingKeycardEquipped())
             {
-                Debug.Log("Need matching keycard equipped for gate " + requiredGateID);
+                string equippedName = "nothing";
+                if (InventoryManager.Instance != null && InventoryManager.Instance.GetEquippedItem() != null)
+                    equippedName = InventoryManager.Instance.GetEquippedItem().itemType.ToString();
+
+                Debug.Log("Blocked. Need keycard gateID " + requiredGateID + ". Equipped: " + equippedName);
                 return;
             }
+
+            Debug.Log("Opening keypad!");
             OpenKeypad();
         }
 
         private bool HasMatchingKeycardEquipped()
         {
-            if (InventoryManager.Instance == null) return false;
+            if (InventoryManager.Instance == null)
+            {
+                Debug.Log("InventoryManager.Instance is null!");
+                return false;
+            }
 
             ItemData equipped = InventoryManager.Instance.GetEquippedItem();
             if (equipped == null) return false;
@@ -206,7 +219,7 @@ namespace NavKeypad
             if (collision.CompareTag("Player"))
             {
                 playerNearby = true;
-                Debug.Log("Press E to use keypad");
+                Debug.Log("Player entered keypad range");
             }
         }
 

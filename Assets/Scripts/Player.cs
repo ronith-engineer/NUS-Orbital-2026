@@ -67,20 +67,8 @@ public class Player : Entity
             Instance = this;
     }
 
-    private void HandleCrouch()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
-        {
-            isCrouching = true;
-            anim.SetBool("isCrouching", true);
-        }
-        else
-        {
-            isCrouching = false;
-            anim.SetBool("isCrouching", false);
-        }
-    }
-
+   
+  
     protected override void Update()
     {
         xInput = Input.GetAxisRaw("Horizontal");
