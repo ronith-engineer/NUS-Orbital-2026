@@ -137,6 +137,7 @@ namespace NavKeypad
             animationMarker.SetActive(false);
             Player.Instance.EnableMovementAndJump(false);
             MenuManager.Instance.RegisterOpenUI(this);
+            WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(false);
             SetSlowMotion(true);
         }
 
@@ -149,6 +150,7 @@ namespace NavKeypad
             animationMarker.SetActive(true);
             Player.Instance.EnableMovementAndJump(true);
             MenuManager.Instance.UnregisterOpenUI(this);
+            WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(true);
             SetSlowMotion(false);
         }
 

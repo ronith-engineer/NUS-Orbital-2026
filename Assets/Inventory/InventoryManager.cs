@@ -77,6 +77,7 @@ public class InventoryManager : MonoBehaviour
         if (isOpen)
         {
             SetSlowMotion(true);
+            weaponManager.currentSelectedWeapon?.EnableReloadAndShoot(false);
             inventoryPanel.SetActive(true);
             inventoryPanel.transform.localScale = Vector3.zero;
             StartCoroutine(ScaleInventory(Vector3.one));
@@ -84,6 +85,7 @@ public class InventoryManager : MonoBehaviour
         else
         {
             SetSlowMotion(false);
+            weaponManager.currentSelectedWeapon?.EnableReloadAndShoot(true);
             StartCoroutine(ScaleInventory(Vector3.zero));
             StartCoroutine(HideAfterScale());
         }

@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    public static WeaponManager Instance { get; private set; }
     [SerializeField] public List<Weapon> ownedWeapons = new List<Weapon>();
 
     public Weapon currentSelectedWeapon;
     public event Action OnWeaponsChanged;
     public event Action OnSelectedWeaponChanged;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
+
+    }
     private void Start()
     {
         OnWeaponsChanged?.Invoke();

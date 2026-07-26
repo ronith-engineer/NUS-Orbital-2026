@@ -20,10 +20,7 @@ public class WorkbenchUITrigger : MonoBehaviour, ICloseableUI
         {
             if (Input.GetKeyDown(KeyCode.E) && !weaponManager.IsEmpty())
             {
-                Debug.Log("E pressed");
-                weaponUpgradeUI.SetActive(true);
-                MenuManager.Instance.RegisterOpenUI(this);
-                player.EnableMovementAndJump(false);
+                OpenUI();
             }
         }
         else
@@ -52,11 +49,20 @@ public class WorkbenchUITrigger : MonoBehaviour, ICloseableUI
 
         }
     }
-
+    public void OpenUI()
+    {
+        Debug.Log("E pressed");
+        weaponUpgradeUI.SetActive(true);
+        MenuManager.Instance.RegisterOpenUI(this);
+        WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(false);
+        player.EnableMovementAndJump(false);
+        
+    }
     public void CloseUI()
     {
         weaponUpgradeUI.SetActive(false);
         player.EnableMovementAndJump(true);
         MenuManager.Instance.UnregisterOpenUI(this);
+        WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(true);
     }
 }

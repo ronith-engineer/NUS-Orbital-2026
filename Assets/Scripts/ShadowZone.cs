@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ShadowZone : MonoBehaviour
 {
+    private const int ShadowZoneLayer = 13;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -18,7 +19,11 @@ public class ShadowZone : MonoBehaviour
         {
             Player player = collision.GetComponent<Player>();
             if (player != null)
-                player.SetInShadow(false);
+            {
+                int shadowMask = 1 << ShadowZoneLayer;
+                Collider2D stillInShadow = Physics2D.OverlapPoint(player.transform.position, shadowMask);
+                player.SetInShadow(stillInShadow != null);
+            }
         }
     }
 }
