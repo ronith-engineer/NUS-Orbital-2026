@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace NavKeypad
 {
-    public class Keypad : MonoBehaviour
+    public class Keypad : MonoBehaviour, ICloseableUI
     {
         [Header("Events")]
         [SerializeField] private UnityEvent onAccessGranted;
@@ -51,6 +51,10 @@ namespace NavKeypad
         [SerializeField] private Vector3 bigScale = new Vector3(1f, 1f, 1f);
         [SerializeField] private float scaleSpeed = 10f;
 
+        [Header("Slow Motion")]
+        [SerializeField] private float slowMotionScale = 0.1f;
+        [SerializeField] private bool useSlowMotion = true;
+
         private string currentInput;
         private bool displayingResult = false;
         private bool accessWasGranted = false;
@@ -60,24 +64,35 @@ namespace NavKeypad
         private Vector3 targetScale;
         private Coroutine scaleRoutine;
 
+        private GameObject animationMarker;
+
         private void Awake()
         {
             ClearInput();
             panelMesh.material.SetVector("_EmissionColor", screenNormalColor * screenIntensity);
             transform.localScale = smallScale;
             targetScale = smallScale;
+            animationMarker = transform.Find("Animator").gameObject;
         }
 
         private void Update()
         {
-            if (playerNearby && Input.GetKeyDown(KeyCode.E))
+            if (playerNearby)
             {
-                Debug.Log("E pressed near keypad. isOpen: " + isOpen);
-                if (isOpen)
-                    CloseKeypad();
-                else
+                if (Input.GetKeyDown(KeyCode.E))
+                {
                     TryOpenKeypad();
+                }
             }
+            else
+            {
+                if (isOpen)
+                {
+                    CloseUI();
+                }
+
+            }
+
         }
 
         private void TryOpenKeypad()
@@ -95,7 +110,7 @@ namespace NavKeypad
             }
 
             Debug.Log("Opening keypad!");
-            OpenKeypad();
+            OpenUI();
         }
 
         private bool HasMatchingKeycardEquipped()
@@ -113,20 +128,28 @@ namespace NavKeypad
                 && equipped.gateID == requiredGateID;
         }
 
-        private void OpenKeypad()
+        private void OpenUI()
         {
             isOpen = true;
             targetScale = bigScale;
             if (scaleRoutine != null) StopCoroutine(scaleRoutine);
             scaleRoutine = StartCoroutine(ScaleRoutine());
+            animationMarker.SetActive(false);
+            Player.Instance.EnableMovementAndJump(false);
+            MenuManager.Instance.RegisterOpenUI(this);
+            SetSlowMotion(true);
         }
 
-        private void CloseKeypad()
+        public void CloseUI()
         {
             isOpen = false;
             targetScale = smallScale;
             if (scaleRoutine != null) StopCoroutine(scaleRoutine);
             scaleRoutine = StartCoroutine(ScaleRoutine());
+            animationMarker.SetActive(true);
+            Player.Instance.EnableMovementAndJump(true);
+            MenuManager.Instance.UnregisterOpenUI(this);
+            SetSlowMotion(false);
         }
 
         private IEnumerator ScaleRoutine()
@@ -228,7 +251,23 @@ namespace NavKeypad
             if (collision.CompareTag("Player"))
             {
                 playerNearby = false;
-                if (isOpen) CloseKeypad();
+                if (isOpen) CloseUI();
+            }
+        }
+
+        private void SetSlowMotion(bool slow)
+        {
+            if (!useSlowMotion) return;
+
+            if (slow)
+            {
+                Time.timeScale = slowMotionScale;
+                Time.fixedDeltaTime = 0.02f * slowMotionScale;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                Time.fixedDeltaTime = 0.02f;
             }
         }
     }

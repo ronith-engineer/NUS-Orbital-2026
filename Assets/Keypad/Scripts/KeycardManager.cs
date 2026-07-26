@@ -4,7 +4,6 @@ public class KeycardManager : MonoBehaviour
 {
     public static KeycardManager Instance;
 
-    [SerializeField] private GameObject keycardHUDIcon;
 
     private bool hasKeycard = false;
 
@@ -13,18 +12,11 @@ public class KeycardManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        if (keycardHUDIcon != null)
-            keycardHUDIcon.SetActive(false);
-    }
 
     public void CollectKeycard()
     {
         hasKeycard = true;
-        Debug.Log("Keycard collected!");
-        if (keycardHUDIcon != null)
-            keycardHUDIcon.SetActive(true);
+
     }
 
     public bool HasKeycard()

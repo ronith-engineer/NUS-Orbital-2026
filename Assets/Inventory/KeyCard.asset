@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61967a7c539dc847963c4cf9c4de0c4, type: 3}
   m_Name: KeyCard
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: KeyCard
+  icon: {fileID: -5960511037448888903, guid: 9f024d68b035ab54d8f5e5275206a64c, type: 3}
+  itemType: 13
   healAmount: 0
   isStackable: 0
   maxStack: 5
