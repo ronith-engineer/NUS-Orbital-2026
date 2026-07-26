@@ -4,6 +4,7 @@ namespace NavKeypad
     public class KeypadInteraction2D : MonoBehaviour
     {
         private Camera cam;
+        [SerializeField] private LayerMask buttonLayerMask;
 
         private void Awake() => cam = Camera.main;
 
@@ -11,13 +12,14 @@ namespace NavKeypad
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                Vector2 worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero, Mathf.Infinity, buttonLayerMask);
+
+                Debug.Log("Hit collider: " + (hit.collider != null ? hit.collider.name : "NONE"));
+
+                if (hit.collider != null && hit.collider.TryGetComponent(out KeypadButton keypadButton))
                 {
-                    if (hit.collider.TryGetComponent(out KeypadButton keypadButton))
-                    {
-                        keypadButton.PressButton();
-                    }
+                    keypadButton.PressButton();
                 }
             }
         }

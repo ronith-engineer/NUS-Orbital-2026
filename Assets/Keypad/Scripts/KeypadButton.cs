@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace NavKeypad
 {
@@ -14,6 +13,7 @@ namespace NavKeypad
         [Header("Component References")]
         [SerializeField] private Keypad keypad;
 
+        private bool moving;
 
         public void PressButton()
         {
@@ -23,11 +23,9 @@ namespace NavKeypad
                 StartCoroutine(MoveSmooth());
             }
         }
-        private bool moving;
 
         private IEnumerator MoveSmooth()
         {
-
             moving = true;
             Vector3 startPos = transform.localPosition;
             Vector3 endPos = transform.localPosition + new Vector3(0, 0, moveDist);
@@ -35,26 +33,23 @@ namespace NavKeypad
             float elapsedTime = 0;
             while (elapsedTime < bttnspeed)
             {
-                elapsedTime += Time.deltaTime;
+                elapsedTime += Time.unscaledDeltaTime;
                 float t = Mathf.Clamp01(elapsedTime / bttnspeed);
-
                 transform.localPosition = Vector3.Lerp(startPos, endPos, t);
-
                 yield return null;
             }
             transform.localPosition = endPos;
-            yield return new WaitForSeconds(buttonPressedTime);
+            yield return new WaitForSecondsRealtime(buttonPressedTime);
+
             startPos = transform.localPosition;
             endPos = transform.localPosition - new Vector3(0, 0, moveDist);
 
             elapsedTime = 0;
             while (elapsedTime < bttnspeed)
             {
-                elapsedTime += Time.deltaTime;
+                elapsedTime += Time.unscaledDeltaTime;
                 float t = Mathf.Clamp01(elapsedTime / bttnspeed);
-
                 transform.localPosition = Vector3.Lerp(startPos, endPos, t);
-
                 yield return null;
             }
             transform.localPosition = endPos;

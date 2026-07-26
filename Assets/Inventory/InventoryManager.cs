@@ -37,6 +37,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject alcoholPickupPrefab;
     [SerializeField] private GameObject ragsPickupPrefab;
     [SerializeField] private GameObject metalScrapPickupPrefab;
+    [SerializeField] private GameObject keycardPickup;
 
     [Header("Drop Settings")]
     [SerializeField] private float dropOffsetX = 2f;
@@ -221,6 +222,9 @@ public class InventoryManager : MonoBehaviour
 
         switch (key)
         {
+            case ItemData.ItemType.KeyCard:
+                equippedItem = item;
+                break;
             case ItemData.ItemType.Gun:
                 SelectSpawnedWeapon(key);
                 equippedItem = item;
