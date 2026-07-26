@@ -79,9 +79,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -627879323
+  m_SortingLayer: 1
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8386115682156863979, guid: ec465dd350c72a74c92a5d1e0bf1f099, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106,9 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 11400000, guid: f384b9d048e65d844b7d1725654d626f, type: 2}
-  weaponManager: {fileID: 0}
-  pistol: {fileID: 0}
-  shotgun: {fileID: 0}
 --- !u!58 &217313806239725438
 CircleCollider2D:
   m_ObjectHideFlags: 0

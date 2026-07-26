@@ -11,6 +11,10 @@ public class ItemData : ScriptableObject
     [Header("Item Stats")]
     public int healAmount = 0;
 
+    [Header("Stacking")]
+    public bool isStackable = false;
+    public int maxStack = 5;
+
     public enum ItemType
     {
         Gun,

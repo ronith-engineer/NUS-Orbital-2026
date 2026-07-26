@@ -16,3 +16,5 @@ MonoBehaviour:
   icon: {fileID: -2364998675810843726, guid: 45d9eac65f5b736498a8aec43a80d3c4, type: 3}
   itemType: 4
   healAmount: 0
+  isStackable: 1
+  maxStack: 5

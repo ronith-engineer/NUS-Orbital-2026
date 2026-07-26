@@ -30,7 +30,7 @@ public class CraftingManager : MonoBehaviour
     {
         ItemData itemA = from.GetItem();
         ItemData itemB = to.GetItem();
-        
+
         if (itemA == null || itemB == null) return false;
 
         slotA = from;
@@ -56,12 +56,13 @@ public class CraftingManager : MonoBehaviour
 
         return false;
     }
+
     private void CompleteCraft(ItemData result)
     {
-        slotA.ClearSlot();
-        slotB.ClearSlot();
-        InventoryManager.Instance.AddItem(result);
         InventoryManager.Instance.ShowInventory();
+        slotA.RemoveOne();
+        slotB.RemoveOne();
+        InventoryManager.Instance.AddItem(result);
     }
 
     private bool IsPair(ItemData a, ItemData b, ItemData.ItemType type1, ItemData.ItemType type2)
@@ -69,6 +70,7 @@ public class CraftingManager : MonoBehaviour
         return (a.itemType == type1 && b.itemType == type2)
             || (a.itemType == type2 && b.itemType == type1);
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -81,23 +83,22 @@ public class CraftingManager : MonoBehaviour
             }
         }
     }
+
     public void CraftMolotov()
     {
-        CompleteCraft(molotovItem);
         craftWindow1.SetActive(false);
+        CompleteCraft(molotovItem);
     }
 
     public void CraftBandage()
     {
-        CompleteCraft(bandageItem);
         craftWindow1.SetActive(false);
+        CompleteCraft(bandageItem);
     }
 
     public void CraftKnife()
     {
-        CompleteCraft(knifeItem);
         craftWindow2.SetActive(false);
+        CompleteCraft(knifeItem);
     }
-
-   
 }

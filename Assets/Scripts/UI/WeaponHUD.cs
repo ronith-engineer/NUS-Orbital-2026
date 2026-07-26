@@ -3,18 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 public class WeaponHUD : MonoBehaviour
 {
-    private float currentAmmo;
-    private float reserveAmmo;
+    private Weapon weapon;
 
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private ItemData.ItemType weaponType;
+
     [SerializeField] private TextMeshProUGUI ammoCounter;
 
+    private void OnEnable()
+    {
+        weapon = InventoryManager.Instance.GetSpawnedWeapon(weaponType);
+    }
 
     void Update()
     {
-        currentAmmo = weapon.currentAmmo;
-        reserveAmmo = weapon.reserveAmmo;
-        ammoCounter.text = $"{currentAmmo} | {reserveAmmo}";
-
+        if (weapon == null) return;  
+        ammoCounter.text = $"{weapon.currentAmmo} | {weapon.reserveAmmo}";
     }
 }

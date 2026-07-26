@@ -177,13 +177,14 @@ GameObject:
   - component: {fileID: 6261221646843626796}
   - component: {fileID: 8784766692699774888}
   - component: {fileID: 2126519673374927961}
+  - component: {fileID: 4403489371331902002}
   m_Layer: 9
   m_Name: GrenadeProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7794142624285081957
 Transform:
   m_ObjectHideFlags: 0
@@ -192,10 +193,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7218957170405243159}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32772, y: 0.042286456, z: 0}
-  m_LocalScale: {x: 0.028395554, y: 0.028395554, z: 0.028395554}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.0117, y: 0.0117, z: 0.0117}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3551301556478470430}
   m_Father: {fileID: 0}
@@ -247,7 +248,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 630291237
   m_SortingLayer: 4
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2364998675810843726, guid: 45d9eac65f5b736498a8aec43a80d3c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -356,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c30069654ccf4a439e9c7f76945f1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThrowableImpactSpawner
-  objectToSpawn: {fileID: 1669118241313386196, guid: 9b1183e66bdaef9448e3c1e4857578e8, type: 3}
+  objectToSpawn: {fileID: 2353613229968253024, guid: c912d54e22a68934b8448140864d8f65, type: 3}
 --- !u!114 &2126519673374927961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +370,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe0dd4cac433ca47b2451b933fd3ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragAndShoot
-  power: 2
+  power: 8
+  throwableType: 4
   isReleased: 0
-  maxDragRadius: 0
+  maxDragRadius: 4.01
+--- !u!114 &4403489371331902002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218957170405243159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e085f2c2549e8c43b3fb4b4ea0c376d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickRadiusRestriction
+  clickRadius: 0.27

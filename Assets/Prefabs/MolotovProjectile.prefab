@@ -177,13 +177,14 @@ GameObject:
   - component: {fileID: 6261221646843626796}
   - component: {fileID: 8784766692699774888}
   - component: {fileID: 2126519673374927961}
+  - component: {fileID: 6930902139414232263}
   m_Layer: 9
   m_Name: MolotovProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7794142624285081957
 Transform:
   m_ObjectHideFlags: 0
@@ -192,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7218957170405243159}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32772, y: 0.042286456, z: 0}
   m_LocalScale: {x: 0.028395554, y: 0.028395554, z: 0.028395554}
   m_ConstrainProportionsScale: 0
@@ -250,7 +251,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6177810196695771487, guid: b1a01033122a2fb45bbc01c7b2a79707, type: 3}
+  m_Sprite: {fileID: 6177810196695771487, guid: 157f5f9db8c85da4da93097d1bfadc5f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -298,7 +299,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.46875, y: 3.75}
+    oldSize: {x: 1.59375, y: 4.3125}
     newSize: {x: 1.46875, y: 3.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -370,9 +371,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe0dd4cac433ca47b2451b933fd3ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragAndShoot
-  power: 2
+  power: 8
+  throwableType: 3
   isReleased: 0
-  maxDragRadius: 0
+  maxDragRadius: 4.01
+--- !u!114 &6930902139414232263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218957170405243159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e085f2c2549e8c43b3fb4b4ea0c376d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickRadiusRestriction
+  clickRadius: 0.33
 --- !u!1 &8947597121592848606
 GameObject:
   m_ObjectHideFlags: 0
