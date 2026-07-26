@@ -231,7 +231,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 6632842229561120562}
   excludeLayers:
     serializedVersion: 2
-    m_Bits: 11264
+    m_Bits: 125952
   currentAmmo: 4
   reserveAmmo: 0
   knockbackForce: 15
@@ -243,6 +243,7 @@ MonoBehaviour:
   canReload: 1
   canShoot: 1
   shootNoise: 100
+  shootNoiseRadius: 15
 --- !u!222 &7797673440704082521
 CanvasRenderer:
   m_ObjectHideFlags: 0

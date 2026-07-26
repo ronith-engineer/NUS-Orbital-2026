@@ -208,8 +208,9 @@ public class Enemy : Entity
         {
 
             if (isBlind) return;
-
+            
             Player player = collision.GetComponent<Player>();
+            Debug.Log("IsInShadow: " + player.IsInShadow());
             if (player != null && player.IsInShadow())
                 return;
 
@@ -244,6 +245,7 @@ public class Enemy : Entity
         if (collision.CompareTag("Player") && !isChasing)
         {
             Player player = collision.GetComponent<Player>();
+            Debug.Log("IsInShadow: " + player.IsInShadow());
             if (player != null && player.IsInShadow())
                 return;
 
