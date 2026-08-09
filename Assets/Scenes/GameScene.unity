@@ -522,6 +522,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7331486725034886976, guid: 5cc8a07f9319fc043aef455446c01c63, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1007360644}
+    - target: {fileID: 7331486725034886976, guid: 5cc8a07f9319fc043aef455446c01c63, type: 3}
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 1007360641}
@@ -24951,10 +24955,14 @@ PrefabInstance:
     - target: {fileID: 230965274998517921, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 22169747}
+      objectReference: {fileID: 1007360644}
     - target: {fileID: 230965274998517921, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 230965274998517921, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 934007731153142965, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_Color.a
@@ -25091,10 +25099,14 @@ PrefabInstance:
     - target: {fileID: 5900170702470525971, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 22169747}
+      objectReference: {fileID: 1007360644}
     - target: {fileID: 5900170702470525971, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowInstructions
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900170702470525971, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6429848205163502931, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_Name
@@ -25123,10 +25135,14 @@ PrefabInstance:
     - target: {fileID: 6447052707458168693, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 22169747}
+      objectReference: {fileID: 1007360644}
     - target: {fileID: 6447052707458168693, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447052707458168693, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7050432705481596809, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_fontColor.b
@@ -25211,10 +25227,14 @@ PrefabInstance:
     - target: {fileID: 8553412870767967524, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 22169747}
+      objectReference: {fileID: 1007360644}
     - target: {fileID: 8553412870767967524, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553412870767967524, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8972056112491193326, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
       propertyPath: m_Color.a
@@ -25252,7 +25272,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 9137451091173445815, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6429848205163502931, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1007360644}
   m_SourcePrefab: {fileID: 100100000, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
 --- !u!224 &1007360640 stripped
 RectTransform:
@@ -25264,6 +25287,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6429848205163502931, guid: 2bccc3283ef588f41a8d607a0bcf6f21, type: 3}
   m_PrefabInstance: {fileID: 1007360639}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1007360644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007360641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7498c281a0fc484eac16ade52e249fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  isPaused: 0
+  instructionsPanel: {fileID: 1567476493}
 --- !u!1001 &1010569526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67542,7 +67579,15 @@ PrefabInstance:
     - target: {fileID: 7869848124135690810, guid: 04f3a01d1276f1f4e9988a269af4b0ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 22169747}
+      objectReference: {fileID: 1007360644}
+    - target: {fileID: 7869848124135690810, guid: 04f3a01d1276f1f4e9988a269af4b0ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideInstructions
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869848124135690810, guid: 04f3a01d1276f1f4e9988a269af4b0ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

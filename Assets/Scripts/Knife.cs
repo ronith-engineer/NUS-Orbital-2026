@@ -32,8 +32,8 @@ public class Knife : MonoBehaviour
             gameObject.SetActive(false);
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) && knifeCurrentDurability > 0) // If the left mouse button is pressed and the knife has durability, perform an attack
-
         {
+            if (MenuManager.Instance.IsAnyUIOpen) return; // If any UI is open, do not perform an attack
             knifeCurrentDurability--;
             anim.SetTrigger("knifeAttack");
         }

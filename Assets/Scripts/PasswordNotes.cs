@@ -65,6 +65,9 @@ public class PasswordNotes : MonoBehaviour, ICloseableUI
 
     public void OpenUI()
     {
+        if (!MenuManager.Instance.RegisterOpenUI(this))
+            return;
+
         noteCanvas.SetActive(true);
         Player.Instance.EnableMovementAndJump(false);
         MenuManager.Instance.RegisterOpenUI(this);
