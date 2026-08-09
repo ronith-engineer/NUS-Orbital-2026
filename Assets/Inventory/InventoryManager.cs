@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, ICloseableUI
 {
     public static InventoryManager Instance;
     public event Action OnEquippedItemChanged;
@@ -61,7 +61,7 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
-            ToggleInventory();
+            OpenUI();
     }
 
     private ItemData.ItemType NormalizeType(ItemData.ItemType type)
@@ -71,25 +71,29 @@ public class InventoryManager : MonoBehaviour
         return type;
     }
 
-    public void ToggleInventory()
+    public void OpenUI()
     {
-        isOpen = !isOpen;
-        if (isOpen)
-        {
-            SetSlowMotion(true);
-            weaponManager.currentSelectedWeapon?.EnableReloadAndShoot(false);
-            inventoryPanel.SetActive(true);
-            inventoryPanel.transform.localScale = Vector3.zero;
-            StartCoroutine(ScaleInventory(Vector3.one));
-        }
-        else
-        {
-            SetSlowMotion(false);
-            weaponManager.currentSelectedWeapon?.EnableReloadAndShoot(true);
-            StartCoroutine(ScaleInventory(Vector3.zero));
-            StartCoroutine(HideAfterScale());
-        }
+        if (isOpen) return; 
+        if (!MenuManager.Instance.RegisterOpenUI(this))
+            return; 
+
+        isOpen = true;
+        SetSlowMotion(true);
+        inventoryPanel.SetActive(true);
+        inventoryPanel.transform.localScale = Vector3.zero;
+        StartCoroutine(ScaleInventory(Vector3.one));
     }
+
+    public void CloseUI()
+    {
+        if (!isOpen) return;
+        isOpen = false;
+        SetSlowMotion(false);
+        StartCoroutine(ScaleInventory(Vector3.zero));
+        StartCoroutine(HideAfterScale());
+        MenuManager.Instance.UnregisterOpenUI(this);
+    }
+
 
     private void SetSlowMotion(bool slow)
     {
@@ -441,4 +445,10 @@ public class InventoryManager : MonoBehaviour
             return obj.GetComponent<Knife>();
         return null;
     }
+
+
+
+
 }
+
+

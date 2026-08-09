@@ -130,6 +130,9 @@ namespace NavKeypad
 
         private void OpenUI()
         {
+            if (!MenuManager.Instance.RegisterOpenUI(this))
+                return;
+
             isOpen = true;
             targetScale = bigScale;
             if (scaleRoutine != null) StopCoroutine(scaleRoutine);
@@ -137,7 +140,6 @@ namespace NavKeypad
             animationMarker.SetActive(false);
             Player.Instance.EnableMovementAndJump(false);
             MenuManager.Instance.RegisterOpenUI(this);
-            WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(false);
             SetSlowMotion(true);
         }
 
@@ -150,7 +152,6 @@ namespace NavKeypad
             animationMarker.SetActive(true);
             Player.Instance.EnableMovementAndJump(true);
             MenuManager.Instance.UnregisterOpenUI(this);
-            WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(true);
             SetSlowMotion(false);
         }
 

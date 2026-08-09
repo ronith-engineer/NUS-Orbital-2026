@@ -51,10 +51,10 @@ public class WorkbenchUITrigger : MonoBehaviour, ICloseableUI
     }
     public void OpenUI()
     {
-        Debug.Log("E pressed");
+        if (!MenuManager.Instance.RegisterOpenUI(this))
+            return;
+
         weaponUpgradeUI.SetActive(true);
-        MenuManager.Instance.RegisterOpenUI(this);
-        WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(false);
         player.EnableMovementAndJump(false);
         
     }
@@ -63,6 +63,5 @@ public class WorkbenchUITrigger : MonoBehaviour, ICloseableUI
         weaponUpgradeUI.SetActive(false);
         player.EnableMovementAndJump(true);
         MenuManager.Instance.UnregisterOpenUI(this);
-        WeaponManager.Instance.currentSelectedWeapon?.EnableReloadAndShoot(true);
     }
 }

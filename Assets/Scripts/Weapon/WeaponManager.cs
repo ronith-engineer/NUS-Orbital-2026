@@ -37,8 +37,11 @@ public class WeaponManager : MonoBehaviour
 
         currentSelectedWeapon = weapon;
         currentSelectedWeapon.gameObject.SetActive(true);
+        SetShootingEnabled(!MenuManager.Instance.IsAnyUIOpen);
         OnSelectedWeaponChanged?.Invoke();
+
     }
+    
 
     public List<Weapon> GetOwnedWeapons()
     {
@@ -77,5 +80,10 @@ public class WeaponManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void SetShootingEnabled(bool enabled)
+    {
+        currentSelectedWeapon?.EnableReloadAndShoot(enabled);
     }
 }

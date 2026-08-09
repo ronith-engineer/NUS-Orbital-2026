@@ -4,16 +4,14 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance {  get; private set; }
+    public bool IsAnyUIOpen => activeUI != null;
 
     [Header("Panels")]
-    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameObject instructionsPanel;
     [SerializeField] private GameObject gameOverLosePanel;
     [SerializeField] private GameObject gameOverWinPanel;
 
-    public bool canPause = true;
-
-    private bool isPaused = false;
 
     private bool isGameOver = false;
 
@@ -37,6 +35,7 @@ public class MenuManager : MonoBehaviour
         {
             HandleEscape();
         }
+
     }
 
     private void HandleEscape()
@@ -48,15 +47,10 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
-        if (isPaused)
-        {
-            ResumeGame();
-        }
-        else if (canPause)
-        {
-            PauseGame();
-        }
+        if (!pauseMenu.isPaused)
+            pauseMenu.OpenUI();
     }
+
 
     public void StartGame()
     {
@@ -64,36 +58,21 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
-    public void PauseGame()
-    {
-        isPaused = true;
-        pausePanel.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    public void ResumeGame()
-    {
-        isPaused = false;
-        pausePanel.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
     public void RestartGame()
     {
-        isGameOver = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void ShowInstructions()
+    public void QuitGame()
     {
-        instructionsPanel.SetActive(true);
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
     }
 
-    public void HideInstructions()
-    {
-        instructionsPanel.SetActive(false);
-    }
 
     public void ShowGameOverLose()
     {
@@ -109,23 +88,24 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-    }
 
-    public void RegisterOpenUI(ICloseableUI ui)
+    public bool RegisterOpenUI(ICloseableUI ui)
     {
+        if (activeUI != null && activeUI != ui)
+            return false; //denies ui registration if another UI is already active
+
         activeUI = ui;
+        WeaponManager.Instance.SetShootingEnabled(false);
+
+        return true;
     }
 
     public void UnregisterOpenUI(ICloseableUI ui)
     {
         if (activeUI == ui)
+        {
             activeUI = null;
+            WeaponManager.Instance.SetShootingEnabled(true);
+        }
     }
 }
