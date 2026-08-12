@@ -8,22 +8,18 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
     public static InventoryManager Instance;
     public event Action OnEquippedItemChanged;
     [SerializeField] private WeaponManager weaponManager;
-
     [Header("UI References")]
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private InventorySlot[] slots;
-
     [Header("Parents")]
     [SerializeField] private Transform aimTransform;
     [SerializeField] private Transform playerTransform;
-
     [Header("Held Prefabs")]
     [SerializeField] private GameObject gunHeldPrefab;
     [SerializeField] private GameObject shotgunHeldPrefab;
     [SerializeField] private GameObject knifeHeldPrefab;
     [SerializeField] private GameObject molotovHeldPrefab;
     [SerializeField] private GameObject grenadeHeldPrefab;
-
     [Header("Ground Pickup Prefabs")]
     [SerializeField] private GameObject gunPickupPrefab;
     [SerializeField] private GameObject shotgunPickupPrefab;
@@ -38,52 +34,53 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
     [SerializeField] private GameObject ragsPickupPrefab;
     [SerializeField] private GameObject metalScrapPickupPrefab;
     [SerializeField] private GameObject keycardPickup;
-
     [Header("Drop Settings")]
     [SerializeField] private float dropOffsetX = 2f;
-
     [Header("Slow Motion")]
     [SerializeField] private float slowMotionScale = 0.1f;
     [SerializeField] private bool useSlowMotion = true;
-
     private bool isOpen = false;
     private ItemData equippedItem;
-
     private Dictionary<ItemData.ItemType, GameObject> spawnedObjects = new Dictionary<ItemData.ItemType, GameObject>();
     private Dictionary<ItemData.ItemType, Weapon> spawnedWeapons = new Dictionary<ItemData.ItemType, Weapon>();
+    private Dictionary<ItemData.ItemType, SavedWeaponStats> savedStats = new Dictionary<ItemData.ItemType, SavedWeaponStats>();
+
+    private class SavedWeaponStats
+    {
+        public float currentAmmo;
+        public float reserveAmmo;
+        public List<WeaponUpgrade> appliedUpgrades;
+        public int countDamageUpgrades;
+        public int countClipCapacityUpgrades;
+    }
 
     private void Awake()
     {
         Instance = this;
         inventoryPanel.SetActive(false);
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
             OpenUI();
     }
-
     private ItemData.ItemType NormalizeType(ItemData.ItemType type)
     {
         if (type == ItemData.ItemType.MakeshiftKnife)
             return ItemData.ItemType.Knife;
         return type;
     }
-
     public void OpenUI()
     {
-        if (isOpen) return; 
+        if (isOpen) return;
         if (!MenuManager.Instance.RegisterOpenUI(this))
-            return; 
-
+            return;
         isOpen = true;
         SetSlowMotion(true);
         inventoryPanel.SetActive(true);
         inventoryPanel.transform.localScale = Vector3.zero;
         StartCoroutine(ScaleInventory(Vector3.one));
     }
-
     public void CloseUI()
     {
         if (!isOpen) return;
@@ -93,12 +90,9 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
         StartCoroutine(HideAfterScale());
         MenuManager.Instance.UnregisterOpenUI(this);
     }
-
-
     private void SetSlowMotion(bool slow)
     {
         if (!useSlowMotion) return;
-
         if (slow)
         {
             Time.timeScale = slowMotionScale;
@@ -110,24 +104,20 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
             Time.fixedDeltaTime = 0.02f;
         }
     }
-
     public void HideInventory()
     {
         inventoryPanel.SetActive(false);
     }
-
     public void ShowInventory()
     {
         inventoryPanel.SetActive(true);
         inventoryPanel.transform.localScale = Vector3.one;
     }
-
     private IEnumerator HideAfterScale()
     {
         yield return new WaitForSecondsRealtime(0.2f);
         inventoryPanel.SetActive(false);
     }
-
     private IEnumerator ScaleInventory(Vector3 targetScale)
     {
         float duration = 0.2f;
@@ -142,7 +132,6 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
         }
         inventoryPanel.transform.localScale = targetScale;
     }
-
     public bool AddItem(ItemData item)
     {
         if (item.isStackable)
@@ -156,7 +145,6 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
                 }
             }
         }
-
         foreach (InventorySlot slot in slots)
         {
             if (slot.IsEmpty())
@@ -166,24 +154,16 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
                 return true;
             }
         }
-
-        Debug.Log("Inventory full!");
         return false;
     }
-
     private void SpawnHeldObject(ItemData item)
     {
         ItemData.ItemType key = NormalizeType(item.itemType);
-        Debug.Log("SpawnHeldObject running for: " + key);
-
         if (key == ItemData.ItemType.Molotov || key == ItemData.ItemType.Grenade)
             return;
-
         if (spawnedObjects.ContainsKey(key)) return;
-
         GameObject prefab = null;
         Transform parent = null;
-
         switch (key)
         {
             case ItemData.ItemType.Gun:
@@ -201,31 +181,30 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
             default:
                 return;
         }
-
-        Debug.Log("Prefab null: " + (prefab == null) + " | Parent null: " + (parent == null));
-
         if (prefab == null || parent == null) return;
-
         GameObject spawned = Instantiate(prefab, parent);
         spawnedObjects[key] = spawned;
-
         Weapon weapon = spawned.GetComponent<Weapon>();
-        Debug.Log("Weapon component found on " + key + ": " + (weapon != null));
-
         if (weapon != null)
         {
             weaponManager.AddWeapon(weapon);
             spawnedWeapons[key] = weapon;
+            if (savedStats.ContainsKey(key))
+            {
+                SavedWeaponStats s = savedStats[key];
+                weapon.currentAmmo = s.currentAmmo;
+                weapon.reserveAmmo = s.reserveAmmo;
+                weapon.appliedUpgrades = new List<WeaponUpgrade>(s.appliedUpgrades);
+                weapon.countDamageUpgrades = s.countDamageUpgrades;
+                weapon.countClipCapacityUpgrades = s.countClipCapacityUpgrades;
+                savedStats.Remove(key);
+            }
         }
-
         spawned.SetActive(false);
     }
-
     public void EquipItem(ItemData item, InventorySlot slot)
     {
         ItemData.ItemType key = NormalizeType(item.itemType);
-        Debug.Log("EquipItem called for: " + key + " | in spawnedWeapons: " + spawnedWeapons.ContainsKey(key));
-
         switch (key)
         {
             case ItemData.ItemType.KeyCard:
@@ -288,39 +267,31 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
                 break;
         }
     }
-
     private void SpawnThrowable(ItemData.ItemType type, GameObject prefab)
     {
         HideAllHeld();
-
         if (spawnedObjects.ContainsKey(type) && spawnedObjects[type] != null)
         {
             spawnedObjects[type].SetActive(true);
             return;
         }
-
         if (prefab == null || playerTransform == null) return;
-
         GameObject spawned = Instantiate(prefab, playerTransform);
         spawnedObjects[type] = spawned;
         spawned.SetActive(true);
     }
-
     private void SelectSpawnedWeapon(ItemData.ItemType type)
     {
         HideAllHeld();
-        Debug.Log("SelectSpawnedWeapon for " + type + " | key present: " + spawnedWeapons.ContainsKey(type));
         if (spawnedWeapons.ContainsKey(type))
             weaponManager.SelectWeapon(spawnedWeapons[type]);
     }
-
     private void ShowOnlyHeld(ItemData.ItemType type)
     {
         HideAllHeld();
         if (spawnedObjects.ContainsKey(type))
             spawnedObjects[type].SetActive(true);
     }
-
     private void HideAllHeld()
     {
         foreach (var pair in spawnedObjects)
@@ -329,21 +300,17 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
                 pair.Value.SetActive(false);
         }
     }
-
     private void HealPlayer()
     {
         Player player = FindAnyObjectByType<Player>();
         if (player != null)
             player.Heal();
     }
-
     public void NotifyThrowableUsed(ItemData.ItemType type)
     {
         ItemData.ItemType key = NormalizeType(type);
-
         if (spawnedObjects.ContainsKey(key))
             spawnedObjects.Remove(key);
-
         foreach (InventorySlot slot in slots)
         {
             if (!slot.IsEmpty() && slot.GetItem().itemType == type)
@@ -353,35 +320,38 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
             }
         }
     }
-
     public void DropItem(ItemData item, InventorySlot slot)
     {
         ItemData.ItemType key = NormalizeType(item.itemType);
         bool isLastOne = slot.GetCount() <= 1;
-
         if (isLastOne)
         {
             if (spawnedWeapons.ContainsKey(key))
             {
+                Weapon w = spawnedWeapons[key];
+                savedStats[key] = new SavedWeaponStats
+                {
+                    currentAmmo = w.currentAmmo,
+                    reserveAmmo = w.reserveAmmo,
+                    appliedUpgrades = new List<WeaponUpgrade>(w.appliedUpgrades),
+                    countDamageUpgrades = w.countDamageUpgrades,
+                    countClipCapacityUpgrades = w.countClipCapacityUpgrades
+                };
                 weaponManager.RemoveWeapon(spawnedWeapons[key]);
                 spawnedWeapons.Remove(key);
             }
-
             if (spawnedObjects.ContainsKey(key))
             {
                 Destroy(spawnedObjects[key]);
                 spawnedObjects.Remove(key);
             }
-
             if (equippedItem != null && NormalizeType(equippedItem.itemType) == key)
             {
                 equippedItem = null;
                 OnEquippedItemChanged?.Invoke();
             }
         }
-
         GameObject pickupPrefab = GetPickupPrefab(item.itemType);
-
         if (pickupPrefab != null && playerTransform != null)
         {
             Vector3 dropPosition = new Vector3(
@@ -390,14 +360,8 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
                 0);
             Instantiate(pickupPrefab, dropPosition, Quaternion.identity);
         }
-        else
-        {
-            Debug.Log("Drop failed for " + item.itemType + ". Pickup null: " + (pickupPrefab == null));
-        }
-
         slot.RemoveOne();
     }
-
     private GameObject GetPickupPrefab(ItemData.ItemType type)
     {
         switch (type)
@@ -418,26 +382,21 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
             default: return null;
         }
     }
-
     public void ConsumeOne(InventorySlot slot)
     {
         slot.RemoveOne();
     }
-
     public void UseItem(ItemData item, InventorySlot slot)
     {
         EquipItem(item, slot);
     }
-
     public ItemData GetEquippedItem() => equippedItem;
-
     public Weapon GetSpawnedWeapon(ItemData.ItemType type)
     {
         ItemData.ItemType key = NormalizeType(type);
         spawnedWeapons.TryGetValue(key, out Weapon weapon);
         return weapon;
     }
-
     public Knife GetSpawnedKnife(ItemData.ItemType type)
     {
         ItemData.ItemType key = NormalizeType(type);
@@ -445,10 +404,4 @@ public class InventoryManager : MonoBehaviour, ICloseableUI
             return obj.GetComponent<Knife>();
         return null;
     }
-
-
-
-
 }
-
-
