@@ -31,6 +31,8 @@ public class MenuManager : MonoBehaviour
     {
         if (isGameOver) return; // Escape does nothing on the game over screen
 
+        if (pauseMenu != null && pauseMenu.isInstructionsOpen) return; // Escape does nothing when instructions are open
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             HandleEscape();
@@ -47,11 +49,11 @@ public class MenuManager : MonoBehaviour
             return;
         }
 
-        if (!pauseMenu.isPaused)
+        if (pauseMenu != null && !pauseMenu.isPaused)
             pauseMenu.OpenUI();
     }
 
-
+    
     public void StartGame()
     {
         Time.timeScale = 1f;
@@ -73,6 +75,15 @@ public class MenuManager : MonoBehaviour
 #endif
     }
 
+    public void ShowInstructions()
+    {
+        instructionsPanel.SetActive(true);
+    }
+
+    public void HideInstructions()
+    {
+        instructionsPanel.SetActive(false);
+    }
 
     public void ShowGameOverLose()
     {
