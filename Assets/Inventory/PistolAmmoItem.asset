@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PistolAmmoItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Pistol Ammo
-  icon: {fileID: 3934455851257828662, guid: edaacc03a9815184bb550a3a0cac97c9, type: 3}
+  icon: {fileID: -7173003525342006096, guid: 83c0cbc30b824444487a710d1a4500ae, type: 3}
   itemType: 11
   healAmount: 0
+  isStackable: 0
+  maxStack: 5
+  gateID: 0

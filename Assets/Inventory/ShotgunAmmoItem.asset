@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ShotgunAmmoItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Shotgun Ammo
-  icon: {fileID: 3934455851257828662, guid: 15d801058e475624bab8fd6b84c8050a, type: 3}
+  icon: {fileID: 6066325612735239030, guid: 83c0cbc30b824444487a710d1a4500ae, type: 3}
   itemType: 12
   healAmount: 0
+  isStackable: 0
+  maxStack: 5
+  gateID: 0

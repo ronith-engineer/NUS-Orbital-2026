@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour, ICloseableUI
 {
     public bool isPaused = false;
+    public bool isInstructionsOpen = false;
 
     [SerializeField] private GameObject instructionsPanel;
 
@@ -41,11 +42,13 @@ public class PauseMenu : MonoBehaviour, ICloseableUI
     public void ShowInstructions()
     {
         instructionsPanel.SetActive(true);
+        isInstructionsOpen = true;
     }
 
     public void HideInstructions()
     {
         instructionsPanel.SetActive(false);
+        isInstructionsOpen = false;
     }
 
     public void QuitGame()
