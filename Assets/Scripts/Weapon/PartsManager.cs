@@ -9,7 +9,7 @@ public class PartsManager : MonoBehaviour
 
     private void Awake()
     {
-        //using singleton pattern to avoid any possible duplication of the camera manager in the scene
+        //using singleton pattern to avoid any possible duplication of the parts manager in the scene
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

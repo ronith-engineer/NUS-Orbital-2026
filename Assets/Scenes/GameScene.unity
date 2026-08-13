@@ -4859,7 +4859,7 @@ GameObject:
   - component: {fileID: 142144344}
   - component: {fileID: 142144346}
   - component: {fileID: 142144347}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Workbench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14584,7 +14584,7 @@ MonoBehaviour:
   hintText: {fileID: 1118421627}
   displayTime: 5
   slowMotionScale: 0.05
-  message: You can hide in the shadows to avoid enemies.
+  message: You can hide in the shadows to hide from enemies.
 --- !u!4 &546922774
 Transform:
   m_ObjectHideFlags: 0
@@ -75986,7 +75986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 0.5882353}
+  m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 0.9019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
